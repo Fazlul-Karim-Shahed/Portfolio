@@ -1,0 +1,30 @@
+.header {
+    background: url("../../../../public/Assets/header-bg.jpeg") no-repeat fixed
+        center;
+    background-size: 100% 100%;
+    height: 100vh;
+}
+
+#navbar {
+    transition: 1s;
+}
+
+.navbar_threeDot {
+    display: none;
+}
+
+@media only screen and (max-width: 766px) {
+    .navbar_links {
+        display: none;
+    }
+    .navbar_threeDot {
+        display: block;
+        cursor: pointer;
+    }
+    .navbar_threeDotLine {
+        padding: 1.5px;
+        width: 30px;
+        background-color: aliceblue;
+        margin: 5px 0px;
+    }
+}
