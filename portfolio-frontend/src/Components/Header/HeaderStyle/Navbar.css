@@ -1,0 +1,43 @@
+#navbar {
+    transition: 1s;
+}
+
+.navbar_threeDot {
+    display: none;
+}
+
+.navbar_links a {
+    color: #FFC107;
+    width: 0px;
+    font-size: 17px;
+}
+
+.navbar_links a:hover {
+    width: 0;
+    color: white;
+    border-bottom: 1px solid white;
+    transition: 0.5s ease;
+}
+
+@media only screen and (max-width: 766px) {
+    .navbar_links {
+        display: none;
+    }
+    .navbar_threeDot {
+        display: block;
+        cursor: pointer;
+    }
+    .navbar_threeDotLine {
+        padding: 1.5px;
+        width: 30px;
+        background-color: aliceblue;
+        margin: 5px 0px;
+    }
+
+    .navbar_offcanvas_link a {
+        color: black;
+    }
+    .navbar_offcanvas_link a:hover {
+        color: orangered;
+    }
+}

@@ -1,0 +1,14 @@
+.about_hireBtn {
+    padding: 7px 20px;
+    border-radius: 5px;
+    margin: 25px 0px;
+    border: 2px solid #ffc107;
+    background-color: #ffc107;
+    transition: 0.3s;
+    
+}
+
+.about_hireBtn:hover {
+    background-color: unset;
+    border: 2px solid #ffc107;
+}

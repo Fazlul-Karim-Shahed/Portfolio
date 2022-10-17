@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap");
+
+.hero {
+    display: flex;
+}
+
+.hero_left {
+    margin-left: 9%;
+    margin-top: 15%;
+    width: 50%;
+}
+
+.hero_name {
+    font-family: "Poiret One", cursive;
+    font-weight: bolder;
+    color: #FFC107;
+}
+
+.hero_cv {
+    font-family: "Maven Pro", sans-serif;
+    margin: 10px 0px;
+    display: inline-block;
+    color: black;
+    text-decoration: none;
+    padding: 8px 20px;
+    background-color: #FFC107;
+    border: 2px solid #FFC107;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.hero_cv:hover {
+    border: 2px solid #FFC107;
+    background-color: unset;
+    color: white;
+}
+
+.hero_desc span {
+    /* font-weight: bold; */
+    color: #eee;
+}
+
+.hero_right {
+    width: 45%;
+    position: relative;
+}
+
+.hero_right img {
+    width: 100%;
+    padding: 40px;
+    position: absolute;
+}
+
+.hero_me {
+    z-index: 1;
+}
+
+/* typing */
+/* typing */
+
+@media only screen and (max-width: 766px) {
+    .hero_left {
+        margin-left: 9%;
+        margin-top: 35%;
+        width: 100%;
+    }
+
+    .hero_right {
+        display: none;
+    }
+}
