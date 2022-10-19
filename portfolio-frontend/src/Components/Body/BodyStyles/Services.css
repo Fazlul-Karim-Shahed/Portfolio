@@ -1,0 +1,18 @@
+
+.services_card{
+transition: .3s;
+cursor: pointer;
+}
+
+.services_card:hover{
+    background-color: #FFC107;
+    
+}
+
+.services_card_body{
+    transition: .4s;
+}
+
+.services_card:hover .services_card_body{
+    scale: 1.05;
+}

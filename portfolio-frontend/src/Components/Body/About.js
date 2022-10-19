@@ -1,12 +1,14 @@
 import React from 'react'
 import './BodyStyles/About.css'
+import { TextField, Autocomplete } from '@mui/material'
 
 export default function About() {
+
   return (
     <div>
       <div className="container  py-5">
         <div className='text-center py-3'>
-          <h1 className='fw-bold'>About me</h1>
+          <h1 className='fw-bold'>About Me</h1>
           <div className=''>
             <div className='fw-bold'>---------- <span className='text-danger'>Who am I</span> ----------</div>
           </div>
