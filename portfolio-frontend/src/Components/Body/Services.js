@@ -22,7 +22,7 @@ export default function Services() {
                 </div>
 
                 <div className="row py-5">
-                    <div className="col-md-4 ">
+                    <div className="col-md-4 px-3 my-2 my-md-0">
                         <Card className='py-5 px-4 services_card'>
                             <CardBody className='text-center services_card_body'>
                                 <FontAwesomeIcon className='h1' icon={faCode} />
@@ -30,7 +30,7 @@ export default function Services() {
                             </CardBody>
                         </Card>
                     </div>
-                    <div className="col-md-4 ">
+                    <div className="col-md-4 px-3 my-2 my-md-0">
                         <Card className='py-5 px-4 services_card'>
                             <CardBody className='text-center services_card_body'>
                                 <FontAwesomeIcon className='h1' icon={faCode} />
@@ -38,7 +38,7 @@ export default function Services() {
                             </CardBody>
                         </Card>
                     </div>
-                    <div className="col-md-4 ">
+                    <div className="col-md-4 px-3 my-2 my-md-0">
                         <Card className='py-5 px-4 services_card'>
                             <CardBody className='text-center services_card_body'>
                                 <FontAwesomeIcon className='h1' icon={faCode} />

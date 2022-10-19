@@ -1,7 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook, faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons'
-import { faPhone, faLocationDot } from '@fortawesome/free-solid-svg-icons'
+import { faFacebook, faTwitter, faLinkedin, faInstagram} from '@fortawesome/free-brands-svg-icons'
+import { faPhone, faLocationDot, faMailBulk, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { Formik } from 'formik'
 
 export default function Contact() {
@@ -20,17 +20,22 @@ export default function Contact() {
                 <div className="col-md-6 py-0 py-md-5">
                     <div className=' d-flex'>
                         <FontAwesomeIcon className='pe-3 h5' icon={faLocationDot} />
-                        <p>Khilkhet, Dhaka, Bangladesh</p>
+                        <p>24/3 Ka, Khilkhet, Dhaka, Bangladesh</p>
                     </div>
                     <div className=' d-flex'>
                         <FontAwesomeIcon className='pe-3 h5' icon={faPhone} />
                         <p>+880 1521537962</p>
+                    </div>
+                    <div className=' d-flex'>
+                        <FontAwesomeIcon className='pe-3 h5' icon={faEnvelope} />
+                        <p>fazlul.shahed2000@gmail.com</p>
                     </div>
                     <div className='py-3'>
                         <h4 className='pb-3'>Follow me</h4>
                         <a href="#"><FontAwesomeIcon className='h3 me-3' icon={faFacebook} /></a>
                         <a href="#"><FontAwesomeIcon className='h3 me-3' icon={faLinkedin} /></a>
                         <a href="#"><FontAwesomeIcon className='h3 me-3' icon={faTwitter} /></a>
+                        <a href="#"><FontAwesomeIcon className='h3 me-3' icon={faInstagram} /></a>
                     </div>
                 </div>
                 <div className="col-md-6">

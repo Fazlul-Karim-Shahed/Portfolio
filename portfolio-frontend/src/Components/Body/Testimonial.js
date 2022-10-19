@@ -27,7 +27,7 @@ export default function Testimonial() {
 
             <Swiper
                 slidesPerView={size > 766 ? 3 : 1}
-                spaceBetween={-10}
+                spaceBetween={-30}
                 slidesPerGroup={size > 766 ? 3 : 1}
                 loop={true}
                 loopFillGroupWithBlank={true}
