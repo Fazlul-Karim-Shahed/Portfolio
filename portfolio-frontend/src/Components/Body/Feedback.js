@@ -1,9 +1,13 @@
 import axios from 'axios'
 import { Formik } from 'formik'
-import React from 'react'
-import { Modal, ModalBody, ModalHeader } from 'reactstrap'
+import React, { useState } from 'react'
+import { Button, Modal, ModalBody, ModalHeader, Spinner } from 'reactstrap'
 
 export default function Feedback(props) {
+
+    const [message, setMessage] = useState('')
+    const [loading, setLoading] = useState(false)
+
     return (
         <div >
 
@@ -17,11 +21,12 @@ export default function Feedback(props) {
                             designation: '',
                             description: ''
                         }}
-                        
+
                         onSubmit={val => {
-                            console.log(val)
+                            setLoading(true)
                             axios.post(process.env.REACT_APP_BACKEND_API + 'feedback.json', val)
                                 .then(data => {
+                                    setLoading(false)
                                     console.log(data.data)
                                 })
                         }}
@@ -50,7 +55,21 @@ export default function Feedback(props) {
                                     placeholder='Description'
                                     className='form-control my-4'
                                     type="text" />
-                                <button className='btn btn-outline-success w-100' type="submit">Submit</button>
+
+                                {!loading ?
+                                    <button className='btn btn-success w-100' type="submit">Submit</button> :
+                                    <Button
+                                        color="success"
+                                        disabled
+                                        className='w-100'
+                                    >
+                                        <Spinner size="sm">
+                                            Loading...
+                                        </Spinner>
+                                        <span>
+                                            {' '}Submitting...
+                                        </span>
+                                    </Button>}
                             </form>
                         )}
                     </Formik>

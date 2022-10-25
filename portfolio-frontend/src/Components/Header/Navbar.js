@@ -9,6 +9,7 @@ export default function Navbar() {
     const [open, setOpen] = useState(false)
     const [modalOpen, setModalOpen] = useState(false)
 
+
     window.onscroll = () => {
         if (document.documentElement.scrollTop > 75) {
             document.getElementById('navbar').classList.add('position-fixed', 'top-0', 'bg-dark', 'w-100')
@@ -20,8 +21,9 @@ export default function Navbar() {
     }
 
     const toggle = () => setOpen(!open)
-    const modalToggle = () => {
-        setModalOpen(!modalOpen)
+    const modalToggle = () => setModalOpen(!modalOpen)
+    const anotherModalToggle = () => {
+        setModalOpen(!modalOpen);
         toggle()
     }
 
@@ -56,9 +58,9 @@ export default function Navbar() {
                             <a className='text-decoration-none d-block py-3 text-center h5' href="#testimonial">Testimonial</a>
                             <a className='text-decoration-none d-block py-3 text-center h5' href="#services">Service</a>
                             <a className='text-decoration-none d-block py-3 text-center h5' href="#contact">Contact</a>
-                            <div onClick={modalToggle} className='text-decoration-none d-block py-3 text-center h5' style={{ cursor: 'pointer' }}>Feedback</div>
+                            <div onClick={anotherModalToggle} className='text-decoration-none d-block py-3 text-center h5' style={{ cursor: 'pointer' }}>Feedback</div>
                         </Offcanvas.Body>
-                        <div onClick={modalToggle} className='text-decoration-none d-block py-3 text-center h5' style={{ cursor: 'pointer' }}>Feedback</div>
+
                     </Offcanvas>
                 </div>
             </div>
