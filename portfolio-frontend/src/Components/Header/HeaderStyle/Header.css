@@ -1,8 +1,15 @@
 .header {
-    background: url("../../../../public/Assets/header-bg.jpeg") no-repeat fixed
+    background: url("../../../../public/Assets/header-bg.png") no-repeat fixed
         center;
     background-size: 100% 100%;
+    background-position: center;
     height: 100vh;
     position: relative;
 }
 
+@media only screen and (max-width: 766px){
+
+    .header{
+        background-size: cover;
+    }
+}

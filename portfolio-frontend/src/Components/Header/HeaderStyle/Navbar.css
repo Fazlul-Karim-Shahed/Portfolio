@@ -7,19 +7,20 @@
 }
 
 .navbar_links a {
-    color: #FFC107;
+    color: #ffffff;
     width: 0px;
     font-size: 17px;
+    padding: 3px;
 }
 
 .navbar_links a:hover {
     width: 0;
-    color: white;
-    border-bottom: 1px solid white;
+    color: #FFC107;
+    border-bottom: 1px solid #FFC107;
     transition: 0.5s ease;
 }
 
-@media only screen and (max-width: 766px) {
+@media only screen and (max-width: 992px) {
     .navbar_links {
         display: none;
     }

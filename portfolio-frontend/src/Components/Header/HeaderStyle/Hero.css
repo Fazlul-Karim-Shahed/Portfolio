@@ -8,37 +8,7 @@
 .hero_left {
     margin-left: 9%;
     margin-top: 15%;
-    width: 50%;
-}
-
-.hero_name {
-    font-family: "Poiret One", cursive;
-    font-weight: bolder;
-    color: #FFC107;
-}
-
-.hero_cv {
-    font-family: "Maven Pro", sans-serif;
-    margin: 10px 0px;
-    display: inline-block;
-    color: black;
-    text-decoration: none;
-    padding: 8px 20px;
-    background-color: #FFC107;
-    border: 2px solid #FFC107;
-    border-radius: 5px;
-    transition: 0.3s;
-}
-
-.hero_cv:hover {
-    border: 2px solid #FFC107;
-    background-color: unset;
-    color: white;
-}
-
-.hero_desc span {
-    /* font-weight: bold; */
-    color: #eee;
+    width: 65%;
 }
 
 .hero_right {
@@ -48,25 +18,77 @@
 
 .hero_right img {
     width: 100%;
-    padding: 40px;
     position: absolute;
+    margin-top: 50px;
 }
 
 .hero_me {
     z-index: 1;
+    left: -50px;
+    top: -50px;
+    padding: 20px;
 }
 
-/* typing */
-/* typing */
+.hero_shape {
+    left: -10px;
+    padding: 30px;
+}
+
+.hero_name {
+    font-family: "Poiret One", cursive;
+    font-weight: bolder;
+    color: #ffc107;
+}
+
+.hero_cv {
+    font-family: "Maven Pro", sans-serif;
+    margin: 10px 0px;
+    display: inline-block;
+    color: black;
+    text-decoration: none;
+    padding: 8px 20px;
+    background-color: #ffc107;
+    border: 2px solid #ffc107;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.hero_cv:hover {
+    border: 2px solid #ffc107;
+    background-color: unset;
+    color: white;
+}
+
+.hero_desc span {
+    color: #eee;
+}
 
 @media only screen and (max-width: 766px) {
+    .hero {
+        flex-direction: column-reverse;
+    }
+
     .hero_left {
         margin-left: 9%;
         margin-top: 35%;
-        width: 100%;
+        width: 70%;
     }
 
     .hero_right {
-        display: none;
+        width: 60%;
+        margin: auto;
+        margin-bottom: 23%;
+        margin-top: 5%;
+    }
+
+    .hero_right img {
+        margin-top: 0px;
+    }
+
+    .hero_me {
+        z-index: 1;
+        left: -30px;
+        top: -30px;
+        padding: 20px;
     }
 }

@@ -12,7 +12,7 @@ export default function Services() {
     }
 
     return (
-        <div className='bg-dark'>
+        <div className='bg-dark' id='services'>
             <div className="container py-5">
                 <div className='text-center py-3'>
                     <h1 className='fw-bold text-white'>My Services</h1>
@@ -23,26 +23,29 @@ export default function Services() {
 
                 <div className="row py-5">
                     <div className="col-md-4 px-3 my-2 my-md-0">
-                        <Card className='py-5 px-4 services_card'>
+                        <Card className='py-4 services_card'>
                             <CardBody className='text-center services_card_body'>
                                 <FontAwesomeIcon className='h1' icon={faCode} />
-                                <h3 className='py-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. </h3>
+                                <h3 className='py-1'>Web Design & Development</h3>
+                                <h6 className='p-2'>I will develop your website using Css, Bootstrap-5, ReactJs, NodeJs with ExpressJs & MongoDb with Mongoose. </h6>
                             </CardBody>
                         </Card>
                     </div>
                     <div className="col-md-4 px-3 my-2 my-md-0">
-                        <Card className='py-5 px-4 services_card'>
+                        <Card className='py-4 services_card'>
                             <CardBody className='text-center services_card_body'>
                                 <FontAwesomeIcon className='h1' icon={faCode} />
-                                <h3 className='py-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. </h3>
+                                <h3 className='py-1'>Machine Learning</h3>
+                                <h6 className='p-2'>I will build your model using Sklearn, Numpy with Tensorflow</h6>
                             </CardBody>
                         </Card>
                     </div>
                     <div className="col-md-4 px-3 my-2 my-md-0">
-                        <Card className='py-5 px-4 services_card'>
+                        <Card className='py-4 services_card'>
                             <CardBody className='text-center services_card_body'>
                                 <FontAwesomeIcon className='h1' icon={faCode} />
-                                <h3 className='py-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. </h3>
+                                <h3 className='py-1'>PCB Design</h3>
+                                <h6 className='p-2'>I know NI Multisim and EasyEda</h6>
                             </CardBody>
                         </Card>
                     </div>

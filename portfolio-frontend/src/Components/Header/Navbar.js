@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import { Link } from 'react-router-dom';
+import Feedback from '../Body/Feedback';
 import './HeaderStyle/Navbar.css'
 
 export default function Navbar() {
 
     const [open, setOpen] = useState(false)
+    const [modalOpen, setModalOpen] = useState(false)
 
     window.onscroll = () => {
         if (document.documentElement.scrollTop > 75) {
@@ -17,18 +20,24 @@ export default function Navbar() {
     }
 
     const toggle = () => setOpen(!open)
+    const modalToggle = () => {
+        setModalOpen(!modalOpen)
+        toggle()
+    }
 
     return (
         <div id='navbar' className=''>
             <div className='container'>
                 <div className='p-4 d-flex justify-content-between'>
-                    <div className="logo text-white h3">Portfol<span className='text-warning'>io</span></div>
+                    <a href='' className="logo text-white text-decoration-none h3">Portfol<span className='text-warning'>io</span></a>
                     <div className="navbar_links mt-2" >
-                        <a className='text-decoration-none mx-4 a' href="#">Home</a>
-                        <a className='text-decoration-none mx-4 a' href="#">About</a>
-                        <a className='text-decoration-none mx-4 a' href="#">Service</a>
-                        <a className='text-decoration-none mx-4 a' href="#">Skill</a>
-                        <a className='text-decoration-none mx-4 a' href="#">Contact</a>
+                        <a className='text-decoration-none mx-2 a' href="#about">About</a>
+                        <a className='text-decoration-none mx-2 a' href="#qualification">Qualification</a>
+                        <a className='text-decoration-none mx-2 a' href="#skill">Skill</a>
+                        <a className='text-decoration-none mx-2 a' href="#testimonial">Testimonial</a>
+                        <a className='text-decoration-none mx-2 a' href="#services">Service</a>
+                        <a className='text-decoration-none mx-2 a' href="#contact">Contact</a>
+                        <Link onClick={modalToggle} className='text-decoration-none mx-2 a' to="">Feedback</Link>
                     </div>
                     <div onClick={toggle} id='navbar_threeDot' className="navbar_threeDot">
                         <div className='navbar_threeDotLine'></div>
@@ -41,15 +50,21 @@ export default function Navbar() {
                             <Offcanvas.Title></Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body className='navbar_offcanvas_link'>
-                            <a className='text-decoration-none d-block py-3 text-center h5' href="#">Home</a>
-                            <a className='text-decoration-none d-block py-3 text-center h5' href="#">About</a>
-                            <a className='text-decoration-none d-block py-3 text-center h5' href="#">Service</a>
-                            <a className='text-decoration-none d-block py-3 text-center h5' href="#">Skill</a>
-                            <a className='text-decoration-none d-block py-3 text-center h5' href="#">Contact</a>
+                            <a className='text-decoration-none d-block py-3 text-center h5' href="#about">About</a>
+                            <a className='text-decoration-none d-block py-3 text-center h5' href="#qualification">Qualification</a>
+                            <a className='text-decoration-none d-block py-3 text-center h5' href="#skill">Skill</a>
+                            <a className='text-decoration-none d-block py-3 text-center h5' href="#testimonial">Testimonial</a>
+                            <a className='text-decoration-none d-block py-3 text-center h5' href="#services">Service</a>
+                            <a className='text-decoration-none d-block py-3 text-center h5' href="#contact">Contact</a>
+                            <div onClick={modalToggle} className='text-decoration-none d-block py-3 text-center h5' style={{ cursor: 'pointer' }}>Feedback</div>
                         </Offcanvas.Body>
+                        <div onClick={modalToggle} className='text-decoration-none d-block py-3 text-center h5' style={{ cursor: 'pointer' }}>Feedback</div>
                     </Offcanvas>
                 </div>
             </div>
+
+            {modalOpen ? <Feedback open={modalOpen} toggle={modalToggle} /> : ''}
+
         </div>
     )
 }

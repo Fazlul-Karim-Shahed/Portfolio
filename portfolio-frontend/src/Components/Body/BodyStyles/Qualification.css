@@ -1,0 +1,4 @@
+.qualification_tab_link {
+    cursor: pointer;
+    transition: .2s;
+}

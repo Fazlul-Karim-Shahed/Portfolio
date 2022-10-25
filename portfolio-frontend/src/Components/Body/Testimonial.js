@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,14 +8,43 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import './BodyStyles/Testimonial.css'
+import axios from 'axios';
 
 export default function Testimonial() {
 
+    const [allTestimonial, setAllTestimonial] = useState(null)
     let size = window.innerWidth
     console.log(size);
+    useEffect(() => {
+
+        axios.get(process.env.REACT_APP_BACKEND_API + 'feedback.json').then(data => {
+            setAllTestimonial(data.data)
+        })
+
+    }, [])
+
+    let testimonialShow = []
+    if (allTestimonial != null) {
+        for (let i in allTestimonial) {
+            testimonialShow.push(
+                <SwiperSlide>
+                    <div className='p-5'>
+                        <Card className='py-5 px-4 testimonial_card'>
+                            <CardBody className='text-center testimonial_card_body'>
+                                <FontAwesomeIcon className='h1' icon={faCode} />
+                                <h2 className='py-3'>{allTestimonial[i].name}</h2>
+                                <h6 className='py-0'>{allTestimonial[i].description}</h6>
+                                <h6 className='py-3 fst-italic fw-bold'>{allTestimonial[i].designation}</h6>
+                            </CardBody>
+                        </Card>
+                    </div>
+                </SwiperSlide>
+            )
+        }
+    }
 
     return (
-        <div className='container'>
+        <div className='container' id='testimonial'>
             <div className="py-5">
                 <div className='text-center py-3'>
                     <h1 className='fw-bold'>Testimonial</h1>
@@ -38,66 +67,9 @@ export default function Testimonial() {
                 modules={[Pagination, Navigation]}
                 className="mySwiper"
             >
-                <SwiperSlide>
-                    <div className='p-5'>
-                        <Card className='py-5 px-4 testimonial_card'>
-                            <CardBody className='text-center testimonial_card_body'>
-                                <FontAwesomeIcon className='h1' icon={faCode} />
-                                <h3 className='py-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. </h3>
-                            </CardBody>
-                        </Card>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className='p-5'>
-                        <Card className='py-5 px-4 testimonial_card'>
-                            <CardBody className='text-center testimonial_card_body'>
-                                <FontAwesomeIcon className='h1' icon={faCode} />
-                                <h3 className='py-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. </h3>
-                            </CardBody>
-                        </Card>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className='p-5'>
-                        <Card className='py-5 px-4 testimonial_card'>
-                            <CardBody className='text-center testimonial_card_body'>
-                                <FontAwesomeIcon className='h1' icon={faCode} />
-                                <h3 className='py-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. </h3>
-                            </CardBody>
-                        </Card>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className='p-5'>
-                        <Card className='py-5 px-4 testimonial_card'>
-                            <CardBody className='text-center testimonial_card_body'>
-                                <FontAwesomeIcon className='h1' icon={faCode} />
-                                <h3 className='py-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. </h3>
-                            </CardBody>
-                        </Card>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className='p-5'>
-                        <Card className='py-5 px-4 testimonial_card'>
-                            <CardBody className='text-center testimonial_card_body'>
-                                <FontAwesomeIcon className='h1' icon={faCode} />
-                                <h3 className='py-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. </h3>
-                            </CardBody>
-                        </Card>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className='p-5'>
-                        <Card className='py-5 px-4 testimonial_card'>
-                            <CardBody className='text-center testimonial_card_body'>
-                                <FontAwesomeIcon className='h1' icon={faCode} />
-                                <h3 className='py-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. </h3>
-                            </CardBody>
-                        </Card>
-                    </div>
-                </SwiperSlide>
+
+                {testimonialShow}
+
             </Swiper>
         </div>
     )
