@@ -52,12 +52,12 @@ export default function Navbar() {
                             <Offcanvas.Title></Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body className='navbar_offcanvas_link'>
-                            <a className='text-decoration-none d-block py-3 text-center h5' href="#about">About</a>
-                            <a className='text-decoration-none d-block py-3 text-center h5' href="#qualification">Qualification</a>
-                            <a className='text-decoration-none d-block py-3 text-center h5' href="#skill">Skill</a>
-                            <a className='text-decoration-none d-block py-3 text-center h5' href="#testimonial">Testimonial</a>
-                            <a className='text-decoration-none d-block py-3 text-center h5' href="#services">Service</a>
-                            <a className='text-decoration-none d-block py-3 text-center h5' href="#contact">Contact</a>
+                            <a onClick={toggle} className='text-decoration-none d-block py-3 text-center h5' href="#about">About</a>
+                            <a onClick={toggle} className='text-decoration-none d-block py-3 text-center h5' href="#qualification">Qualification</a>
+                            <a onClick={toggle} className='text-decoration-none d-block py-3 text-center h5' href="#skill">Skill</a>
+                            <a onClick={toggle} className='text-decoration-none d-block py-3 text-center h5' href="#testimonial">Testimonial</a>
+                            <a onClick={toggle} className='text-decoration-none d-block py-3 text-center h5' href="#services">Service</a>
+                            <a onClick={toggle} className='text-decoration-none d-block py-3 text-center h5' href="#contact">Contact</a>
                             <div onClick={anotherModalToggle} className='text-decoration-none d-block py-3 text-center h5' style={{ cursor: 'pointer' }}>Feedback</div>
                         </Offcanvas.Body>
 

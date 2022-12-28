@@ -36,7 +36,7 @@ export default function Services() {
                             <CardBody className='text-center services_card_body'>
                                 <FontAwesomeIcon className='h1' icon={faCode} />
                                 <h3 className='py-1'>Machine Learning</h3>
-                                <h6 className='p-2'>I will build your model using Sklearn, Numpy with Tensorflow</h6>
+                                <h6 className='p-2'>I know basic machine learning and still learning.</h6>
                             </CardBody>
                         </Card>
                     </div>
@@ -45,7 +45,7 @@ export default function Services() {
                             <CardBody className='text-center services_card_body'>
                                 <FontAwesomeIcon className='h1' icon={faCode} />
                                 <h3 className='py-1'>PCB Design</h3>
-                                <h6 className='p-2'>I know NI Multisim and EasyEda</h6>
+                                <h6 className='p-2'>I know NI Multisim and Altium</h6>
                             </CardBody>
                         </Card>
                     </div>

@@ -28,7 +28,7 @@ export default function AdminTestimonial() {
   if (allTestimonial != null) {
     for (let i in allTestimonial) {
       arr.push(
-        <div className='col-md-3'>
+        <div className='col-md-3 my-3'>
           <Toast className='p-3'>
             <h3>{allTestimonial[i].name}</h3>
             Designation: {allTestimonial[i].designation} <br /> <br />
@@ -42,7 +42,10 @@ export default function AdminTestimonial() {
 
   return (
     <div>
-      {arr}
+      <h2 className='text-center py-5'>Testimonial</h2>
+      <div className='row m-0'>
+        {arr}
+      </div>
     </div>
   )
 }

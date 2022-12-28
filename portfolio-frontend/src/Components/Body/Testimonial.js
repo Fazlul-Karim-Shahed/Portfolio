@@ -29,11 +29,11 @@ export default function Testimonial() {
             testimonialShow.push(
                 <SwiperSlide>
                     <div className='p-5'>
-                        <Card className='py-5 px-4 testimonial_card'>
+                        <Card className='p-1 testimonial_card'>
                             <CardBody className='text-center testimonial_card_body'>
-                                <FontAwesomeIcon className='h1' icon={faCode} />
+                                <img src="/Assets/unknown.png" alt="" className='img-fluid w-50 m-auto' />
                                 <h2 className='py-3'>{allTestimonial[i].name}</h2>
-                                <h6 className='py-0'>{allTestimonial[i].description}</h6>
+                                <h6 className='py-0 small'>{allTestimonial[i].description}</h6>
                                 <h6 className='py-3 fst-italic fw-bold'>{allTestimonial[i].designation}</h6>
                             </CardBody>
                         </Card>

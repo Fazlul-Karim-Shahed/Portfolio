@@ -35,6 +35,7 @@ export default function Feedback(props) {
                         {({ values, handleChange, handleSubmit }) => (
                             <form onSubmit={handleSubmit} action="">
                                 <input
+                                    required
                                     name='name'
                                     value={values.name}
                                     onChange={handleChange}
@@ -42,6 +43,7 @@ export default function Feedback(props) {
                                     className='form-control my-4'
                                     type="text" />
                                 <textarea
+                                    required
                                     name='designation'
                                     value={values.designation}
                                     onChange={handleChange}
@@ -49,11 +51,14 @@ export default function Feedback(props) {
                                     className='form-control my-4'
                                     type="text" />
                                 <textarea
+                                    required
                                     name='description'
                                     value={values.description}
                                     onChange={handleChange}
                                     placeholder='Description'
                                     className='form-control my-4'
+                                    minLength='50'
+                                    maxLength='150'
                                     type="text" />
 
                                 {!loading ?

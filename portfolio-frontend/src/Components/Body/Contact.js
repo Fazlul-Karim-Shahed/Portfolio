@@ -22,7 +22,7 @@ export default function Contact() {
                     <div className='text-center py-3'>
                         <h1 className='fw-bold'>Contact</h1>
                         <div className=''>
-                            <div className='fw-bold'>---------- <span className='text-danger'>Who with me</span> ----------</div>
+                            <div className='fw-bold'>----- <span className='text-danger'>Who with me</span> -----</div>
                         </div>
                     </div>
                 </div>
@@ -43,10 +43,10 @@ export default function Contact() {
                         </div>
                         <div className='py-3'>
                             <h4 className='pb-3'>Follow me</h4>
-                            <a style={{ color:'#1978F5'}} target='blank' href="https://www.facebook.com/profile.php?id=100051561011802"><FontAwesomeIcon className='h3 me-3' icon={faFacebook} /></a>
-                            <a style={{ color:'#1A75BB'}} target='blank' href="https://www.linkedin.com/in/fazlul-karim-a2650b1a9/"><FontAwesomeIcon className='h3 me-3' icon={faLinkedin} /></a>
-                            <a style={{ color:'#1CA1F1'}} target='blank' href="https://twitter.com/Fazlul2001"><FontAwesomeIcon className='h3 me-3' icon={faTwitter} /></a>
-                            <a style={{ color:'#24292F'}} target='blank' href="https://github.com/Fazlul-Karim-Shahed"><FontAwesomeIcon className='h3 me-3' icon={faGithub} /></a>
+                            <a style={{ color: '#1978F5' }} target='blank' href="https://www.facebook.com/profile.php?id=100051561011802"><FontAwesomeIcon className='h3 me-3' icon={faFacebook} /></a>
+                            <a style={{ color: '#1A75BB' }} target='blank' href="https://www.linkedin.com/in/fazlul-karim-a2650b1a9/"><FontAwesomeIcon className='h3 me-3' icon={faLinkedin} /></a>
+                            <a style={{ color: '#1CA1F1' }} target='blank' href="https://twitter.com/Fazlul2001"><FontAwesomeIcon className='h3 me-3' icon={faTwitter} /></a>
+                            <a style={{ color: '#24292F' }} target='blank' href="https://github.com/Fazlul-Karim-Shahed"><FontAwesomeIcon className='h3 me-3' icon={faGithub} /></a>
                         </div>
                     </div>
                     <div className="col-md-6">

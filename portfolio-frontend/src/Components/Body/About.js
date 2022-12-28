@@ -1,10 +1,14 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import './BodyStyles/About.css'
+import { Collapse } from 'reactstrap'
 
 export default function About() {
 
   const [about, setAbout] = useState('')
+  const [open, setOpen] = useState(false)
+
+  
   useEffect(() => {
 
     axios.get(process.env.REACT_APP_BACKEND_API + 'About.json').then(data => {
@@ -14,6 +18,8 @@ export default function About() {
   }, [])
 
 
+  const toggle = () => setOpen(!open)
+  let text = about.split('\n')
 
   return (
     <div>
@@ -27,15 +33,19 @@ export default function About() {
 
         <div className="row m-0 pt-5">
           <div className="col-md-5 text-center">
-            <img className='img-fluid w-100 h-100' src="./Assets/me.png" alt="" />
+            <img className='img-fluid w-75' src="./Assets/me3.png" alt="" />
           </div>
-          <div className="col-md-7 mt-5">
+          <div className="col-md-7 mt-4 mt-md-0 d-flex flex-column justify-content-center">
             <h3 className='fw-bold'>A passionate <span className='text-warning'>Web developer</span></h3>
-            <div className='pt-3' style={{ textAlign: 'justify' }}>{about}</div>
-            <button className="about_hireBtn">Learn more</button>
+            <div className='pt-3' style={{ textAlign: 'justify' }}>{text[0]}</div>
+            <Collapse isOpen={open} >
+              <div className='pt-3' style={{ textAlign: 'justify' }}>{text[1]}</div>
+            </Collapse>
+
+            <div onClick={toggle} className="text-primary pt-2" style={{ cursor: 'pointer' }}>Show {open ? 'less' : 'more...'}</div>
           </div>
         </div>
-
+        <br />
       </div>
     </div>
   )

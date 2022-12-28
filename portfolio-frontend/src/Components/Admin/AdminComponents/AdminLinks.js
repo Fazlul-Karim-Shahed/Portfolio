@@ -28,11 +28,15 @@ export default function AdminLinks() {
     if (project != null) {
         for (let i in project) {
             arr.push(
-                <div className='col-md-3'>
+                <div className='col-md-3 my-3'>
                     <Toast className='p-3'>
-                        <h3>{project[i].name}</h3>
-                        Code: {project[i].sourceCode} <br />
-                        live: {project[i].liveLink} <br />
+                        <h3 className='pb-2'>{project[i].name}</h3>
+                        <div className='py-1'>
+                            <strong >Code:</strong> {project[i].sourceCode}
+                        </div>
+                        <div className='py-1'>
+                            <strong>Live:</strong> {project[i].liveLink}
+                        </div>
                         <button onClick={e => del(i)} className='btn btn-danger small my-2'>Remove</button>
                     </Toast>
                 </div>
@@ -88,7 +92,7 @@ export default function AdminLinks() {
                             name='liveLink'
                             value={values.liveLink}
                             onChange={handleChange}
-                            placeholder='Live link'
+                            placeholder='Live link without => "https://"'
                             className='form-control my-3'
                         />
 

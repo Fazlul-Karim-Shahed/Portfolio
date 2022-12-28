@@ -60,15 +60,17 @@ export default function Skill() {
         )
     })
 
+
     let linkArr = []
     if (project != null) {
         for (let i in project) {
+            console.log(project[i].liveLink);
             linkArr.push(
                 <div className='col-6 col-md-3 py-2'>
                     <Toast className='p-3'>
                         <h4>{project[i].name}</h4> <br />
-                        <button className='btn btn-warning me-2 btn-sm my-1'><a className='text-decoration-none text-dark' href={project[i].sourceCode}>Source code</a></button>
-                        <button className='btn btn-info me-2 btn-sm'><a className='text-decoration-none text-dark' href={project[i].liveLink}>Live link</a></button> <br />
+                        <button disabled={project[i].sourceCode === ""} className='btn btn-warning me-2 btn-sm my-1'><a className='text-decoration-none text-dark' target='_blank' href={project[i].sourceCode}>Source code</a></button>
+                        <button disabled={project[i].liveLink === ""} className='btn btn-info me-2 btn-sm'><a className='text-decoration-none text-dark' target='_blank' href={'http://' + `${project[i].liveLink}`}>Live link</a></button> <br />
                     </Toast>
                 </div>
             )
@@ -83,7 +85,7 @@ export default function Skill() {
                     <div className='text-center py-3'>
                         <h1 className='fw-bold'>My Skills</h1>
                         <div className=''>
-                            <div className='fw-bold'>---------- <span className='text-danger'>What i know</span> ----------</div>
+                            <div className='fw-bold'>------- <span className='text-danger'>What i know</span> -------</div>
                         </div>
                     </div>
                 </div>
@@ -103,7 +105,7 @@ export default function Skill() {
                         {content === 'backend' ? backEndSkills : ''}
                         {content === 'others' ? otherSkills : ''}
                         {content === 'links' ? linkArr : ''}
-        
+
                     </div>
                 </div>
 

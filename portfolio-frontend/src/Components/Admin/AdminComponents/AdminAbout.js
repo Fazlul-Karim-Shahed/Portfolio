@@ -18,9 +18,6 @@ export default function AdminAbout(props) {
     return (
         <div className='text-center py-5'>
             <h2 className='py-3'>Edit About</h2>
-            <div className=''>
-                <strong>Current About:</strong> {about === null ? '' : about.about}
-            </div>
             <Formik
 
                 initialValues={{
@@ -52,6 +49,7 @@ export default function AdminAbout(props) {
                             value={values.about}
                             onChange={handleChange}
                             id=""
+                            rows='7'
                             className='form-control w-75 m-auto'
                         />
 
@@ -62,6 +60,10 @@ export default function AdminAbout(props) {
 
             </Formik>
 
+
+            <div className='container py-5' style={{ textAlign: 'justify' }}>
+                <strong>Current About:</strong> {about === null ? '' : about.about}
+            </div>
         </div>
     )
 }
