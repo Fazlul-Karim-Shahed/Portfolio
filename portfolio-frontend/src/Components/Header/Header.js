@@ -5,9 +5,31 @@ import Hero from './Hero'
 
 export default function Header() {
     return (
-        <div className='header'>
-            <Navbar />
-            <Hero />
+
+        <div>
+            <div class="area">
+                <ul class="circles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+
+
+
+                <div className='header'>
+                    <Navbar />
+                    <Hero />
+                </div>
+            </div>
+
+
         </div>
     )
 }

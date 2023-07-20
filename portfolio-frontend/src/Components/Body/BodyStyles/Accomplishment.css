@@ -1,0 +1,17 @@
+.accomplishment_tab_link {
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.achievement_card:hover {
+    box-shadow: 0px 0px 20px rgb(173, 171, 161);
+    scale: 1.005;
+    transition: 0.3s ease;
+}
+
+.certification_card:hover{
+    
+    box-shadow: 0px 0px 20px rgb(173, 171, 161);
+    scale: 1.005;
+    transition: 0.3s ease;
+}

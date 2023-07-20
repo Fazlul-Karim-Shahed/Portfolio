@@ -1,23 +1,31 @@
+.typewriter {
+      overflow: hidden; /* Ensures the text is not displayed outside the box */
+      border-right: 0.15em solid #000; /* Creates the blinking cursor effect */
+      white-space: nowrap; /* Keeps the text on one line */
+      margin: 0 auto; /* Centers the typewriter box */
+      letter-spacing: 0.15em; /* Adjust the spacing between characters */
+      animation:
+        typing 2s steps(40, end),
+        blink-caret 0.75s step-end infinite;
+    }
 
-.typing-demo {
-  width: 22ch;
-  animation: typing 4s steps(20) infinite, blink .5s step-start infinite alternate ;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 3px solid;
-  font-family: monospace;
-  font-size: 1.5rem;
-  margin: 15px 0px;
-}
+    /* Typing animation */
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+      to {
+        width: 10em; /* Adjust the width to fit your longest sentence */
+      }
+    }
 
-@keyframes typing {
-  from {
-    width: 0
-  }
-}
-    
-@keyframes blink {
-  50% {
-    border-color: transparent
-  }
-}
+    /* Blinking cursor animation */
+    @keyframes blink-caret {
+      from,
+      to {
+        border-color: transparent;
+      }
+      50% {
+        border-color: #000;
+      }
+    }

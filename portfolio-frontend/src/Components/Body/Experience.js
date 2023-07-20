@@ -7,7 +7,7 @@ export default function Experience() {
         <div className="row">
             <div className="col-md-6">
                 <div className='d-flex pb-4 align-items-center'>
-                    <div className='me-4'><h6 className='fw-bold'>2021 - Present</h6></div>
+                    <div className='me-4'><h6 className='fw-bold'>2022 - Present</h6></div>
                     <div>
                         <h5>Incharge</h5>
                         <h6>Website Development Team, IEEE NSU Student Branch</h6>
@@ -16,9 +16,9 @@ export default function Experience() {
                 </div>
 
                 {/* <div className='d-flex pb-4 align-items-center'>
-                    <div className='me-4'><h6 className='fw-bold'>2021 - Present</h6></div>
-                    <div>
-                        <h5>Incharge</h5>
+                    <div className='me-4'><h6 className='fw-bold'>2021 - 2022</h6></div>
+                    <div className='ms-3' >
+                        <h5>Volunteer</h5>
                         <h6>Website Development Team, IEEE NSU Student Branch</h6>
                         <h6 className='small fst-italic'>Maintaining INSB website and the team as well</h6>
                     </div>
@@ -27,14 +27,14 @@ export default function Experience() {
 
 
             <div className="col-md-6">
-                {/* <div className='d-flex pb-4 ms-0 ms-md-5 align-items-center'>
-                    <div className='me-4'><h6 className='fw-bold'>2021 - Present</h6></div>
-                    <div>
-                        <h5>Incharge</h5>
+                <div className='d-flex pb-4 align-items-center'>
+                    <div className='me-4'><h6 className='fw-bold'>2021 - 2022</h6></div>
+                    <div className='ms-3' >
+                        <h5>Volunteer</h5>
                         <h6>Website Development Team, IEEE NSU Student Branch</h6>
                         <h6 className='small fst-italic'>Maintaining INSB website and the team as well</h6>
                     </div>
-                </div> */}
+                </div>
             </div>
         </div>
 

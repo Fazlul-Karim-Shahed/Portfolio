@@ -2,21 +2,25 @@
     transition: 1s;
 }
 
+.logo {
+    width: 45%;
+    margin-top: 3px;
+}
+
 .navbar_threeDot {
     display: none;
 }
 
-.navbar_links a {
+.navbar_links .nav_a {
     color: #ffffff;
-    width: 0px;
     font-size: 17px;
     padding: 3px;
 }
 
 .navbar_links a:hover {
     width: 0;
-    color: #FFC107;
-    border-bottom: 1px solid #FFC107;
+    color: #ffc107;
+    border-bottom: 1px solid #ffc107;
     transition: 0.5s ease;
 }
 
@@ -27,6 +31,7 @@
     .navbar_threeDot {
         display: block;
         cursor: pointer;
+        margin: 15px;
     }
     .navbar_threeDotLine {
         padding: 1.5px;
@@ -40,5 +45,24 @@
     }
     .navbar_offcanvas_link a:hover {
         color: orangered;
+    }
+
+    .logo {
+        width: 65%;
+        /* margin-top: 2px; */
+    }
+
+    .off_canvas_a {
+        color: black;
+    }
+    .off_canvas_a:hover {
+        color: #ffc107;
+    }
+}
+
+@media only screen and (max-width: 766px) {
+    .logo {
+        width: 65%;
+        /* margin-top: 8px; */
     }
 }

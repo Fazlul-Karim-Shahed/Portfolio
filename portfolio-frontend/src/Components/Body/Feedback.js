@@ -11,7 +11,7 @@ export default function Feedback(props) {
     return (
         <div >
 
-            <Modal size='xl' isOpen={props.open} toggle={props.toggle}>
+            <Modal size='lg' isOpen={props.open} toggle={props.toggle}>
                 <ModalHeader toggle={props.toggle}>Feedback form</ModalHeader>
                 <ModalBody className=''>
                     <Formik
@@ -27,7 +27,7 @@ export default function Feedback(props) {
                             axios.post(process.env.REACT_APP_BACKEND_API + 'feedback.json', val)
                                 .then(data => {
                                     setLoading(false)
-                                    console.log(data.data)
+
                                 })
                         }}
 

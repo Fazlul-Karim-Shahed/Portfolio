@@ -16,7 +16,7 @@
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #fff;
+  background: rgb(255, 255, 255);
 
   /* Center slide text vertically */
   display: -webkit-box;
@@ -47,7 +47,8 @@ cursor: pointer;
 }
 
 .testimonial_card:hover{
-    background-color: #FFC107;
+    background-color:  rgba(132, 255, 0, 0.4);
+    
     
 }
 

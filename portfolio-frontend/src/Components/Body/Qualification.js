@@ -12,12 +12,11 @@ export default function Qualification() {
         setContent(str)
         let el = document.querySelectorAll('.qualification_tab_link')
         el.forEach((item, index) => {
-            console.log(index === pos);
             if (index === pos) {
-                item.classList.add('h5', 'text-primary')
+                item.classList.add('h5', 'text-primary', 'border-bottom', 'border-primary')
             }
             else {
-                item.classList.remove('h5', 'text-primary')
+                item.classList.remove('h5', 'text-primary', 'border-bottom', 'border-primary')
             }
         })
 
@@ -27,26 +26,26 @@ export default function Qualification() {
     let experienceShow = <Fade> <Experience /> </Fade>
 
     return (
-        <div className='bg-light'>
-            <div className="container py-5">
-                <div className="" id='qualification'>
+        <div className='bg-light' id='qualification'>
+            <div className="container pt-3">
+                <div className="">
                     <div className='text-center py-3'>
                         <h1 className='fw-bold'>Qualification</h1>
                         <div className=''>
-                            <div className='fw-bold'>---------- <span className='text-danger'>What i know</span> ----------</div>
+                            <div className='fw-bold'>---------- <span className='text-danger'>What i have</span> ----------</div>
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <div className='d-flex justify-content-center pt-5 qualification_tab'>
-                        <div onClick={e => tab('education', 0)} className='mx-3 mx-md-4 qualification_tab_link h5 text-primary' href="">Education</div>
+                    <div className='d-flex justify-content-center pt-4 qualification_tab'>
+                        <div onClick={e => tab('education', 0)} className='mx-3 mx-md-4 qualification_tab_link h5 text-primary border-bottom border-primary' href="">Education</div>
                         <div onClick={e => tab('experience', 1)} className='mx-3 mx-md-4 qualification_tab_link' href="">Experience</div>
                     </div>
                 </div>
 
-                <div className='m-auto w-75'>
-                    <div className='row py-5'>
+                <div className='px-3'>
+                    <div className='row pt-5'>
                         {content === 'education' ? educationShow : ''}
                         {content === 'experience' ? experienceShow : ''}
                     </div>

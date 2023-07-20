@@ -1,0 +1,14 @@
+.allProject_Card:hover{
+    transition: .3s ease;
+    box-shadow: 0px 0px 20px rgb(173, 171, 161);
+}
+
+.all_project_logo {
+    width: 75%;
+}
+
+@media only screen and (max-width: 992px){
+    .all_project_logo {
+        width: 50%;
+    }
+}

@@ -25,6 +25,8 @@ export default function Admin() {
                     <Link className='text-decoration-none mx-4 text-warning' to={adminUri + '/about'}>About</Link>
                     <Link className='text-decoration-none mx-4 text-warning' to={adminUri + '/links'}>Project Links</Link>
                     <Link className='text-decoration-none mx-4 text-warning' to={adminUri + '/testimonial'}>Testimonial</Link>
+                    <Link className='text-decoration-none mx-4 text-warning' to={adminUri + '/achievement'}>Achievement</Link>
+                    <Link className='text-decoration-none mx-4 text-warning' to={adminUri + '/certification'}>Certification</Link>
                 </div>
                 <div className='text-white'>{time}</div>
             </div>

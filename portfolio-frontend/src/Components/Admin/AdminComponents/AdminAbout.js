@@ -27,8 +27,6 @@ export default function AdminAbout(props) {
 
 
                 onSubmit={val => {
-                    console.log(val)
-                    console.log(about)
                     axios.put(process.env.REACT_APP_BACKEND_API + 'About.json', val)
                         .then(res => {
                             axios.get(process.env.REACT_APP_BACKEND_API + 'About.json')

@@ -22,7 +22,7 @@ export default function Contact() {
                     <div className='text-center py-3'>
                         <h1 className='fw-bold'>Contact</h1>
                         <div className=''>
-                            <div className='fw-bold'>----- <span className='text-danger'>Who with me</span> -----</div>
+                            <div className='fw-bold'>----- <span className='text-danger'>Get in touch</span> -----</div>
                         </div>
                     </div>
                 </div>
@@ -63,11 +63,9 @@ export default function Contact() {
 
                             onSubmit={val => {
                                 setLoading(true)
-                                console.log(val)
                                 emailjs.sendForm('service_yfd5eq5', 'template_s5c0axt', form.current, 'm5YmCocmFVzqfZ7dk')
                                     .then((result) => {
                                         setLoading(false)
-                                        console.log(result)
                                         toggle()
                                         if (result.text === 'OK') {
                                             setMessage({ data: 'Message sent successfully', weight: 'success' })
