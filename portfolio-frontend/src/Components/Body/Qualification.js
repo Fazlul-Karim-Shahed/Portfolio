@@ -7,7 +7,7 @@ import Experience from './Experience'
 
 export default function Qualification() {
 
-    const [content, setContent] = useState('education')
+    const [content, setContent] = useState('experience')
     const tab = (str, pos) => {
         setContent(str)
         let el = document.querySelectorAll('.qualification_tab_link')
@@ -39,15 +39,16 @@ export default function Qualification() {
 
                 <div>
                     <div className='d-flex justify-content-center pt-4 qualification_tab'>
-                        <div onClick={e => tab('education', 0)} className='mx-3 mx-md-4 qualification_tab_link h5 text-primary border-bottom border-primary' href="">Education</div>
-                        <div onClick={e => tab('experience', 1)} className='mx-3 mx-md-4 qualification_tab_link' href="">Experience</div>
+                        <div onClick={e => tab('experience', 0)} className='mx-3 mx-md-4 qualification_tab_link h5 text-primary border-bottom border-primary' href="">Experience</div>
+                        <div onClick={e => tab('education', 1)} className='mx-3 mx-md-4 qualification_tab_link' href="">Education</div>
+
                     </div>
                 </div>
 
                 <div className='px-3'>
                     <div className='row pt-5'>
-                        {content === 'education' ? educationShow : ''}
                         {content === 'experience' ? experienceShow : ''}
+                        {content === 'education' ? educationShow : ''}
                     </div>
                 </div>
 

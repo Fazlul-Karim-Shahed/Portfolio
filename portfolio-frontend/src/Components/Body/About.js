@@ -24,9 +24,12 @@ export default function About() {
 
 
   let aboutArr = about.split('.')
-  let firstPart = aboutArr.filter((i, n) => { if (n < 6) return i })
-  let secondPart = aboutArr.filter((i, n) => { if (n >= 6) return i })
+  let firstPart = aboutArr.filter((i, n) => { if (n < 3) return i })
+  let secondPart = aboutArr.filter((i, n) => { if (n >= 3 && n<=8) return i })
+  let thirdPart = aboutArr.filter((i, n) => { if (n > 8) return i })
   firstPart.push('') // for last "."
+  secondPart.push('') // for last "."
+  thirdPart.push('') // for last "."
 
   return (
     <div style={{ backgroundColor: '' }}>
@@ -34,7 +37,7 @@ export default function About() {
         <div className='text-center py-3'>
           <h1 className='fw-bold'>About Me</h1>
           <div className=''>
-            <div className='fw-bold'>---------- <span className='text-danger'>Who am I</span> ----------</div>
+            <div className='fw-bold'>-------- <span className='text-danger'>Who am I</span> --------</div>
           </div>
         </div>
 
@@ -43,13 +46,17 @@ export default function About() {
             <img className='img-fluid w-75' src="./Assets/me3.png" alt="" />
           </div>
           <div className="col-md-7 mt-4 mt-md-0 d-flex flex-column justify-content-center">
-            <h3 className='fw-bold'>A passionate <span className='text-warning'>Web developer</span></h3>
+            <h3 className='fw-bold'>A Passionate <span className='text-warning'>Developer</span></h3>
             {about === '' ? <p className='mt-5 text-danger'>Check internet connection!</p> : <div className='mt-3'>
 
               <span className='pt-2' style={{ textAlign: 'justify' }}>{firstPart.join('.')}</span>
               <Collapse isOpen={open} >
                 <br />
                 <span className='pt-3' style={{ textAlign: 'justify' }}>{secondPart.join('.')}</span>
+
+                <p></p>
+                <span className='pt-3' style={{ textAlign: 'justify' }}>{thirdPart.join('.')}</span>
+
               </Collapse>
 
               <div onClick={toggle} className="text-primary pt-2" style={{ cursor: 'pointer' }}>Show {open ? 'less' : 'more...'}</div>

@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { Button, Card, CardBody, CardText, CardTitle, Fade, Modal, ModalHeader, ModalBody } from 'reactstrap'
 import './BodyStyles/Skill.css'
 import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCode, faEye, faPaperclip } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function Skill() {
@@ -13,7 +15,7 @@ export default function Skill() {
 
     const backEnd = [{ name: 'node.png', url: 'https://en.wikipedia.org/wiki/Node.js' }, { name: 'express.png', url: 'https://en.wikipedia.org/wiki/Express.js' }, { name: 'mongodb.png', url: 'https://en.wikipedia.org/wiki/MongoDB' }, { name: 'mongoose.png', url: 'https://en.wikipedia.org/wiki/Mongoose_(MongoDB)' }, { name: 'atlas.png', url: 'https://www.mongodb.com/docs/atlas/#:~:text=MongoDB%20Atlas%20is%20a%20multi,cloud%20providers%20of%20your%20choice.' }]
 
-    const others = [{ name: 'ml.png', url: 'https://en.wikipedia.org/wiki/Machine_learning' }, { name: 'arduino.png', url: 'https://en.wikipedia.org/wiki/Arduino' }, { name: 'matlab.jpg', url: 'https://en.wikipedia.org/wiki/MATLAB' }, { name: 'multisim.jpg', url: 'https://en.wikipedia.org/wiki/NI_Multisim' }]
+    const others = [{ name: 'ml.png', url: 'https://en.wikipedia.org/wiki/Machine_learning' }, { name: 'arduino.png', url: 'https://en.wikipedia.org/wiki/Arduino' }, { name: 'matlab.jpg', url: 'https://upload.wikimedia.org/wikipedia/commons/2/21/Matlab_Logo.png' }, { name: 'multisim.jpg', url: 'https://en.wikipedia.org/wiki/NI_Multisim' }]
 
     const [project, setProject] = useState(null)
 
@@ -61,7 +63,7 @@ export default function Skill() {
     let frondEndSkills = frontEnd.map(item => {
 
         return (
-            <Fade onClick={() => toggle(item, 'Frontend')} key={String(Math.random())} className="col-6 col-md-3 text-center pb-3 p-3 skills_content">
+            <Fade onClick={() => toggle(item, 'Frontend')} key={String(Math.random())} className="col-6 col-md-3 pb-3 p-3 skills_content d-flex align-items-center justify-content-center">
                 <img className='img-fluid w-50' src={'Assets/Frontend/' + item.name} alt="" />
             </Fade>
         )
@@ -69,7 +71,7 @@ export default function Skill() {
 
     let backEndSkills = backEnd.map(item => {
         return (
-            <Fade onClick={() => toggle(item, 'Backend')} key={String(Math.random())} className="col-6 col-md-3 text-center pb-3 p-3 skills_content">
+            <Fade onClick={() => toggle(item, 'Backend')} key={String(Math.random())} className="col-6 col-md-3 pb-3 p-3 skills_content  d-flex align-items-center justify-content-center">
                 <img className='img-fluid w-75' src={'Assets/Backend/' + item.name} alt="" />
             </Fade>
         )
@@ -77,7 +79,7 @@ export default function Skill() {
 
     let otherSkills = others.map(item => {
         return (
-            <Fade key={String(Math.random())} className="col-6 col-md-3 text-center pb-3 p-3 skills_content">
+            <Fade key={String(Math.random())} className="col-6 col-md-3 pb-3 p-3 skills_content  d-flex align-items-center justify-content-center">
                 <img onClick={() => toggle(item, 'Others')} className='img-fluid w-50' src={'Assets/Others/' + item.name} alt="" />
             </Fade>
         )
@@ -95,13 +97,13 @@ export default function Skill() {
             if (projectCount > 3) break
             else {
                 projectArr.push(
-                    <div className='col-sm-12 col-md-4 py-2'>
+                    <div className='col-lg-4 col-sm-12 col-md-6 py-2'>
 
                         <Card className='skill_Card my-2 h-100'>
                             <img
                                 alt="Project Screenshot"
                                 src={project[i].image}
-                                className='img-fluid'
+                                className='img-fluid border-bottom p-1 rounded rounded-3'
                                 style={{ height: '234px' }}
                             />
                             <CardBody>
@@ -109,13 +111,13 @@ export default function Skill() {
                                     {project[i].name}
                                 </CardTitle>
 
-                                <CardText className='mt-3 small'>
+                                <CardText className='mt-3 small fst-italic'>
                                     {project[i].description}
                                 </CardText>
                                 <div className='mt-4'>
-                                    <button disabled={project[i].sourceCode === ""} className='btn btn-outline-warning me-3'><a className='text-decoration-none text-dark' target='_blank' href={project[i].sourceCode}>Source code</a></button>
+                                    <button disabled={project[i].sourceCode === ""} className='btn btn-outline-warning me-3'><a className='text-decoration-none text-dark' target='_blank' href={project[i].sourceCode}><FontAwesomeIcon icon={faCode} className='me-1' /> Code</a></button>
 
-                                    <button disabled={project[i].liveLink === ""} className='btn btn-outline-info'><a className='text-decoration-none text-dark me-3' target='_blank' href={'http://' + `${project[i].liveLink}`}>Live link</a></button>
+                                    <button disabled={project[i].liveLink === ""} className='btn btn-outline-info'><a className='text-decoration-none text-dark' target='_blank' href={'http://' + `${project[i].liveLink}`}> <FontAwesomeIcon icon={faPaperclip} className='me-1'/> Visit</a></button>
                                     {project[i].category != 'web' && project[i].category != 'ai' ? <button disabled={project[i].readmore === "" || project[i].readmore === undefined} className='btn btn-outline-info my-1'><a className='text-decoration-none text-dark' target='_blank' href={project[i].readmore}>Read more</a></button> : ''}
                                 </div>
                             </CardBody>
@@ -150,7 +152,7 @@ export default function Skill() {
                     </div>
                 </div>
 
-                <div className='px-3' >
+                <div className='px-1' >
                     <div className='row py-5 w-100 m-auto'>
                         {content === 'frontend' ? frondEndSkills : ''}
                         {content === 'backend' ? backEndSkills : ''}

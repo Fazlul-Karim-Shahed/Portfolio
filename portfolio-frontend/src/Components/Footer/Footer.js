@@ -2,12 +2,14 @@ import React from 'react'
 
 export default function Footer() {
     return (
-        <div className='text-center bg-dark text-white p-3'>
+        <div className='text-center bg-dark text-white p-2'>
 
-            <div className='py-2'>
-                Copyright &copy; 2022. All right reserved
+            <div>Created by <a className='text-decoration-none text-warning' href="https://www.linkedin.com/in/fazlul-karim-a2650b1a9/" target='blank'>Fazlul Karim</a></div>
+
+
+            <div className='py-1'>
+                Copyright &copy; 2023. All right reserved.
             </div>
-            <div>Created by <a className='text-decoration-none text-warning' href="https://www.facebook.com/profile.php?id=100051561011802" target='blank'>Fazlul Karim</a></div>
 
         </div>
     )

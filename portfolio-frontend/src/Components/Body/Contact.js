@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faTwitter, faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons'
-import { faPhone, faLocationDot, faMailBulk, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faPhone, faLocationDot, faMailBulk, faEnvelope, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { Formik } from 'formik'
 import emailjs from '@emailjs/browser'
 import { Alert, Button, Spinner } from 'reactstrap'
@@ -30,15 +30,15 @@ export default function Contact() {
                 <div className="row mt-2 mt-md-4 pb-5 m-0">
                     <div className="col-md-6 py-0 py-md-5">
                         <div className=' d-flex'>
-                            <FontAwesomeIcon className='pe-3 h5' icon={faLocationDot} />
+                            <FontAwesomeIcon className='pe-3 h5 mt-1' icon={faLocationDot} />
                             <p>24/3 Ka, Khilkhet, Dhaka, Bangladesh</p>
                         </div>
                         <div className=' d-flex'>
-                            <FontAwesomeIcon className='pe-3 h5' icon={faPhone} />
+                            <FontAwesomeIcon className='pe-3 h5 mt-1' icon={faPhone} />
                             <p>+880 1521537962</p>
                         </div>
                         <div className=' d-flex'>
-                            <FontAwesomeIcon className='pe-3 h5' icon={faEnvelope} />
+                            <FontAwesomeIcon className='pe-3 h5 mt-1' icon={faEnvelope} />
                             <p>fazlul.shahed2000@gmail.com</p>
                         </div>
                         <div className='py-3'>
@@ -127,7 +127,7 @@ export default function Contact() {
 
 
                                     {!loading ?
-                                        <button className='btn btn-warning' type="submit">Send Message</button> :
+                                        <button className='btn btn-primary' type="submit"> <FontAwesomeIcon icon={faPaperPlane} className='me-1' /> Send Message</button> :
                                         <Button
                                             color="warning"
                                             disabled

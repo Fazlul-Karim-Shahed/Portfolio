@@ -47,8 +47,7 @@ cursor: pointer;
 }
 
 .testimonial_card:hover{
-    background-color:  rgba(132, 255, 0, 0.4);
-    
+    background-color:  rgba(23,162,184, .1);    
     
 }
 

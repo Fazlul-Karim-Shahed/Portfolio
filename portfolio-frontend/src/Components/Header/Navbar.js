@@ -12,7 +12,7 @@ export default function Navbar() {
 
     window.onscroll = () => {
 
-        if (window.location.pathname != '/all-projects') {
+        if (true) {
             if (document.documentElement.scrollTop > 75) {
                 document.getElementById('navbar').classList.add('position-fixed', 'top-0', 'bg-dark', 'w-100')
                 document.getElementById('navbar').style.zIndex = '100'
@@ -35,6 +35,8 @@ export default function Navbar() {
                     <a href='' className="logo d-flex align-items-center">
                         <img className='img-fluid logo' src="/Assets/logo.png" alt="" />
                     </a>
+
+
                     <div className="navbar_links my-3" >
                         {window.location.pathname === '/all-projects' ?
                             <>
@@ -56,6 +58,8 @@ export default function Navbar() {
                         <a className='text-decoration-none mx-2 nav_a' href="#contact">Contact</a>
                         <Link onClick={modalToggle} className='text-decoration-none mx-2 a nav_a' to="">Feedback</Link>
                     </div>
+
+
                     <div onClick={toggle} id='navbar_threeDot' className="navbar_threeDot">
                         <div className='navbar_threeDotLine'></div>
                         <div className='navbar_threeDotLine'></div>

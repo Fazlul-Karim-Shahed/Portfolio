@@ -1,6 +1,8 @@
 import React from 'react'
 import './HeaderStyle/Hero.css'
 import Typewriting from './Typewriting'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCloudArrowDown, faDownload } from '@fortawesome/free-solid-svg-icons'
 
 export default function Hero() {
 
@@ -9,7 +11,7 @@ export default function Hero() {
             <div className='text-white hero_left'>
                 <h1>Hey, It's me <span className='hero_name text-warning'>Fazlul Karim</span></h1>
                 <Typewriting />
-                <a className='hero_cv btn btn-warning' href="/Assets/Fazlul_Karim_NSU_EEE.pdf" download>Download CV</a>
+                <a className='hero_cv btn btn-outline-warning mt-3' href="/Assets/Fazlul_Karim_EEE_NSU.pdf" download> <FontAwesomeIcon icon={faCloudArrowDown} className='me-2' />Resume</a>
             </div>
             <div className='hero_right'>
                 <img className='hero_me' src="/Assets/me.png" alt="" />

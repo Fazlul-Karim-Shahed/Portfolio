@@ -25,7 +25,7 @@ export default function Certifications() {
   if (certifications != null) {
     for (let i in certifications) {
       certificationsArr.push(
-        <div className='col-md-3 my-3 px-4'>
+        <div className='col-lg-3 col-sm-12 col-md-6 px-3 mb-4'>
           <Card className='certification_card h-100'>
             <CardBody>
               <CardTitle tag='h5'>{certifications[i].name}</CardTitle>
