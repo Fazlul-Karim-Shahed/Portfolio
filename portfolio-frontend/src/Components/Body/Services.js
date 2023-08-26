@@ -15,7 +15,7 @@ export default function Services() {
         <div className='bg-dark' id='services'>
             <div className="container py-5">
                 <div className='text-center py-3'>
-                    <h1 className='fw-bold text-white'>My Services</h1>
+                    <h1 name='services' className='fw-bold text-white'>My Services</h1>
                     <div className=''>
                         <div className='fw-bold'><span className='text-white'>----------</span> <span className='text-danger'>What i provide</span> <span className='text-white'>----------</span></div>
                     </div>

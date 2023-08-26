@@ -49,11 +49,11 @@ export default function Skill() {
         let el = document.querySelectorAll('.skill_tab_link')
         el.forEach((item, index) => {
             if (index === pos) {
-                item.classList.add('h5', 'text-primary', 'border-bottom', 'border-primary')
+                item.classList.add('h6', 'fw-bold', 'border-bottom', 'text-primary', 'border-primary')
 
             }
             else {
-                item.classList.remove('h5', 'text-primary', 'border-bottom', 'border-primary')
+                item.classList.remove('h6', 'fw-bold', 'border-bottom', 'text-primary', 'border-primary')
             }
         })
 
@@ -143,17 +143,22 @@ export default function Skill() {
                     </div>
                 </div>
 
-                <div>
+                <div >
                     <div className='d-flex justify-content-center pt-5 skill_tab'>
-                        <div onClick={e => tab('links', 0)} className='mx-3 mx-md-4 skill_tab_link h5 text-primary border-bottom border-primary'>Projects</div>
-                        <div onClick={e => tab('frontend', 1)} className='mx-3 mx-md-4 skill_tab_link'>Frontend</div>
-                        <div onClick={e => tab('backend', 2)} className='mx-3 mx-md-4 skill_tab_link'>Backend</div>
-                        <div onClick={e => tab('others', 3)} className='mx-3 mx-md-4 skill_tab_link'>Others</div>
+                        <div onClick={e => tab('links', 0)} className='mx-3 pb-1 mx-md-4 skill_tab_link h6 fw-bold text-primary border-bottom border-primary'>Projects</div>
+                        <span className=''>|</span>
+                        <div onClick={e => tab('frontend', 1)} className='mx-3 pb-1 mx-md-4 skill_tab_link'>Frontend</div>
+                        <span className=''>|</span>
+                        <div onClick={e => tab('backend', 2)} className='mx-3 pb-1 mx-md-4 skill_tab_link'>Backend</div>
+                        <span className=''>|</span>
+                        <div onClick={e => tab('others', 3)} className='mx-3 pb-1 mx-md-4 skill_tab_link'>Others</div>
+
+                        
                     </div>
                 </div>
 
                 <div className='px-1' >
-                    <div className='row py-5 w-100 m-auto'>
+                    <div className='row pt-5 pb-4 w-100 m-auto'>
                         {content === 'frontend' ? frondEndSkills : ''}
                         {content === 'backend' ? backEndSkills : ''}
                         {content === 'others' ? otherSkills : ''}

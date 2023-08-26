@@ -46,7 +46,7 @@ export default function About() {
             <img className='img-fluid w-75' src="./Assets/me3.png" alt="" />
           </div>
           <div className="col-md-7 mt-4 mt-md-0 d-flex flex-column justify-content-center">
-            <h3 className='fw-bold'>A Passionate <span className='text-warning'>Developer</span></h3>
+            <h3 className='fw-bold'><span className=''>A</span> <span className='text-primary'>Passionate</span> <span className='text-warning'>Developer</span></h3>
             {about === '' ? <p className='mt-5 text-danger'>Check internet connection!</p> : <div className='mt-3'>
 
               <span className='pt-2' style={{ textAlign: 'justify' }}>{firstPart.join('.')}</span>

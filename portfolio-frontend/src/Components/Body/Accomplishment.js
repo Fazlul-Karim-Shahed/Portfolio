@@ -13,10 +13,10 @@ export default function Accomplishment() {
         let el = document.querySelectorAll('.accomplishment_tab_link')
         el.forEach((item, index) => {
             if (index === pos) {
-                item.classList.add('h5', 'text-primary', 'border-bottom', 'border-primary')
+                item.classList.add('h6', 'fw-bold', 'text-primary', 'border-bottom', 'border-primary')
             }
             else {
-                item.classList.remove('h5', 'text-primary', 'border-bottom', 'border-primary')
+                item.classList.remove('h6', 'fw-bold', 'text-primary', 'border-bottom', 'border-primary')
             }
         })
 
@@ -38,9 +38,10 @@ export default function Accomplishment() {
                 </div>
 
                 <div>
-                    <div className='d-flex justify-content-center pt-4 accomplishment_tab'>
-                        <div onClick={e => tab('achievements', 0)} className='mx-3 mx-md-4 accomplishment_tab_link h5 text-primary border-bottom border-primary' href="">Achievements</div>
-                        <div onClick={e => tab('certifications', 1)} className='mx-3 mx-md-4 accomplishment_tab_link' href="">Certifications</div>
+                    <div className='d-flex justify-content-center pt-5 accomplishment_tab'>
+                        <div onClick={e => tab('achievements', 0)} className='mx-3 pb-1 mx-md-4 accomplishment_tab_link h6 fw-bold text-primary border-bottom border-primary' href="">Achievements</div>
+                        <span className=''>|</span>
+                        <div onClick={e => tab('certifications', 1)} className='mx-3 pb-1 mx-md-4 accomplishment_tab_link' href="">Certifications</div>
                     </div>
                 </div>
 

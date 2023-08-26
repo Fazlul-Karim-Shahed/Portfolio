@@ -5,7 +5,7 @@ import Typewriter from 'typewriter-effect';
 export default function Typewriting() {
 
     return (
-        <div class="">
+        <div class="mt-2">
             <h5 ><Typewriter
                 options={{
                     strings: ['I am an Engineer', 'I am a Passionate Developer', 'I am an Enthusiast',],

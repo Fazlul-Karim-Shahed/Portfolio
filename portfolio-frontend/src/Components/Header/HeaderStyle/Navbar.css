@@ -3,7 +3,7 @@
 }
 
 .logo {
-    width: 45%;
+    width: 220px;
     margin-top: 3px;
 }
 
@@ -24,7 +24,10 @@
     transition: 0.5s ease;
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 1200px) {
+    .logo {
+        width: 230px;
+    }
     .navbar_links {
         display: none;
     }
@@ -47,11 +50,6 @@
         color: orangered;
     }
 
-    .logo {
-        width: 65%;
-        /* margin-top: 2px; */
-    }
-
     .off_canvas_a {
         color: black;
     }
@@ -60,9 +58,21 @@
     }
 }
 
-@media only screen and (max-width: 766px) {
+@media only screen and (max-width: 576px) {
     .logo {
-        width: 65%;
-        /* margin-top: 8px; */
+        width: 200px;
+    }
+}
+
+@media only screen and (max-width: 476px) {
+    .logo {
+        width: 180px;
+    }
+}
+
+
+@media only screen and (max-width: 376px) {
+    .logo {
+        width: 150px;
     }
 }
