@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCode, } from '@fortawesome/free-solid-svg-icons'
 import { Card, CardBody } from 'reactstrap';
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import './BodyStyles/Testimonial.css'
 import axios from 'axios';
+import Fade from 'react-reveal/Fade';
 
 export default function Testimonial() {
 
@@ -48,33 +47,37 @@ export default function Testimonial() {
     return (
         <div className='container' id='testimonial'>
             <div className="">
-                <div className='text-center py-3 mt-5'>
-                    <h1 className='fw-bold'>Testimonial</h1>
-                    <div className=''>
-                        <div className='fw-bold'>---------- <span className='text-danger'>Who with me</span> ----------</div>
+                <Fade top>
+                    <div className='text-center py-3 mt-5'>
+                        <h1 className='fw-bold'>Testimonial</h1>
+                        <div className=''>
+                            <div className='fw-bold'>---------- <span className='text-danger'>Who with me</span> ----------</div>
+                        </div>
                     </div>
-                </div>
+                </Fade>
             </div>
 
             {allTestimonial === null ? <p className='text-danger text-center my-5'>Check internet connection!</p> : 
             
-                <Swiper
-                    slidesPerView={size > 766 ? 3 : 1}
-                    spaceBetween={-30}
-                    slidesPerGroup={size > 766 ? 3 : 1}
-                    loop={true}
-                    loopFillGroupWithBlank={true}
-                    pagination={{
-                        clickable: true,
-                    }}
-                    navigation={true}
-                    modules={[Pagination, Navigation]}
-                    className="mySwiper"
-                >
+                <Fade bottom>
+                    <Swiper
+                        slidesPerView={size > 766 ? 3 : 1}
+                        spaceBetween={-30}
+                        slidesPerGroup={size > 766 ? 3 : 1}
+                        loop={true}
+                        loopFillGroupWithBlank={true}
+                        pagination={{
+                            clickable: true,
+                        }}
+                        navigation={true}
+                        modules={[Pagination, Navigation]}
+                        className="mySwiper"
+                    >
 
-                    {testimonialShow}
+                        {testimonialShow}
 
-                </Swiper>
+                    </Swiper>
+                </Fade>
             }
         </div>
     )

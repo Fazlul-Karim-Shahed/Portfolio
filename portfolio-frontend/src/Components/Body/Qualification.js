@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { Fade } from 'reactstrap'
 import './BodyStyles/Qualification.css'
 import Education from './Education'
 import Experience from './Experience'
+import Roll from 'react-reveal/Roll';
+import Fade from 'react-reveal/Roll';
 
 
 export default function Qualification() {
@@ -22,28 +23,32 @@ export default function Qualification() {
 
     }
 
-    let educationShow = <Fade> <Education /> </Fade>
-    let experienceShow = <Fade> <Experience /> </Fade>
+    let educationShow = <Fade bottom right> <Education /> </Fade>
+    let experienceShow = <Fade bottom right> <Experience /> </Fade>
 
     return (
         <div className='bg-light' id='qualification'>
             <div className="container pt-3">
-                <div className="">
-                    <div className='text-center py-3'>
-                        <h1 className='fw-bold'>Qualification</h1>
-                        <div className=''>
-                            <div className='fw-bold'>---------- <span className='text-danger'>What i have</span> ----------</div>
+                <Roll left>
+                    <div className="">
+                        <div className='text-center py-3'>
+                            <h1 className='fw-bold'>Qualification</h1>
+                            <div className=''>
+                                <div className='fw-bold'>---------- <span className='text-danger'>What i have</span> ----------</div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </Roll>
 
-                <div>
-                    <div className='d-flex justify-content-center pt-5 qualification_tab'>
-                        <div onClick={e => tab('experience', 0)} className='mx-3 mx-md-4 pb-1 qualification_tab_link h6 fw-bold text-primary border-bottom border-primary' href="">Experience</div>
-                        <span className=''>|</span>
-                        <div onClick={e => tab('education', 1)} className='mx-3 mx-md-4 pb-1 qualification_tab_link' href="">Education</div>
+                <Roll right>
+                    <div>
+                        <div className='d-flex justify-content-center pt-5 qualification_tab'>
+                            <div onClick={e => tab('experience', 0)} className='mx-3 mx-md-4 pb-1 qualification_tab_link h6 fw-bold text-primary border-bottom border-primary' href="">Experience</div>
+                            <span className=''>|</span>
+                            <div onClick={e => tab('education', 1)} className='mx-3 mx-md-4 pb-1 qualification_tab_link' href="">Education</div>
+                        </div>
                     </div>
-                </div>
+                </Roll>
 
                 <div className='px-3'>
                     <div className='row pt-5  pb-4'>

@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { } from '@fortawesome/free-solid-svg-icons'
-import { PDFReader } from 'reactjs-pdf-reader';
 import axios from 'axios';
 import { Card, CardBody, CardLink, CardSubtitle, CardText, CardTitle } from 'reactstrap';
-import { Margin } from '@mui/icons-material';
 
 export default function Certifications() {
 

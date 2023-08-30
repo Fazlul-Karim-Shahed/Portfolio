@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Feedback from '../Body/Feedback';
 import './HeaderStyle/Navbar.css'
 import { Offcanvas, OffcanvasBody, OffcanvasHeader } from 'reactstrap';
+import { Fade } from 'react-reveal';
 
 export default function Navbar() {
 
@@ -16,9 +17,12 @@ export default function Navbar() {
             if (document.documentElement.scrollTop > 75) {
                 document.getElementById('navbar').classList.add('position-fixed', 'top-0', 'bg-dark', 'w-100')
                 document.getElementById('navbar').style.zIndex = '100'
+                document.getElementById('navbar').style.opacity = '.9'
             }
             else {
                 document.getElementById('navbar').classList.remove('position-fixed', 'top-0', 'bg-dark')
+                document.getElementById('navbar').style.opacity = '1'
+
             }
         }
     }
@@ -69,29 +73,32 @@ export default function Navbar() {
                     <Offcanvas isOpen={open} toggle={toggle}>
 
                         <OffcanvasHeader toggle={toggle}></OffcanvasHeader>
-                        <OffcanvasBody>
 
-                            {window.location.pathname === '/all-projects' ?
+                        <Fade left cascade>
+                            <OffcanvasBody>
 
-                                <a onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 ' href="/">Home</a> :
-                                <>
+                                {window.location.pathname === '/all-projects' ?
 
-                                    <Link className='off_canvas_a text-decoration-none d-block py-3 text-center h5 ' to="/all-projects">Projects</Link>
-                                    <a onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 ' href="#about">About</a>
-                                    <a onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 ' href="#qualification">Qualification</a>
-                                    <a onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 ' href="#skill">Skill</a>
-                                    <a onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 ' href="#accomplishment">Accomplishment</a>
-                                    <a onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 ' href="#services">Service</a>
-                                    <a onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 ' href="#testimonial">Testimonial</a>
+                                    <a onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 ' href="/">Home</a> :
+                                    <>
 
-                                </>
+                                        <Link className='off_canvas_a text-decoration-none d-block py-3 text-center h5 ' to="/all-projects">Projects</Link>
+                                        <a onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 ' href="#about">About</a>
+                                        <a onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 ' href="#qualification">Qualification</a>
+                                        <a onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 ' href="#skill">Skill</a>
+                                        <a onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 ' href="#accomplishment">Accomplishment</a>
+                                        <a onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 ' href="#services">Service</a>
+                                        <a onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 ' href="#testimonial">Testimonial</a>
 
-                            }
+                                    </>
 
-                            <a onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 ' href="#contact">Contact</a>
-                            <div onClick={modalToggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 ' style={{ cursor: 'pointer' }}>Feedback</div>
+                                }
 
-                        </OffcanvasBody>
+                                <a onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 ' href="#contact">Contact</a>
+                                <div onClick={modalToggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 ' style={{ cursor: 'pointer' }}>Feedback</div>
+
+                            </OffcanvasBody>
+                        </Fade>
 
                     </Offcanvas>
 

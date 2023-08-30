@@ -3,6 +3,8 @@ import { Fade } from 'reactstrap'
 import '../Body/BodyStyles/Accomplishment.css'
 import Achievements from './Achievements'
 import Certifications from './Certifications'
+import LightSpeed from 'react-reveal/LightSpeed';
+import Bounce from 'react-reveal/Bounce';
 
 
 export default function Accomplishment() {
@@ -22,28 +24,32 @@ export default function Accomplishment() {
 
     }
 
-    let achievementsShow = <Fade> <Achievements /> </Fade>
-    let certificationsShow = <Fade> <Certifications /> </Fade>
+    let achievementsShow = <LightSpeed left> <Achievements /> </LightSpeed>
+    let certificationsShow = <LightSpeed right> <Certifications /> </LightSpeed>
 
     return (
         <div className='bg-light' id='accomplishment'>
             <div className="container pt-3">
-                <div className="">
-                    <div className='text-center py-3'>
-                        <h1 className='fw-bold'>Accomplishment</h1>
-                        <div className=''>
-                            <div className='fw-bold'>---------- <span className='text-danger'>What I Achieved</span> ----------</div>
+                <Bounce left>
+                    <div className="">
+                        <div className='text-center py-3'>
+                            <h1 className='fw-bold'>Accomplishment</h1>
+                            <div className=''>
+                                <div className='fw-bold'>---------- <span className='text-danger'>What I Achieved</span> ----------</div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </Bounce>
 
-                <div>
-                    <div className='d-flex justify-content-center pt-5 accomplishment_tab'>
-                        <div onClick={e => tab('achievements', 0)} className='mx-3 pb-1 mx-md-4 accomplishment_tab_link h6 fw-bold text-primary border-bottom border-primary' href="">Achievements</div>
-                        <span className=''>|</span>
-                        <div onClick={e => tab('certifications', 1)} className='mx-3 pb-1 mx-md-4 accomplishment_tab_link' href="">Certifications</div>
+                <Bounce right>
+                    <div>
+                        <div className='d-flex justify-content-center pt-5 accomplishment_tab'>
+                            <div onClick={e => tab('achievements', 0)} className='mx-3 pb-1 mx-md-4 accomplishment_tab_link h6 fw-bold text-primary border-bottom border-primary' href="">Achievements</div>
+                            <span className=''>|</span>
+                            <div onClick={e => tab('certifications', 1)} className='mx-3 pb-1 mx-md-4 accomplishment_tab_link' href="">Certifications</div>
+                        </div>
                     </div>
-                </div>
+                </Bounce>
 
                 <div className='px-3'>
                     <div className='row pt-5'>

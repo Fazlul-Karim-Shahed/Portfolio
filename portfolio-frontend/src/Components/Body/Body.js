@@ -12,7 +12,7 @@ export default function Body() {
     return (
         <div>
             <About />
-            <Qualification />
+            <Qualification  />
             <Skill />
             <Accomplishment />
             <Services />
