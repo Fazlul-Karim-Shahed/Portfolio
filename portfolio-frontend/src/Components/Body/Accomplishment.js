@@ -3,7 +3,7 @@ import { Fade } from 'reactstrap'
 import '../Body/BodyStyles/Accomplishment.css'
 import Achievements from './Achievements'
 import Certifications from './Certifications'
-import LightSpeed from 'react-reveal/LightSpeed';
+import Slide from 'react-reveal/Slide';
 import Bounce from 'react-reveal/Bounce';
 
 
@@ -24,8 +24,8 @@ export default function Accomplishment() {
 
     }
 
-    let achievementsShow = <LightSpeed left> <Achievements /> </LightSpeed>
-    let certificationsShow = <LightSpeed right> <Certifications /> </LightSpeed>
+    let achievementsShow = <Slide left> <Achievements /> </Slide>
+    let certificationsShow = <Slide right> <Certifications /> </Slide>
 
     return (
         <div className='bg-light' id='accomplishment'>
