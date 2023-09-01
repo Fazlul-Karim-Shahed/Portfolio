@@ -3,7 +3,7 @@ import { Card, CardBody } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCode, faBrain, faBolt } from '@fortawesome/free-solid-svg-icons'
 import './BodyStyles/Services.css'
-import Rotate from 'react-reveal/Rotate';
+import Flip from 'react-reveal/Flip';
 import Zoom from 'react-reveal/Zoom';
 
 export default function Services() {
@@ -16,14 +16,14 @@ export default function Services() {
     return (
         <div className='bg-dark' id='services'>
             <div className="container py-5">
-                <Rotate>
+                <Flip bottom>
                     <div className='text-center py-3'>
                         <h1 name='services' className='fw-bold text-white'>My Services</h1>
                         <div className=''>
                             <div className='fw-bold'><span className='text-white'>----------</span> <span className='text-danger'>What i provide</span> <span className='text-white'>----------</span></div>
                         </div>
                     </div>
-                </Rotate>
+                </Flip>
 
                 <div className="row py-5">
                     <Zoom cascade>

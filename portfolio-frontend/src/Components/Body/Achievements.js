@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
-import { Card, CardBody, CardLink, CardSubtitle, CardText, CardTitle } from 'reactstrap';
+import { Card, CardBody, CardSubtitle, CardText, CardTitle } from 'reactstrap';
+import { Zoom } from 'react-reveal';
 
 export default function Achievements() {
 
@@ -23,34 +24,36 @@ export default function Achievements() {
     if (achievements != null) {
         for (let i in achievements) {
             achievementsArr.push(
-                <div className='col-lg-3 col-sm-12 col-md-6 px-3 mb-4'>
-                    <Card className='achievement_card h-100'>
-                        <CardBody>
-                            <CardTitle tag='h5'>{achievements[i].name}</CardTitle>
-                            <CardSubtitle className="mb-2 text-muted" tag="h6">
-                                {achievements[i].organization}
-                            </CardSubtitle>
-                        </CardBody>
-                        <img className=''
-                            alt="Card cap"
-                            width='100%'
-                            height='200px'
-                            src={achievements[i].organizationLogoLink}
-                        // src='https://picsum.photos/318/180'
+                <Zoom>
+                    <div className='col-lg-3 col-sm-12 col-md-6 px-3 mb-4'>
+                        <Card className='achievement_card h-100'>
+                            <CardBody>
+                                <CardTitle tag='h5'>{achievements[i].name}</CardTitle>
+                                <CardSubtitle className="mb-2 text-muted" tag="h6">
+                                    {achievements[i].organization}
+                                </CardSubtitle>
+                            </CardBody>
+                            <img className=''
+                                alt="Card cap"
+                                width='100%'
+                                height='200px'
+                                src={achievements[i].organizationLogoLink}
+                            // src='https://picsum.photos/318/180'
 
 
-                        />
+                            />
 
-                        <CardBody>
-                            <CardText>
-                                {achievements[i].description}
-                            </CardText>
-                            <a className='text-decoration-none btn btn-outline-info w-100' target='_blank' href={achievements[i].pdfLink}>View details</a>
-                        </CardBody>
-                    </Card>
+                            <CardBody>
+                                <CardText>
+                                    {achievements[i].description}
+                                </CardText>
+                                <a className='text-decoration-none btn btn-outline-info w-100' target='_blank' href={achievements[i].pdfLink}>View details</a>
+                            </CardBody>
+                        </Card>
 
 
-                </div>
+                    </div>
+                </Zoom>
             )
         }
     }

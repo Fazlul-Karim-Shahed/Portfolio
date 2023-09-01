@@ -24,8 +24,8 @@ export default function Accomplishment() {
 
     }
 
-    let achievementsShow = <Slide left> <Achievements /> </Slide>
-    let certificationsShow = <Slide right> <Certifications /> </Slide>
+    let achievementsShow = <Slide right> <Achievements /> </Slide>
+    let certificationsShow = <Slide left> <Certifications /> </Slide>
 
     return (
         <div className='bg-light' id='accomplishment'>
