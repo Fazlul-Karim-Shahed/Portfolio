@@ -1,0 +1,18 @@
+{
+    "name": "Fazlul Karim Shahed | Full Stack Developer",
+    "short_name": "Fazlul Karim",
+    "description": "Portfolio of Fazlul Karim Shahed — Full Stack Developer and Software Engineer specializing in React, Node.js, and modern web technologies.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0a0a0a",
+    "theme_color": "#0072ff",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/Assets/me.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}

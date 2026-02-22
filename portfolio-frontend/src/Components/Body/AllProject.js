@@ -9,10 +9,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Navbar from '../Header/Navbar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleExclamation, faCode, faVideo } from '@fortawesome/free-solid-svg-icons'
-import Shake from 'react-reveal/Shake';
-import Fade from 'react-reveal';
-import Slide from 'react-reveal/Slide';
-import Zoom from 'react-reveal/Zoom';
+import Reveal from '../Reveal';
 
 export default function AllProject() {
 
@@ -30,37 +27,33 @@ export default function AllProject() {
     }, [pathname])
 
 
-    let projectCard = (category, image, name, description, sourceCode, liveLink, readmore) => <Zoom>
+    let projectCard = (category, image, name, description, sourceCode, liveLink, readmore) => <Reveal effect="zoom" className='col-sm-12 col-md-4 py-2 mb-5'>
+        <Card className='allProject_Card h-100 project-card w-100'>
+            <img
+                alt="Project Screenshot"
+                src={image}
+                className='img-fluid border-bottom p-1 rounded rounded-3'
+                style={{ minHeight: '234px' }}
 
-        <div className='col-sm-12 col-md-4 py-2 mb-5'>
-            <Card className='allProject_Card mx-2 h-100'>
-                <img
-                    alt="Project Screenshot"
-                    src={image}
-                    className='img-fluid border-bottom p-1 rounded rounded-3'
-                    style={{ minHeight: '234px' }}
+            />
 
-                />
+            <CardBody>
+                <CardTitle tag="h4">
+                    {name}
+                </CardTitle>
 
-                <CardBody>
-                    <CardTitle tag="h4">
-                        {name}
-                    </CardTitle>
+                <CardText className='mt-3 small'>
+                    {description}
+                </CardText>
+                <div className='mt-4'>
+                    <button disabled={sourceCode === ""} className='btn btn-outline-warning me-3 my-1'><a className='text-decoration-none text-white' target='_blank' href={sourceCode}><FontAwesomeIcon icon={faCode} className='me-1' /> Code</a></button>
 
-                    <CardText className='mt-3 small '>
-                        {description}
-                    </CardText>
-                    <div className='mt-4'>
-                        <button disabled={sourceCode === ""} className='btn btn-outline-warning me-3 my-1'><a className='text-decoration-none text-dark' target='_blank' href={sourceCode}><FontAwesomeIcon icon={faCode} className='me-1' /> Code</a></button>
-
-                        <button disabled={liveLink === ""} className='btn btn-outline-info me-3 my-1'><a className='text-decoration-none text-dark' target='_blank' href={'http://' + `${liveLink}`}><FontAwesomeIcon icon={faVideo} className='me-1' /> See Live</a></button>
-                        {category != 'web' && category != 'ai' ? <button disabled={readmore === "" || readmore === undefined} className='btn btn-outline-info my-1'><a className='text-decoration-none text-dark' target='_blank' href={readmore}>Read more</a></button> : ''}
-                    </div>
-                </CardBody>
-            </Card>
-        </div>
-
-    </Zoom>
+                    <button disabled={liveLink === ""} className='btn btn-outline-info me-3 my-1'><a className='text-decoration-none text-white' target='_blank' href={'http://' + `${liveLink}`}><FontAwesomeIcon icon={faVideo} className='me-1' /> See Live</a></button>
+                    {category != 'web' && category != 'ai' ? <button disabled={readmore === "" || readmore === undefined} className='btn btn-outline-info my-1'><a className='text-decoration-none text-white' target='_blank' href={readmore}>Read more</a></button> : ''}
+                </div>
+            </CardBody>
+        </Card>
+    </Reveal>
 
 
 
@@ -73,7 +66,7 @@ export default function AllProject() {
     if (project != null) {
         for (let i in project) {
 
-            if (project[i].category === 'pcb') {
+            if (project[i].category === 'vlsi') {
                 pcbProjectArr.push(projectCard(project[i].category, project[i].image, project[i].name, project[i].description, project[i].sourceCode, project[i].liveLink, project[i].readmore))
             }
             if (project[i].category === 'ai') {
@@ -99,33 +92,38 @@ export default function AllProject() {
 
 
     return (
-        <div className=''>
+        <div className='glossy-bg'>
 
-            <div className='bg-dark'>
+            <div className=''>
                 <Navbar />
             </div>
 
             {/* Project Part */}
 
             <div className="container">
-                <Fade bottom>
-                    <Alert className='mt-4' color='warning'> <FontAwesomeIcon className='me-1' icon={faCircleExclamation} />  Some website may take time to load because of free hosting. </Alert>
-                </Fade>
+                <Reveal effect="fade-up">
+                    <Alert className="mt-4 dark-alert-warning text-white-50">
+                        <FontAwesomeIcon icon={faCircleExclamation} />
+                        Some website may take time to load because of free hosting.
+                    </Alert>
+                </Reveal>
             </div>
 
 
+
             <div className="container mt-5">
-                <Slide right>
+                <Reveal effect="fade-right">
                     <ul className="nav nav-tabs" id="myTab" role="tablist">
                         <li className="nav-item" role="presentation">
                             <button className="nav-link active" id="software-tab" data-bs-toggle="tab" data-bs-target="#software" type="button" role="tab" aria-selected="true">Software</button>
                         </li>
                         <li className="nav-item" role="presentation">
-                            <button className="nav-link" id="hardware-tab" data-bs-toggle="tab" data-bs-target="#hardware" type="button" role="tab" aria-selected="false">Hardware</button>
+                            <button className="nav-link" id="vlsi-tab" data-bs-toggle="tab" data-bs-target="#vlsi" type="button" role="tab" aria-selected="false">VLSI</button>
                         </li>
                         <li className="nav-item" role="presentation">
-                            <button className="nav-link" id="pcb-tab" data-bs-toggle="tab" data-bs-target="#pcb" type="button" role="tab" aria-selected="false">PCB</button>
+                            <button className="nav-link" id="hardware-tab" data-bs-toggle="tab" data-bs-target="#hardware" type="button" role="tab" aria-selected="false">Hardware</button>
                         </li>
+
                         <li className="nav-item" role="presentation">
                             <button className="nav-link" id="ai-tab" data-bs-toggle="tab" data-bs-target="#ai" type="button" role="tab" aria-selected="false">AI</button>
                         </li>
@@ -133,32 +131,32 @@ export default function AllProject() {
                             <button className="nav-link" id="others-tab" data-bs-toggle="tab" data-bs-target="#others" type="button" role="tab" aria-selected="false">Others</button>
                         </li>
                     </ul>
-                </Slide>
+                </Reveal>
 
 
 
-                {project === null ? <Shake><p className='my-5 text-danger text-center'>Check internet connection!</p></Shake> :
+                {project === null ? <Reveal effect="fade"><p className='my-5 text-danger text-center'>Check internet connection!</p></Reveal> :
 
 
                     <div className="tab-content my-5" id="myTabContent">
                         <div className="tab-pane fade show active" id="software" role="tabpanel" aria-labelledby="software-tab">
                             {/* <p className='text-center text-danger mb-4'>Some website may take time to load because of free hosting.</p> */}
-                            <div className="row">{webProjectArr.length == 0 ? <Fade bottom><h5 className='text-center'>Will be updated soon.</h5></Fade> : webProjectArr}</div>
+                            <div className="row">{webProjectArr.length == 0 ? <Reveal effect="fade-up"><h5 className='text-center text-white-50'>Will be updated soon.</h5></Reveal> : webProjectArr}</div>
                         </div>
                         <div className="tab-pane fade" id="hardware" role="tabpanel" aria-labelledby="hardware-tab">
-                            <div className="row">{hardwareProjectArr.length == 0 ? <Fade bottom><h5 className='text-center'>Will be updated soon.</h5></Fade> : hardwareProjectArr}</div>
+                            <div className="row">{hardwareProjectArr.length == 0 ? <Reveal effect="fade-up"><h5 className='text-center text-white-50'>Will be updated soon.</h5></Reveal> : hardwareProjectArr}</div>
 
                         </div>
-                        <div className="tab-pane fade" id="pcb" role="tabpanel" aria-labelledby="pcb-tab">
-                            <div className="row">{pcbProjectArr.length == 0 ? <Fade bottom><h5 className='text-center'>Will be updated soon.</h5></Fade> : pcbProjectArr}</div>
+                        <div className="tab-pane fade" id="vlsi" role="tabpanel" aria-labelledby="vlsi-tab">
+                            <div className="row">{pcbProjectArr.length == 0 ? <Reveal effect="fade-up"><h5 className='text-center text-white-50'>Will be updated soon.</h5></Reveal> : pcbProjectArr}</div>
 
                         </div>
                         <div className="tab-pane fade" id="ai" role="tabpanel" aria-labelledby="ai-tab">
-                            <div className="row">{aiProjectArr.length == 0 ? <Fade bottom><h5 className='text-center'>Will be updated soon.</h5></Fade> : aiProjectArr}</div>
+                            <div className="row">{aiProjectArr.length == 0 ? <Reveal effect="fade-up"><h5 className='text-center text-white-50'>Will be updated soon.</h5></Reveal> : aiProjectArr}</div>
 
                         </div>
                         <div className="tab-pane fade" id="others" role="tabpanel" aria-labelledby="others-tab">
-                            <div className="row">{othersProjectArr.length == 0 ? <Fade bottom><h5 className='text-center'>Will be updated soon.</h5></Fade> : othersProjectArr}</div>
+                            <div className="row">{othersProjectArr.length == 0 ? <Reveal effect="fade-up"><h5 className='text-center text-white-50'>Will be updated soon.</h5></Reveal> : othersProjectArr}</div>
 
                         </div>
                     </div>

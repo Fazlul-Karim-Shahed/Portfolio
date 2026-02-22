@@ -1,0 +1,7 @@
+# Sitemap for https://fazlul-karim.web.app
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+# Sitemap location
+Sitemap: https://fazlul-karim.web.app/sitemap.xml

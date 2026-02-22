@@ -4,7 +4,7 @@
 }
 
 .skill_Card:hover {
-    scale: 1.005;
+    scale: 1.009;
     transition: 0.3s ease;
     box-shadow: 0px 0px 20px rgb(173, 171, 161);
 }
@@ -23,3 +23,13 @@
     background-color: antiquewhite;
     
 }
+
+.skill_Card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+  color: #222; /* Darker text color */
+  font-weight: 600;
+  text-shadow: 0 0 3px rgba(255,255,255,0.7); /* subtle glow for text visibility */
+  cursor: pointer;
+}
+
+

@@ -10,7 +10,11 @@ import Header from './Header/Header'
 import AllProject from './Body/AllProject'
 import AdminAchievement from './Admin/AdminComponents/AdminAchievement'
 import AdminCertification from './Admin/AdminComponents/AdminCertification'
+import AdminExperience from './Admin/AdminComponents/AdminExperience'
+import AdminResume from './Admin/AdminComponents/AdminResume'
+import AdminVisitors from './Admin/AdminComponents/AdminVisitors'
 import Navbar from './Header/Navbar'
+import NotFound from './Body/NotFound'
 
 export default function MainComponent() {
 
@@ -22,18 +26,15 @@ export default function MainComponent() {
             <Route path='/' element={
                 <div>
                     <Header />
-                    <Body />
-                    <Footer />
+                    <div className=''>
+                        <Body />
+                        <Footer />
+                    </div>
                 </div>
             } />
 
             <Route path='/all-projects' element={<AllProject />} />
-            <Route path='*' element={
-                <div>
-                    {/* <div className="bg-dark"><Navbar /></div> */}
-                    <h1>Not found</h1>
-                </div>
-            } />
+            <Route path='*' element={<NotFound />} />
 
 
         </>
@@ -42,14 +43,17 @@ export default function MainComponent() {
         <Route path={'/admin/' + process.env.REACT_APP_ADMIN_PASS} element={<Admin />}>
             <Route path='about' element={<AdminAbout />} />
             <Route path='links' element={<AdminLinks />} />
+            <Route path='experience' element={<AdminExperience />} />
             <Route path='testimonial' element={<AdminTestimonial />} />
             <Route path='achievement' element={<AdminAchievement />} />
             <Route path='certification' element={<AdminCertification />} />
-            <Route path='*' element={"Not found"} />
+            <Route path='resume' element={<AdminResume />} />
+            <Route path='visitors' element={<AdminVisitors />} />
+            <Route path='*' element={<NotFound />} />
         </Route>
 
     return (
-        <div>
+        <div className=''>
             <Routes>
                 {general}
                 {admin}

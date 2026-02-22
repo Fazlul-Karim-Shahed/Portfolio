@@ -1,80 +1,131 @@
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSchool, faBuildingColumns, faGraduationCap } from '@fortawesome/free-solid-svg-icons'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 export default function Experience() {
+    const [experiences, setExperiences] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        fetchExperiences();
+    }, []);
+
+    const getDateValue = (period) => {
+        // If period contains "Present", it's the latest, return highest value
+        if (period.includes('Present')) {
+            return { year: 9999, month: 12 };
+        }
+        
+        // Extract the start date (first part before "-")
+        const startDate = period.split('-')[0].trim();
+        const months = {
+            'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6,
+            'Jul': 7, 'Aug': 8, 'Sep': 9, 'Sept': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12
+        };
+        
+        const parts = startDate.split(' ');
+        const month = months[parts[0]] || 1;
+        const year = parseInt(parts[1]) || 0;
+        
+        return { year, month };
+    };
+
+    const fetchExperiences = () => {
+        setLoading(true);
+        setError(null);
+        axios.get(process.env.REACT_APP_BACKEND_API + 'Experiences.json')
+            .then((res) => {
+                const data = res.data;
+                console.log('Fetched experiences data:', data);
+                if (data) {
+                    let entries = Object.entries(data).map(([id, value]) => ({ id, ...value }));
+                    console.log('Mapped entries:', entries);
+                    
+                    // Sort by date descending (latest first)
+                    entries.sort((a, b) => {
+                        const dateA = getDateValue(a.period);
+                        const dateB = getDateValue(b.period);
+                        
+                        // Compare years first
+                        if (dateA.year !== dateB.year) {
+                            return dateB.year - dateA.year;
+                        }
+                        // If same year, compare months
+                        return dateB.month - dateA.month;
+                    });
+                    
+                    console.log('Sorted entries:', entries);
+                    setExperiences(entries);
+                    setLoading(false);
+                } else {
+                    setExperiences([]);
+                    setLoading(false);
+                }
+            })
+            .catch((err) => {
+                console.error('Error fetching experiences:', err);
+                setError(err.message);
+                setExperiences([]);
+                setLoading(false);
+            });
+    };
+
     return (
         <div className="row m-0">
-
-            <div className="col-md-6">
-                <div className='row mt-2 mb-4'>
-                    <div className='col-2 d-flex align-items-center'>
-
-                        <img className='img-fluid' src='https://firebasestorage.googleapis.com/v0/b/fazlul-karim.appspot.com/o/Experience%2Flogo.svg?alt=media&token=141f38a8-154f-451a-8c92-357bc5bfcee9' />
-                    </div>
-                    <div className='col-10'>
-                        <h5 className='fw-bold'>Probationary Member</h5>
-                        <h6 className='small'>2023 - Present</h6>
-                        <h6 className='fst-italic'>KONCEPT-TECH</h6>
-                    </div>
+            {error && (
+                <div className="alert alert-danger w-100" style={{ marginBottom: '1rem' }}>
+                    Error loading experiences: {error}
                 </div>
-            </div>
-
-            <div className="col-md-6">
-                <div className='row mt-2 mb-4'>
-                    <div className='col-2 d-flex align-items-center'>
-
-                        <img className='img-fluid' width="" src='https://firebasestorage.googleapis.com/v0/b/fazlul-karim.appspot.com/o/Achievement%2F356410204_616794027213228_1564534944963760085_n.jpg?alt=media&token=73f920f8-d260-4f02-ab22-534c1553008f' />
-                    </div>
-                    <div className='col-10'>
-                        <h5 className='fw-bold'>Coordinator</h5>
-                        <h6 className='small'>2023 - Present</h6>
-                        <h6 className='fst-italic'>Website Development Team, IEEE NSU Student Branch</h6>
-                    </div>
+            )}
+            {loading ? (
+                <div className="w-100 text-center">
+                    <p className="text-white">Loading experiences...</p>
                 </div>
-            </div>
-
-
-            <div className="col-md-6">
-                <div className='row mt-2 mb-4'>
-                    <div className='col-2 d-flex align-items-center'>
-                        <img className='img-fluid' src='https://firebasestorage.googleapis.com/v0/b/fazlul-karim.appspot.com/o/Achievement%2F356410204_616794027213228_1564534944963760085_n.jpg?alt=media&token=73f920f8-d260-4f02-ab22-534c1553008f' />
-
-                    </div>
-                    <div className='col-10' >
-                        <h5 className='fw-bold'>Incharge</h5>
-                        <h6 className='small'>2022- 2023</h6>
-                        <h6 className='fst-italic'>Website Development Team, IEEE NSU Student Branch</h6>
-                    </div>
+            ) : experiences.length === 0 ? (
+                <div className="w-100 text-center">
+                    <p className="text-white-50">No experiences found.</p>
                 </div>
-            </div>
+            ) : (
+                experiences.map((item, index) => (
+                    <div className="col-md-6 mb-4" key={index}>
+                        <div className="card experience-glass-card h-100 w-100">
+                            <div className="row g-0 align-items-center">
+                                <div className="col-3 text-center p-3">
+                                    <img
+                                        src={item.image}
+                                        alt={item.org}
+                                        className="img-fluid rounded"
+                                        style={{ maxHeight: '64px', objectFit: 'cover' }}
+                                    />
+                                </div>
+                                <div className="col-9">
+                                    <div className="card-body py-3">
+                                        <h5 className="card-title fw-bold text-white mb-1">{item.title}</h5>
+                                        <p className="card-text text-warning mb-0 small">{item.period}</p>
+                                        <p className="card-text text-white-50 fst-italic small">{item.org}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))
+            )}
 
-            <div className="col-md-6">
-                <div className='row mt-2 mb-4'>
-                    <div className='col-2 d-flex align-items-center'>
-                        <img className='img-fluid' src='https://firebasestorage.googleapis.com/v0/b/fazlul-karim.appspot.com/o/Achievement%2F356410204_616794027213228_1564534944963760085_n.jpg?alt=media&token=73f920f8-d260-4f02-ab22-534c1553008f' />
-                    </div>
-                    <div className='col-10' >
-                        <h5 className='fw-bold'>Volunteer</h5>
-                        <h6 className='small'>2020 - 2022</h6>
-                        <h6 className='fst-italic'>Website Development Team, IEEE NSU Student Branch</h6>
-                    </div>
-                </div>
-            </div>
-
-            <div className="col-md-6">
-                <div className='row mt-2 mb-4'>
-                    <div className='col-2 d-flex align-items-center'>
-                        <img className='img-fluid rounded' src='https://firebasestorage.googleapis.com/v0/b/fazlul-karim.appspot.com/o/Achievement%2F325506070_549199227264259_7761071493292917937_n.jpg?alt=media&token=0f2386e1-8829-4cec-ae39-1d4ca543322f' />
-                    </div>
-                    <div className='col-10' >
-                        <h5 className='fw-bold'>Member</h5>
-                        <h6 className='small'>2020 - 2022</h6>
-                        <h6 className='fst-italic'>Admin and Management team, IEEE NSU PES Student Branch Chapter</h6>
-                    </div>
-                </div>
-            </div>
+            <style>{`
+                .experience-glass-card {
+                    background: rgba(20, 20, 20, 0.5);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    border-radius: 0.75rem;
+                    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05), inset 0 0 10px rgba(255, 255, 255, 0.05);
+                    backdrop-filter: blur(12px);
+                    -webkit-backdrop-filter: blur(12px);
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                }
+                .experience-glass-card:hover {
+                    transform: scale(1.015);
+                    box-shadow: 0 0 25px rgba(255, 255, 255, 0.12);
+                }
+            `}</style>
         </div>
-
-    )
+    );
 }

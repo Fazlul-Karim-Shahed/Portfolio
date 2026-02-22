@@ -10,7 +10,7 @@ import Accomplishment from './Accomplishment'
 export default function Body() {
 
     return (
-        <div>
+        <div className=''>
             <About />
             <Qualification  />
             <Skill />

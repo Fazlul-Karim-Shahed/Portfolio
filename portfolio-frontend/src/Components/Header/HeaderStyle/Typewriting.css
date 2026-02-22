@@ -1,12 +1,22 @@
 .typewriter {
       overflow: hidden; /* Ensures the text is not displayed outside the box */
-      border-right: 0.15em solid #000; /* Creates the blinking cursor effect */
+      border-right: 0.15em solid #fff; /* Creates the blinking cursor effect */
       white-space: nowrap; /* Keeps the text on one line */
       margin: 0 auto; /* Centers the typewriter box */
       letter-spacing: 0.15em; /* Adjust the spacing between characters */
       animation:
         typing 2s steps(40, end),
         blink-caret 0.75s step-end infinite;
+      transition: border-color 0.4s ease, color 0.4s ease;
+      color: #ffffff;
+    }
+
+    html[data-theme="light"] .typewriter {
+      border-right: 0.15em solid #0052cc !important;
+      color: #0d1b2a !important;
+      animation:
+        typing 2s steps(40, end),
+        blink-caret-light 0.75s step-end infinite;
     }
 
     /* Typing animation */
@@ -19,13 +29,53 @@
       }
     }
 
-    /* Blinking cursor animation */
+    /* Blinking cursor animation - Dark Mode */
     @keyframes blink-caret {
       from,
       to {
         border-color: transparent;
       }
       50% {
-        border-color: #000;
+        border-color: #fff;
+      }
+    }
+
+    /* Blinking cursor animation - Light Mode */
+    @keyframes blink-caret-light {
+      from,
+      to {
+        border-color: transparent;
+      }
+      50% {
+        border-color: #0052cc;
+      }
+    }
+
+    /* Responsive typewriter sizing */
+    @media only screen and (max-width: 992px) {
+      .Typewriter__wrapper,
+      .Typewriter__cursor {
+        font-size: 1.1rem !important;
+      }
+    }
+
+    @media only screen and (max-width: 768px) {
+      .Typewriter__wrapper,
+      .Typewriter__cursor {
+        font-size: 1rem !important;
+      }
+    }
+
+    @media only screen and (max-width: 576px) {
+      .Typewriter__wrapper,
+      .Typewriter__cursor {
+        font-size: 0.9rem !important;
+      }
+    }
+
+    @media only screen and (max-width: 476px) {
+      .Typewriter__wrapper,
+      .Typewriter__cursor {
+        font-size: 0.8rem !important;
       }
     }

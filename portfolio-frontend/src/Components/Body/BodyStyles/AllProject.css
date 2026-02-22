@@ -12,3 +12,224 @@
         width: 50%;
     }
 }
+
+/* AllProject.css */
+
+/* Card styling */
+.allProject_Card {
+  background-color: #fdfdfd;
+  border: 1px solid #e3e3e3;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease-in-out;
+  border-radius: 0.5rem; /* rounded corners */
+}
+
+.allProject_Card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Tabs styling */
+.nav-tabs {
+  border-bottom: 2px solid #ffc107;
+}
+
+.nav-tabs .nav-link {
+  color: #555;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  border: none;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+}
+
+.nav-tabs .nav-link:hover {
+  background-color: #f8f9fa;
+  color: #000;
+  border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: #ffc107;
+  color: #000;
+  font-weight: 600;
+  border: none;
+  border-bottom: 3px solid #ff9800;
+  border-radius: 0.25rem 0.25rem 0 0;
+}
+
+/* Buttons styling */
+.btn-outline-warning, .btn-outline-info {
+  transition: all 0.3s ease-in-out;
+  border-width: 2px;
+  font-weight: 600;
+}
+
+.btn-outline-warning:hover, .btn-outline-warning:focus {
+  background-color: #ffc107;
+  color: #000;
+  border-color: #ffc107;
+  box-shadow: 0 0 8px rgba(255, 193, 7, 0.6);
+}
+
+.btn-outline-info:hover, .btn-outline-info:focus {
+  background-color: #17a2b8;
+  color: #fff;
+  border-color: #17a2b8;
+  box-shadow: 0 0 8px rgba(23, 162, 184, 0.6);
+}
+
+/* Image styling inside cards */
+.allProject_Card img {
+  min-height: 234px;
+  object-fit: cover;
+  border-bottom: 1px solid #dee2e6;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+/* Responsive spacing for cards */
+@media (max-width: 767.98px) {
+  .allProject_Card {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Additional small text style inside cards */
+.allProject_Card .card-text {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Fade-in container (optional, matches your use of react-reveal) */
+.fade-bottom {
+  animation: fadeInBottom 0.8s ease forwards;
+}
+
+@keyframes fadeInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Container card */
+.project-card {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    backdrop-filter: blur(18px);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+    border-radius: 1rem;
+    padding: 1.2rem;
+    color: #000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  box-shadow: 0 6px 20px rgba(255, 193, 7, 0.8); /* subtle yellow glow on hover */
+}
+
+/* Image inside the card */
+.project-card img {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.25rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+  object-fit: cover;
+  height: 234px !important; /* fixed height */
+  width: 100%;
+}
+
+/* Card title */
+.project-card .card-title {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Card description text */
+.project-card .card-text {
+  margin-top: 1rem;
+  font-size: 0.87rem;
+  color: rgba(255, 255, 255, 0.5); /* white with 50% opacity */
+}
+
+/* Button container spacing */
+.project-card .mt-4 {
+  margin-top: 1.5rem !important;
+}
+
+/* Buttons */
+.project-card .btn-outline-warning {
+  border-color: #ffc107;
+  color: #ffc107;
+  font-weight: 600;
+  font-size: 0.8rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.project-card .btn-outline-warning:hover:not(:disabled),
+.project-card .btn-outline-warning:focus:not(:disabled) {
+  background-color: #ffc107;
+  color: #121212;
+  text-decoration: none;
+  box-shadow: 0 0 8px #ffc107;
+}
+
+.project-card .btn-outline-info {
+  border-color: #0dcaf0;
+  color: #0dcaf0;
+  font-weight: 600;
+  font-size: 0.8rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.project-card .btn-outline-info:hover:not(:disabled),
+.project-card .btn-outline-info:focus:not(:disabled) {
+  background-color: #0dcaf0;
+  color: #121212;
+  text-decoration: none;
+  box-shadow: 0 0 8px #0dcaf0;
+}
+
+/* Button links inside buttons */
+.project-card a.text-decoration-none {
+  color: inherit;
+}
+
+.project-card a.text-decoration-none:hover {
+  text-decoration: underline;
+}
+
+/* Disabled buttons */
+.project-card button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dark-alert-warning {
+  background: rgba(255, 0, 0, 0.05) !important; /* dark translucent background */
+  color: #ffc107; /* bootstrap warning yellow */
+  border: 1.5px solid rgba(250, 2, 35, 0.6);
+  border-radius: 0.5rem;
+  box-shadow:
+    0 0 10px rgba(255, 193, 7, 0.6), /* subtle glow */
+    inset 0 1px 4px rgba(255, 255, 255, 0.1); /* inner subtle shine */
+  padding: 1rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-shadow: 0 0 3px rgba(255, 19, 7, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: box-shadow 0.3s ease;
+}
+
+
+.dark-alert-warning .fa-circle-exclamation {
+  color: #ffc107;
+  font-size: 1.3rem;
+  text-shadow: 0 0 6px rgba(255, 193, 7, 0.8);
+}

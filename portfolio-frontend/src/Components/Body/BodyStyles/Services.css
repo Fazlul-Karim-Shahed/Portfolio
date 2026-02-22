@@ -6,7 +6,11 @@ cursor: pointer;
 
 .services_card:hover{
     background-color: #FFC107;
-    
+}
+
+html[data-theme="light"] .services_card:hover{
+    background-color: #e8f0ff;
+    box-shadow: 0 0 20px rgba(100, 150, 255, 0.4);
 }
 
 .services_card_body{
@@ -15,4 +19,8 @@ cursor: pointer;
 
 .services_card:hover .services_card_body{
     scale: 1.05;
+}
+
+html[data-theme="light"] .services_card:hover .services_card_body {
+    color: #0052cc;
 }

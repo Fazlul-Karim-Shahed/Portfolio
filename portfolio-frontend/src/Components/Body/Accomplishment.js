@@ -1,65 +1,104 @@
-import React, { useState } from 'react'
-import { Fade } from 'reactstrap'
+import React, { useState, useEffect } from 'react'
 import '../Body/BodyStyles/Accomplishment.css'
 import Achievements from './Achievements'
 import Certifications from './Certifications'
-import Slide from 'react-reveal/Slide';
-import Bounce from 'react-reveal/Bounce';
-
+import Reveal from '../Reveal'
 
 export default function Accomplishment() {
+  const [content, setContent] = useState('achievements')
 
-    const [content, setContent] = useState('achievements')
-    const tab = (str, pos) => {
-        setContent(str)
-        let el = document.querySelectorAll('.accomplishment_tab_link')
-        el.forEach((item, index) => {
-            if (index === pos) {
-                item.classList.add('h6', 'fw-bold', 'text-primary', 'border-bottom', 'border-primary')
-            }
-            else {
-                item.classList.remove('h6', 'fw-bold', 'text-primary', 'border-bottom', 'border-primary')
-            }
-        })
+  const tabItems = ['achievements', 'certifications']
 
-    }
+  useEffect(() => {
+    // Set first tab active on mount
+    const elements = document.querySelectorAll('.accomplishment_tab_link')
+    elements.forEach((el, index) => {
+      if (index === 0) {
+        el.classList.add('active-tab')
+      }
+    })
+  }, [])
 
-    let achievementsShow = <Slide right> <Achievements /> </Slide>
-    let certificationsShow = <Slide left> <Certifications /> </Slide>
+  const handleTabClick = (str, pos) => {
+    setContent(str)
+    const elements = document.querySelectorAll('.accomplishment_tab_link')
+    elements.forEach((el, index) => {
+      if (index === pos) {
+        el.classList.add('active-tab')
+      } else {
+        el.classList.remove('active-tab')
+      }
+    })
+  }
 
-    return (
-        <div className='bg-light' id='accomplishment'>
-            <div className="container pt-3">
-                <Bounce left>
-                    <div className="">
-                        <div className='text-center py-3'>
-                            <h1 className='fw-bold'>Accomplishment</h1>
-                            <div className=''>
-                                <div className='fw-bold'>---------- <span className='text-danger'>What I Achieved</span> ----------</div>
-                            </div>
-                        </div>
-                    </div>
-                </Bounce>
-
-                <Bounce right>
-                    <div>
-                        <div className='d-flex justify-content-center pt-5 accomplishment_tab'>
-                            <div onClick={e => tab('achievements', 0)} className='mx-3 pb-1 mx-md-4 accomplishment_tab_link h6 fw-bold text-primary border-bottom border-primary' href="">Achievements</div>
-                            <span className=''>|</span>
-                            <div onClick={e => tab('certifications', 1)} className='mx-3 pb-1 mx-md-4 accomplishment_tab_link' href="">Certifications</div>
-                        </div>
-                    </div>
-                </Bounce>
-
-                <div className='px-3'>
-                    <div className='row pt-5'>
-                        {content === 'achievements' ? achievementsShow : ''}
-                        {content === 'certifications' ? certificationsShow : ''}
-                    </div>
-                </div>
-
-
+  return (
+    <div className='glossy-bg py-5' id='accomplishment'>
+      <div className="container">
+        <Reveal effect="fade-up">
+          <div className="text-center mb-5">
+            <h1 className='fw-bold'>Accomplishment</h1>
+            <div className='fw-bold'>
+              <p className='section-subtitle'>What I Achieved</p>
             </div>
+          </div>
+        </Reveal>
+
+        {/* Glossy Box Wrapper */}
+        {/* Write correct name of glossy-box-wrapper to add box around */}
+        <div className='glossy-box-wrappe'>
+
+          <div className='d-flex justify-content-center mb-4 accomplishment_tab flex-wrap'>
+            {tabItems.map((tabName, idx) => (
+              <div
+                key={tabName}
+                className="mx-3 mx-md-4 pb-2 accomplishment_tab_link"
+                role="button"
+                tabIndex={0}
+                onClick={() => handleTabClick(tabName, idx)}
+              >
+                {tabName.charAt(0).toUpperCase() + tabName.slice(1)}
+              </div>
+            ))}
+          </div>
+
+          <div className='row pt-3'>
+            {content === 'achievements' && (
+              <Reveal effect="zoom">
+                <Achievements />
+              </Reveal>
+            )}
+            {content === 'certifications' && (
+              <Reveal effect="zoom">
+                <Certifications />
+              </Reveal>
+            )}
+          </div>
         </div>
-    )
+      </div>
+
+      {/* Inline CSS matching Skill section tabs */}
+      <style>{`
+        .accomplishment_tab_link {
+          font-size: 1rem;
+          font-weight: 500;
+          color: #f8f9fa;
+          cursor: pointer;
+          padding: 8px 12px;
+          border-radius: 8px;
+          transition: all 0.3s ease;
+          user-select: none;
+        }
+
+        .accomplishment_tab_link:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .accomplishment_tab_link.active-tab {
+          color: #0d6efd;
+          font-weight: bold;
+          border-bottom: 3px solid #0d6efd;
+        }
+      `}</style>
+    </div>
+  )
 }
