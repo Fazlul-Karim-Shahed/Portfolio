@@ -19,6 +19,17 @@ export default function AdminTestimonial() {
       });
   };
 
+  const toggleApprove = (key, currentStatus) => {
+    axios.patch(`${process.env.REACT_APP_BACKEND_API}feedback/${key}.json`, { approved: !currentStatus })
+      .then(() => {
+        // Optimistically update the state
+        setAllTestimonial(prev => ({
+          ...prev,
+          [key]: { ...prev[key], approved: !currentStatus }
+        }));
+      });
+  };
+
   const styles = {
     container: {
       minHeight: '100vh',
@@ -82,15 +93,63 @@ export default function AdminTestimonial() {
       padding: '0.4rem 1.2rem',
       borderRadius: '12px',
       cursor: 'pointer',
-      boxShadow: '0 0 12px #ff416c',
-      transition: 'background 0.3s ease',
+      transition: 'all 0.3s ease',
       display: 'flex',
       alignItems: 'center',
       gap: '0.5rem',
       fontSize: '0.9rem',
     },
     btnHover: {
+      boxShadow: '0 0 12px #ff416c',
       background: 'linear-gradient(45deg, #ff4b2b, #ff416c)',
+    },
+    btnApprove: {
+      alignSelf: 'flex-start',
+      background: '#198754',
+      border: 'none',
+      color: 'white',
+      fontWeight: '600',
+      padding: '0.4rem 1.2rem',
+      borderRadius: '12px',
+      cursor: 'pointer',
+      transition: 'all 0.3s ease',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.5rem',
+      fontSize: '0.9rem',
+    },
+    btnApproveHover: {
+      boxShadow: '0 0 12px #198754',
+      background: '#157347',
+    },
+    btnWarning: {
+      alignSelf: 'flex-start',
+      background: '#ffc107',
+      border: 'none',
+      color: '#000',
+      fontWeight: '600',
+      padding: '0.4rem 1.2rem',
+      borderRadius: '12px',
+      cursor: 'pointer',
+      transition: 'all 0.3s ease',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.5rem',
+      fontSize: '0.9rem',
+    },
+    btnWarningHover: {
+      boxShadow: '0 0 12px #ffc107',
+      background: '#ffca2c',
+    },
+    badge: {
+        position: 'absolute',
+        top: '1rem',
+        right: '1rem',
+        padding: '0.3rem 0.8rem',
+        borderRadius: '20px',
+        fontSize: '0.8rem',
+        fontWeight: 'bold',
+        color: '#fff'
     },
     icon: {
       fontSize: '1rem',
@@ -115,20 +174,41 @@ export default function AdminTestimonial() {
           : Object.keys(allTestimonial).length === 0
             ? <p style={{ color: 'rgba(255,255,255,0.5)' }}>No testimonials found.</p>
             : Object.entries(allTestimonial).map(([key, testimonial], i) => (
-              <div key={key} style={styles.card}>
+              <div key={key} style={{ ...styles.card, position: 'relative' }}>
+                <div style={{
+                  ...styles.badge,
+                  background: testimonial.approved ? '#198754' : '#ffc107',
+                  color: testimonial.approved ? '#fff' : '#000'
+                }}>
+                  {testimonial.approved ? 'Approved' : 'Pending'}
+                </div>
                 <div>
                   <h3 style={styles.name}>{testimonial.name}</h3>
                   <div style={styles.designation}>Designation: {testimonial.designation}</div>
                   <p style={styles.description}>{testimonial.description}</p>
                 </div>
-                <button
-                  style={{ ...styles.btn, ...(hoverIndex === i ? styles.btnHover : {}) }}
-                  onClick={() => del(key)}
-                  onMouseEnter={() => setHoverIndex(i)}
-                  onMouseLeave={() => setHoverIndex(null)}
-                >
-                  <i className="fas fa-trash" style={styles.icon}></i> Remove
-                </button>
+                <div style={{ display: 'flex', gap: '10px', marginTop: 'auto' }}>
+                  <button
+                    style={{ ...styles.btn, ...(hoverIndex === `del-${i}` ? styles.btnHover : {}) }}
+                    onClick={() => del(key)}
+                    onMouseEnter={() => setHoverIndex(`del-${i}`)}
+                    onMouseLeave={() => setHoverIndex(null)}
+                  >
+                    <i className="fas fa-trash" style={styles.icon}></i> Remove
+                  </button>
+                  <button
+                    style={{
+                      ...(testimonial.approved ? styles.btnWarning : styles.btnApprove),
+                      ...(hoverIndex === `toggle-${i}` ? (testimonial.approved ? styles.btnWarningHover : styles.btnApproveHover) : {})
+                    }}
+                    onClick={() => toggleApprove(key, testimonial.approved)}
+                    onMouseEnter={() => setHoverIndex(`toggle-${i}`)}
+                    onMouseLeave={() => setHoverIndex(null)}
+                  >
+                    <i className={testimonial.approved ? "fas fa-times" : "fas fa-check"} style={styles.icon}></i> 
+                    {testimonial.approved ? 'Unapprove' : 'Approve'}
+                  </button>
+                </div>
               </div>
             ))
         }

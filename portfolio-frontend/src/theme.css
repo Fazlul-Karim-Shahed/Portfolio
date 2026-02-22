@@ -191,8 +191,12 @@ html[data-theme="light"] .btn-outline-warning:hover {
 }
 
 .btn-close {
-  filter: brightness(1.2);
+  filter: invert(1) brightness(1.2);
   opacity: 1 !important;
+}
+
+html[data-theme="light"] .btn-close {
+  filter: none;
 }
 
 /* Forms */
@@ -226,7 +230,9 @@ textarea:focus,
   box-shadow: 0 0 12px var(--accent) !important;
 }
 
-input::placeholder {
+input::placeholder,
+textarea::placeholder,
+.form-control::placeholder {
   color: var(--text-tertiary) !important;
   opacity: 0.7;
 }
@@ -616,12 +622,5 @@ html[data-theme="light"] textarea::placeholder {
   color: rgba(70, 100, 140, 0.7) !important;
 }
 
-/* Transitions for smooth theme switching */
-* {
-  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
-}
-
-/* Prevent double transitions on animations */
-.no-transition * {
-  transition: none;
-}
+/* Transitions for smooth theme switching - optimized to avoid wildcard */
+/* Specific elements already have their transitions defined above (e.g. body, cards, navbar) */

@@ -18,9 +18,9 @@ export default function Testimonial() {
       .then((res) => {
         const data = res.data
         if (Array.isArray(data)) {
-          setAllTestimonial(data)
+          setAllTestimonial(data.filter(item => item && item.approved === true))
         } else if (typeof data === 'object' && data !== null) {
-          setAllTestimonial(Object.values(data))
+          setAllTestimonial(Object.values(data).filter(item => item && item.approved === true))
         } else {
           console.error("Unexpected response format:", data)
           setAllTestimonial([])

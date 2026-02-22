@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import Feedback from '../Body/Feedback';
 import './HeaderStyle/Navbar.css'
 import { Offcanvas, OffcanvasBody, OffcanvasHeader } from 'reactstrap';
@@ -9,7 +10,6 @@ import { useTheme } from '../../contexts/ThemeContext';
 export default function Navbar() {
 
     const [open, setOpen] = useState(false)
-    const [modalOpen, setModalOpen] = useState(false)
     const { isDark, toggleTheme } = useTheme()
 
 
@@ -54,10 +54,6 @@ export default function Navbar() {
     }, [isDark]);
 
     const toggle = () => setOpen(!open)
-    const modalToggle = () => setModalOpen(!modalOpen)
-
-
-
     return (
         <div id='navbar'>
             <div className='container'>
@@ -76,17 +72,17 @@ export default function Navbar() {
 
                             <>
                                 <Link className='text-decoration-none mx-2 a nav_a' to="/all-projects">Projects</Link>
-                                <a className='text-decoration-none mx-2 nav_a' href="#about">About</a>
-                                <a className='text-decoration-none mx-2 nav_a' href="#qualification">Qualification</a>
-                                <a className='text-decoration-none mx-2 nav_a' href="#skill">Skill</a>
-                                <a className='text-decoration-none mx-2 nav_a' href="#accomplishment">Accomplishment</a>
-                                <a className='text-decoration-none mx-2 nav_a' href="#services">Service</a>
-                                <a className='text-decoration-none mx-2 nav_a' href="#testimonial">Testimonial</a>
+                                <HashLink smooth className='text-decoration-none mx-2 nav_a' to="/#about">About</HashLink>
+                                <HashLink smooth className='text-decoration-none mx-2 nav_a' to="/#qualification">Qualification</HashLink>
+                                <HashLink smooth className='text-decoration-none mx-2 nav_a' to="/#skill">Skill</HashLink>
+                                <HashLink smooth className='text-decoration-none mx-2 nav_a' to="/#accomplishment">Accomplishment</HashLink>
+                                <HashLink smooth className='text-decoration-none mx-2 nav_a' to="/#services">Service</HashLink>
+                                <HashLink smooth className='text-decoration-none mx-2 nav_a' to="/#testimonial">Testimonial</HashLink>
                             </>}
 
 
-                        <a className='text-decoration-none mx-2 nav_a' href="#contact">Contact</a>
-                        <Link onClick={modalToggle} className='text-decoration-none mx-2 a nav_a' to="">Feedback</Link>
+                        <HashLink smooth className='text-decoration-none mx-2 nav_a' to="/#contact">Contact</HashLink>
+                        <Link className='text-decoration-none mx-2 a nav_a' to="/feedback">Feedback</Link>
                     </div>
 
                     <button
@@ -146,19 +142,19 @@ export default function Navbar() {
                                     <>
 
                                         <Link className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' to="/all-projects">Projects</Link>
-                                        <a onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' href="#about">About</a>
-                                        <a onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' href="#qualification">Qualification</a>
-                                        <a onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' href="#skill">Skill</a>
-                                        <a onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' href="#accomplishment">Accomplishment</a>
-                                        <a onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' href="#services">Service</a>
-                                        <a onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' href="#testimonial">Testimonial</a>
+                                        <HashLink smooth onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' to="/#about">About</HashLink>
+                                        <HashLink smooth onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' to="/#qualification">Qualification</HashLink>
+                                        <HashLink smooth onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' to="/#skill">Skill</HashLink>
+                                        <HashLink smooth onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' to="/#accomplishment">Accomplishment</HashLink>
+                                        <HashLink smooth onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' to="/#services">Service</HashLink>
+                                        <HashLink smooth onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' to="/#testimonial">Testimonial</HashLink>
 
                                     </>
 
                                 }
 
-                                <a onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' href="#contact">Contact</a>
-                                <div onClick={modalToggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' style={{ cursor: 'pointer' }}>Feedback</div>
+                                <HashLink smooth onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' to="/#contact">Contact</HashLink>
+                                <Link onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' to="/feedback">Feedback</Link>
 
                                 <button
                                     onClick={toggleTheme}
@@ -182,8 +178,6 @@ export default function Navbar() {
 
                 </div>
             </div>
-
-            {modalOpen ? <Feedback open={modalOpen} toggle={modalToggle} /> : ''}
 
         </div>
     )

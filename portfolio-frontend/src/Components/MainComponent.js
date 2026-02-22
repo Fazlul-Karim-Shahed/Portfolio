@@ -15,6 +15,7 @@ import AdminResume from './Admin/AdminComponents/AdminResume'
 import AdminVisitors from './Admin/AdminComponents/AdminVisitors'
 import Navbar from './Header/Navbar'
 import NotFound from './Body/NotFound'
+import Feedback from './Body/Feedback'
 
 export default function MainComponent() {
 
@@ -34,6 +35,7 @@ export default function MainComponent() {
             } />
 
             <Route path='/all-projects' element={<AllProject />} />
+            <Route path='/feedback' element={<Feedback />} />
             <Route path='*' element={<NotFound />} />
 
 

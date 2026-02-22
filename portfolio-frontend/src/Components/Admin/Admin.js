@@ -37,6 +37,13 @@ export default function Admin() {
           <Link to={''} className='fw-bold fs-3 text-decoration-none' style={{ color: 'var(--accent)' }}>🚀 Admin</Link>
 
           <div className='d-none d-md-flex gap-4 align-items-center'>
+              <Link
+                to="/"
+                className='text-decoration-none position-relative nav-link-anim'
+                style={{ color: 'var(--text-secondary)' }}
+              >
+                Home
+              </Link>
             {['about', 'links', 'experience', 'testimonial', 'achievement', 'certification', 'resume', 'visitors'].map((item, i) => (
               <Link
                 key={i}
@@ -86,6 +93,14 @@ export default function Admin() {
           className={`d-md-none overflow-hidden transition-menu ${menuOpen ? 'menu-open' : 'menu-closed'}`}
         >
           <div className='d-flex flex-column mt-3'>
+            <Link
+                to="/"
+                className='text-decoration-none py-2 px-1 nav-link-anim'
+                style={{ color: 'var(--text-secondary)' }}
+                onClick={() => setMenuOpen(false)}
+              >
+                Home
+              </Link>
             {['about', 'links', 'experience', 'testimonial', 'achievement', 'certification', 'resume', 'visitors'].map((item, i) => (
               <Link
                 key={i}

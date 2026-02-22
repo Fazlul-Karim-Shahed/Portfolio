@@ -1,57 +1,27 @@
 /* ==============================
    Reveal Animations (react-reveal replacement)
-   Lightweight, GPU-accelerated, smooth 60fps
+   Extremely Lightweight - Opacity Only to prevent scroll lag
    ============================== */
 
 .reveal {
     opacity: 0;
-    /* Eye-soothing cubic-bezier for a more premium feel, faster duration for snappiness */
-    transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-    transform: translateZ(0);
-    /* Force GPU layer */
-    will-change: opacity, transform;
-    /* Hardware acceleration hint */
+    transition: opacity 0.4s ease-in;
 }
 
 .reveal.revealed {
     opacity: 1;
-    transform: translateZ(0) !important;
 }
 
-/* Fade Up (default) — gentle 30px slide */
-.reveal.fade-up {
-    transform: translate3d(0, 30px, 0);
-}
-
-/* Fade Down */
-.reveal.fade-down {
-    transform: translate3d(0, -30px, 0);
-}
-
-/* Fade Left */
-.reveal.fade-left {
-    transform: translate3d(-30px, 0, 0);
-}
-
-/* Fade Right */
-.reveal.fade-right {
-    transform: translate3d(30px, 0, 0);
-}
-
-/* Fade only */
-.reveal.fade {
-    transform: translateZ(0);
-}
-
-/* Zoom */
-.reveal.zoom {
-    transform: scale3d(0.95, 0.95, 1);
-}
-
-/* Flip */
+/* We override all animation effects to only use fade to prevent layout calculation lag 
+   on slower devices while maintaining drop-in compatibility with the components */
+.reveal.fade-up,
+.reveal.fade-down,
+.reveal.fade-left,
+.reveal.fade-right,
+.reveal.fade,
+.reveal.zoom,
 .reveal.flip {
-    transform: perspective(400px) rotateY(30deg);
+    transform: none !important;
 }
 
 /* Respect reduced-motion preferences */
@@ -59,6 +29,5 @@
     .reveal {
         transition: none !important;
         opacity: 1 !important;
-        transform: none !important;
     }
 }
