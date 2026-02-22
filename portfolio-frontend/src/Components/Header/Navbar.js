@@ -10,6 +10,7 @@ import { useTheme } from '../../contexts/ThemeContext';
 export default function Navbar() {
 
     const [open, setOpen] = useState(false)
+    const [activeSection, setActiveSection] = useState('')
     const { isDark, toggleTheme } = useTheme()
 
 
@@ -50,7 +51,43 @@ export default function Navbar() {
         window.addEventListener('scroll', handleScroll, { passive: true });
         handleScroll(); // Initialize on mount
 
-        return () => window.removeEventListener('scroll', handleScroll);
+        // Setup Intersection Observer for ScrollSpy
+        const observerOptions = {
+            root: null,
+            rootMargin: '-50% 0px -50% 0px', // Triggers when the section's middle crosses the screen's middle
+            threshold: 0
+        };
+
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setActiveSection(entry.target.id);
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+        // Track all main sections
+        const sections = ['about', 'qualification', 'skill', 'accomplishment', 'services', 'testimonial', 'contact'];
+        sections.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) observer.observe(el);
+        });
+
+        // Special case: if we are at the absolute top, clear active section
+        const handleTopScroll = () => {
+            if (window.scrollY < 100) {
+                setActiveSection('');
+            }
+        };
+        window.addEventListener('scroll', handleTopScroll, { passive: true });
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('scroll', handleTopScroll);
+            observer.disconnect();
+        };
     }, [isDark]);
 
     const toggle = () => setOpen(!open)
@@ -71,18 +108,18 @@ export default function Navbar() {
 
 
                             <>
-                                <Link className='text-decoration-none mx-2 a nav_a' to="/all-projects">Projects</Link>
-                                <HashLink smooth className='text-decoration-none mx-2 nav_a' to="/#about">About</HashLink>
-                                <HashLink smooth className='text-decoration-none mx-2 nav_a' to="/#qualification">Qualification</HashLink>
-                                <HashLink smooth className='text-decoration-none mx-2 nav_a' to="/#skill">Skill</HashLink>
-                                <HashLink smooth className='text-decoration-none mx-2 nav_a' to="/#accomplishment">Accomplishment</HashLink>
-                                <HashLink smooth className='text-decoration-none mx-2 nav_a' to="/#services">Service</HashLink>
-                                <HashLink smooth className='text-decoration-none mx-2 nav_a' to="/#testimonial">Testimonial</HashLink>
+                                <Link className={`text-decoration-none mx-2 a nav_a ${window.location.pathname === '/all-projects' ? 'active-nav-link' : ''}`} to="/all-projects">Projects</Link>
+                                <HashLink smooth className={`text-decoration-none mx-2 nav_a ${activeSection === 'about' ? 'active-nav-link' : ''}`} to="/#about">About</HashLink>
+                                <HashLink smooth className={`text-decoration-none mx-2 nav_a ${activeSection === 'qualification' ? 'active-nav-link' : ''}`} to="/#qualification">Qualification</HashLink>
+                                <HashLink smooth className={`text-decoration-none mx-2 nav_a ${activeSection === 'skill' ? 'active-nav-link' : ''}`} to="/#skill">Skill</HashLink>
+                                <HashLink smooth className={`text-decoration-none mx-2 nav_a ${activeSection === 'accomplishment' ? 'active-nav-link' : ''}`} to="/#accomplishment">Accomplishment</HashLink>
+                                <HashLink smooth className={`text-decoration-none mx-2 nav_a ${activeSection === 'services' ? 'active-nav-link' : ''}`} to="/#services">Service</HashLink>
+                                <HashLink smooth className={`text-decoration-none mx-2 nav_a ${activeSection === 'testimonial' ? 'active-nav-link' : ''}`} to="/#testimonial">Testimonial</HashLink>
                             </>}
 
 
-                        <HashLink smooth className='text-decoration-none mx-2 nav_a' to="/#contact">Contact</HashLink>
-                        <Link className='text-decoration-none mx-2 a nav_a' to="/feedback">Feedback</Link>
+                        <HashLink smooth className={`text-decoration-none mx-2 nav_a ${activeSection === 'contact' ? 'active-nav-link' : ''}`} to="/#contact">Contact</HashLink>
+                        <Link className={`text-decoration-none mx-2 a nav_a ${window.location.pathname === '/feedback' ? 'active-nav-link' : ''}`} to="/feedback">Feedback</Link>
                     </div>
 
                     <button
@@ -141,20 +178,20 @@ export default function Navbar() {
                                     <a onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 ' href="/">Home</a> :
                                     <>
 
-                                        <Link className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' to="/all-projects">Projects</Link>
-                                        <HashLink smooth onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' to="/#about">About</HashLink>
-                                        <HashLink smooth onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' to="/#qualification">Qualification</HashLink>
-                                        <HashLink smooth onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' to="/#skill">Skill</HashLink>
-                                        <HashLink smooth onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' to="/#accomplishment">Accomplishment</HashLink>
-                                        <HashLink smooth onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' to="/#services">Service</HashLink>
-                                        <HashLink smooth onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' to="/#testimonial">Testimonial</HashLink>
+                                        <Link className={`off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white ${window.location.pathname === '/all-projects' ? 'active-nav-link' : ''}`} to="/all-projects">Projects</Link>
+                                        <HashLink smooth onClick={toggle} className={`off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white ${activeSection === 'about' ? 'active-nav-link' : ''}`} to="/#about">About</HashLink>
+                                        <HashLink smooth onClick={toggle} className={`off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white ${activeSection === 'qualification' ? 'active-nav-link' : ''}`} to="/#qualification">Qualification</HashLink>
+                                        <HashLink smooth onClick={toggle} className={`off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white ${activeSection === 'skill' ? 'active-nav-link' : ''}`} to="/#skill">Skill</HashLink>
+                                        <HashLink smooth onClick={toggle} className={`off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white ${activeSection === 'accomplishment' ? 'active-nav-link' : ''}`} to="/#accomplishment">Accomplishment</HashLink>
+                                        <HashLink smooth onClick={toggle} className={`off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white ${activeSection === 'services' ? 'active-nav-link' : ''}`} to="/#services">Service</HashLink>
+                                        <HashLink smooth onClick={toggle} className={`off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white ${activeSection === 'testimonial' ? 'active-nav-link' : ''}`} to="/#testimonial">Testimonial</HashLink>
 
                                     </>
 
                                 }
 
-                                <HashLink smooth onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' to="/#contact">Contact</HashLink>
-                                <Link onClick={toggle} className='off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white' to="/feedback">Feedback</Link>
+                                <HashLink smooth onClick={toggle} className={`off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white ${activeSection === 'contact' ? 'active-nav-link' : ''}`} to="/#contact">Contact</HashLink>
+                                <Link onClick={toggle} className={`off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white ${window.location.pathname === '/feedback' ? 'active-nav-link' : ''}`} to="/feedback">Feedback</Link>
 
                                 <button
                                     onClick={toggleTheme}

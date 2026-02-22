@@ -120,7 +120,9 @@ html[data-theme="light"] .navbar_links .nav_a {
 
 .navbar_links a:hover::after,
 .navbar_links .nav_a:hover::after,
-.off_canvas_a:hover::after {
+.navbar_links .active-nav-link::after,
+.off_canvas_a:hover::after,
+.off_canvas_a.active-nav-link::after {
   width: 100%;
 }
 

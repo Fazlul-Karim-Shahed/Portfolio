@@ -78,12 +78,14 @@ export default function Skill() {
     skills.map(item => (
       <Reveal effect="zoom" key={item.name} className="col-6 col-md-3 d-flex align-items-center justify-content-center p-3 skill-logo">
         <div
+          className="d-flex align-items-center justify-content-center w-100 h-100"
           onClick={() => toggle(item, folder)}
           role="button"
           tabIndex={0}
         >
           <img
-            className="img-fluid w-50"
+            className="img-fluid"
+            style={{ maxWidth: '60%', maxHeight: '100px', objectFit: 'contain' }}
             src={`/Assets/${folder}/${item.name}`}
             alt={item.name.split('.')[0]}
             title={item.name.split('.')[0]}
@@ -162,14 +164,15 @@ export default function Skill() {
           {/* Glossy Box Wrapper */}
           <div className="glossy-box-container rounded-4">
             {/* Tabs */}
-            <div className="d-flex justify-content-center skill_tab flex-wrap">
+            <div className="d-flex justify-content-center skill_tab flex-nowrap overflow-auto px-2">
               {['links', 'frontend', 'backend', 'others'].map((tabName, idx) => (
                 <div
                   key={tabName}
-                  className={`mx-3 mx-md-4 pb-2 skill_tab_link ${idx === 0 ? 'active-tab' : ''}`}
+                  className={`mx-1 mx-md-3 pb-2 skill_tab_link text-center ${idx === 0 ? 'active-tab' : ''}`}
                   onClick={() => tab(tabName, idx)}
                   role="button"
                   tabIndex={0}
+                  style={{ whiteSpace: 'nowrap' }}
                 >
                   {tabName.charAt(0).toUpperCase() + tabName.slice(1)}
                 </div>
@@ -177,7 +180,7 @@ export default function Skill() {
             </div>
 
             {/* Skill/Project Cards */}
-            <div className="row pt-3">
+            <div className="row pt-3 justify-content-center">
               {content === 'frontend' && renderSkills(frontEnd, 'Frontend')}
               {content === 'backend' && renderSkills(backEnd, 'Backend')}
               {content === 'others' && renderSkills(others, 'Others')}
@@ -263,6 +266,33 @@ export default function Skill() {
         padding: 8px 12px;
         border-radius: 8px;
         transition: all 0.3s ease;
+      }
+
+      @media (max-width: 768px) {
+        .skill_tab_link {
+          font-size: 0.85rem;
+          padding: 6px 8px;
+        }
+        
+        .skill_tab {
+          /* Allows horizontal scrolling on very narrow devices if it still can't fit */
+          padding-bottom: 5px;
+        }
+        
+        /* Hide scrollbar for cleaner look */
+        .skill_tab::-webkit-scrollbar {
+          display: none;
+        }
+        .skill_tab {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+
+        /* Scale down the framework/tool logos on mobile devices */
+        .skill-logo img {
+          max-width: 45% !important;
+          max-height: 70px !important;
+        }
       }
 
       .skill_tab_link:hover {
