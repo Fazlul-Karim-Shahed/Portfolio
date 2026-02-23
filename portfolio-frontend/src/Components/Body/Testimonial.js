@@ -10,7 +10,6 @@ import Reveal from '../Reveal'
 
 export default function Testimonial() {
   const [allTestimonial, setAllTestimonial] = useState(null)
-  const size = window.innerWidth
 
   useEffect(() => {
     axios
@@ -67,15 +66,26 @@ export default function Testimonial() {
         ) : (
           <Reveal effect="zoom">
             <Swiper
-              slidesPerView={size > 766 ? 3 : 1}
               spaceBetween={30}
-              slidesPerGroup={size > 766 ? 3 : 1}
               loop={true}
               loopFillGroupWithBlank={true}
               pagination={{ clickable: true }}
               navigation={true}
               modules={[Pagination, Navigation]}
               className="mySwiper p-5"
+              observer={true}
+              observeParents={true}
+              resizeObserver={true}
+              breakpoints={{
+                0: {
+                  slidesPerView: 1,
+                  slidesPerGroup: 1,
+                },
+                768: {
+                  slidesPerView: 3,
+                  slidesPerGroup: 3,
+                },
+              }}
             >
               {testimonialShow}
             </Swiper>

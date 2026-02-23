@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+ import React, { useEffect, useState } from 'react';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function Admin() {
   const [time, setTime] = useState(new Date().toLocaleString());
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
   const { isDark, toggleTheme } = useTheme();
+  const { logout, currentUser } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = 'Admin-Panel';
@@ -16,15 +19,24 @@ export default function Admin() {
     return () => clearInterval(interval);
   }, []);
 
-  const adminUri = '/admin/' + process.env.REACT_APP_ADMIN_PASS;
+  const adminUri = '/admin-panel';
   const toggleMenu = () => setMenuOpen(prev => !prev);
   const isAdminRoot = location.pathname === adminUri;
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/admin-panel');
+    } catch (err) {
+      console.error('Logout error:', err);
+    }
+  };
 
   return (
     <div className='min-vh-100 d-flex flex-column' style={{ background: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
       {/* Navbar */}
       <nav
-        className='p-3 shadow-lg position-relative'
+        className='p-3 shadow-sm position-relative'
         style={{
           backdropFilter: 'blur(12px)',
           background: 'var(--navbar-bg)',
@@ -33,22 +45,26 @@ export default function Admin() {
           transition: 'all 0.4s ease'
         }}
       >
-        <div className='d-flex justify-content-between align-items-center flex-wrap gap-3'>
-          <Link to={''} className='fw-bold fs-3 text-decoration-none' style={{ color: 'var(--accent)' }}>🚀 Admin</Link>
+        <div className='d-flex justify-content-between align-items-center w-100'>
+          {/* Left Block: Logo */}
+          <div className='d-flex align-items-center'>
+            <Link to={''} className='fw-bold fs-3 text-decoration-none' style={{ color: 'var(--accent)' }}>🚀 Admin</Link>
+          </div>
 
-          <div className='d-none d-md-flex gap-4 align-items-center'>
-              <Link
-                to="/"
-                className='text-decoration-none position-relative nav-link-anim'
-                style={{ color: 'var(--text-secondary)' }}
-              >
-                Home
-              </Link>
-            {['about', 'links', 'experience', 'testimonial', 'achievement', 'certification', 'resume', 'visitors'].map((item, i) => (
+          {/* Middle Block: Links */}
+          <div className='d-none d-lg-flex justify-content-center flex-grow-1 gap-4 align-items-center px-4'>
+            <Link
+              to="/"
+              className='text-decoration-none position-relative nav-link-anim'
+              style={{ color: 'var(--text-secondary)' }}
+            >
+              Home
+            </Link>
+            {['about', 'links', 'experience', 'testimonial', 'achievement', 'certification', 'resume', 'visitors', 'admins'].map((item, i) => (
               <Link
                 key={i}
                 to={`${adminUri}/${item}`}
-                className='text-decoration-none position-relative nav-link-anim'
+                className='text-decoration-none position-relative nav-link-anim text-nowrap'
                 style={{ color: 'var(--text-secondary)' }}
               >
                 {item.charAt(0).toUpperCase() + item.slice(1)}
@@ -56,7 +72,8 @@ export default function Admin() {
             ))}
           </div>
 
-          <div className='d-none d-md-flex gap-3 align-items-center'>
+          {/* Right Block */}
+          <div className='d-none d-lg-flex gap-3 align-items-center'>
             <div className='fs-6' style={{ color: 'var(--accent)', textShadow: '0 0 10px var(--accent)' }}>{time}</div>
 
             <button
@@ -76,10 +93,27 @@ export default function Admin() {
             >
               {isDark ? '🌙' : '☀️'}
             </button>
+
+            <button
+              onClick={handleLogout}
+              className='btn'
+              style={{
+                background: 'rgba(239, 68, 68, 0.15)',
+                border: '1px solid rgba(239, 68, 68, 0.3)',
+                color: '#ef4444',
+                fontSize: '0.9rem',
+                padding: '0.5rem 1rem',
+                borderRadius: '10px',
+                fontWeight: 600,
+                transition: 'all 0.3s ease'
+              }}
+            >
+              🚪 Logout
+            </button>
           </div>
 
           <button
-            className='btn'
+            className='btn d-lg-none'
             onClick={toggleMenu}
             aria-label='Toggle menu'
             style={{ color: 'var(--accent)', borderColor: 'var(--accent)' }}
@@ -90,18 +124,18 @@ export default function Admin() {
 
         {/* Mobile Dropdown */}
         <div
-          className={`d-md-none overflow-hidden transition-menu ${menuOpen ? 'menu-open' : 'menu-closed'}`}
+          className={`d-lg-none overflow-hidden transition-menu ${menuOpen ? 'menu-open' : 'menu-closed'}`}
         >
           <div className='d-flex flex-column mt-3'>
             <Link
-                to="/"
-                className='text-decoration-none py-2 px-1 nav-link-anim'
-                style={{ color: 'var(--text-secondary)' }}
-                onClick={() => setMenuOpen(false)}
-              >
-                Home
-              </Link>
-            {['about', 'links', 'experience', 'testimonial', 'achievement', 'certification', 'resume', 'visitors'].map((item, i) => (
+              to="/"
+              className='text-decoration-none py-2 px-1 nav-link-anim'
+              style={{ color: 'var(--text-secondary)' }}
+              onClick={() => setMenuOpen(false)}
+            >
+              Home
+            </Link>
+            {['about', 'links', 'experience', 'testimonial', 'achievement', 'certification', 'resume', 'visitors', 'admins'].map((item, i) => (
               <Link
                 key={i}
                 to={`${adminUri}/${item}`}
@@ -130,6 +164,21 @@ export default function Admin() {
               title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             >
               {isDark ? '🌙' : '☀️'}
+            </button>
+            <button
+              onClick={handleLogout}
+              className='btn'
+              style={{
+                background: 'rgba(239, 68, 68, 0.15)',
+                border: '1px solid rgba(239, 68, 68, 0.3)',
+                color: '#ef4444',
+                fontSize: '0.85rem',
+                padding: '0.4rem 0.8rem',
+                borderRadius: '10px',
+                fontWeight: 600
+              }}
+            >
+              🚪 Logout
             </button>
           </div>
         </div>

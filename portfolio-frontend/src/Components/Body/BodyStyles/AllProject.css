@@ -1,220 +1,169 @@
-.allProject_Card:hover{
-    transition: .3s ease;
-    box-shadow: 0px 0px 20px rgb(173, 171, 161);
+/* ═══════════════════════════════════════════
+   All Projects Page – Premium Card Design
+   ═══════════════════════════════════════════ */
+
+/* ─── Card ─── */
+.ap-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
-.all_project_logo {
-    width: 75%;
-}
-
-@media only screen and (max-width: 992px){
-    .all_project_logo {
-        width: 50%;
-    }
-}
-
-/* AllProject.css */
-
-/* Card styling */
-.allProject_Card {
-  background-color: #fdfdfd;
-  border: 1px solid #e3e3e3;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease-in-out;
-  border-radius: 0.5rem; /* rounded corners */
-}
-
-.allProject_Card:hover {
+.ap-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 40px rgba(13, 110, 253, 0.18), 0 0 0 1px rgba(13, 110, 253, 0.12);
+  border-color: rgba(13, 110, 253, 0.25);
 }
 
-/* Tabs styling */
+/* ─── Card Image ─── */
+.ap-card-img-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.ap-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.ap-card:hover .ap-card-img-wrap img {
+  transform: scale(1.05);
+}
+
+/* ─── Card Body ─── */
+.ap-card-body {
+  padding: 1.2rem 1.4rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ap-card-title {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.ap-card:hover .ap-card-title {
+  color: #fbbf24;
+}
+
+.ap-card-desc {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  flex: 1;
+  margin-bottom: 0;
+}
+
+/* ─── Card Actions ─── */
+.ap-card-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ap-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 7px 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  background: transparent;
+  cursor: pointer;
+}
+
+.ap-btn-code {
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.35);
+}
+
+.ap-btn-code:hover {
+  background: rgba(251, 191, 36, 0.12);
+  border-color: #fbbf24;
+  color: #fbbf24;
+  box-shadow: 0 0 14px rgba(251, 191, 36, 0.15);
+}
+
+.ap-btn-live {
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+}
+
+.ap-btn-live:hover {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: #38bdf8;
+  color: #38bdf8;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.15);
+}
+
+.ap-btn-more {
+  color: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.ap-btn-more:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* ═══════════════════════════════════════════
+   Tabs
+   ═══════════════════════════════════════════ */
 .nav-tabs {
-  border-bottom: 2px solid #ffc107;
+  border-bottom: 2px solid rgba(255, 193, 7, 0.3);
 }
 
 .nav-tabs .nav-link {
-  color: #555;
+  color: rgba(255, 255, 255, 0.55);
   font-weight: 500;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.25s ease;
   border: none;
-  padding: 0.6rem 1rem;
-  font-size: 1rem;
+  padding: 0.7rem 1.2rem;
+  font-size: 0.95rem;
+  border-radius: 0.4rem 0.4rem 0 0;
 }
 
 .nav-tabs .nav-link:hover {
-  background-color: #f8f9fa;
-  color: #000;
-  border-radius: 0.25rem 0.25rem 0 0;
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
 }
 
 .nav-tabs .nav-link.active {
-  background-color: #ffc107;
-  color: #000;
-  font-weight: 600;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #121212;
+  font-weight: 700;
   border: none;
-  border-bottom: 3px solid #ff9800;
-  border-radius: 0.25rem 0.25rem 0 0;
+  border-bottom: 3px solid #d97706;
 }
 
-/* Buttons styling */
-.btn-outline-warning, .btn-outline-info {
-  transition: all 0.3s ease-in-out;
-  border-width: 2px;
-  font-weight: 600;
-}
-
-.btn-outline-warning:hover, .btn-outline-warning:focus {
-  background-color: #ffc107;
-  color: #000;
-  border-color: #ffc107;
-  box-shadow: 0 0 8px rgba(255, 193, 7, 0.6);
-}
-
-.btn-outline-info:hover, .btn-outline-info:focus {
-  background-color: #17a2b8;
-  color: #fff;
-  border-color: #17a2b8;
-  box-shadow: 0 0 8px rgba(23, 162, 184, 0.6);
-}
-
-/* Image styling inside cards */
-.allProject_Card img {
-  min-height: 234px;
-  object-fit: cover;
-  border-bottom: 1px solid #dee2e6;
-  border-radius: 0.5rem 0.5rem 0 0;
-}
-
-/* Responsive spacing for cards */
-@media (max-width: 767.98px) {
-  .allProject_Card {
-    margin-bottom: 1.5rem;
-  }
-}
-
-/* Additional small text style inside cards */
-.allProject_Card .card-text {
-  font-size: 0.9rem;
-  color: #555;
-}
-
-/* Fade-in container (optional, matches your use of react-reveal) */
-.fade-bottom {
-  animation: fadeInBottom 0.8s ease forwards;
-}
-
-@keyframes fadeInBottom {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-/* Container card */
-.project-card {
-    background: rgba(255, 255, 255, 0.05) !important;
-    border: 1px solid rgba(255, 255, 255, 0.25) !important;
-    backdrop-filter: blur(18px);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
-    border-radius: 1rem;
-    padding: 1.2rem;
-    color: #000;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.project-card:hover {
-  box-shadow: 0 6px 20px rgba(255, 193, 7, 0.8); /* subtle yellow glow on hover */
-}
-
-/* Image inside the card */
-.project-card img {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 0.25rem;
-  border-radius: 0.5rem 0.5rem 0 0;
-  object-fit: cover;
-  height: 234px !important; /* fixed height */
-  width: 100%;
-}
-
-/* Card title */
-.project-card .card-title {
-  color: #ffffff;
-  font-weight: 600;
-}
-
-/* Card description text */
-.project-card .card-text {
-  margin-top: 1rem;
-  font-size: 0.87rem;
-  color: rgba(255, 255, 255, 0.5); /* white with 50% opacity */
-}
-
-/* Button container spacing */
-.project-card .mt-4 {
-  margin-top: 1.5rem !important;
-}
-
-/* Buttons */
-.project-card .btn-outline-warning {
-  border-color: #ffc107;
-  color: #ffc107;
-  font-weight: 600;
-  font-size: 0.8rem;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.project-card .btn-outline-warning:hover:not(:disabled),
-.project-card .btn-outline-warning:focus:not(:disabled) {
-  background-color: #ffc107;
-  color: #121212;
-  text-decoration: none;
-  box-shadow: 0 0 8px #ffc107;
-}
-
-.project-card .btn-outline-info {
-  border-color: #0dcaf0;
-  color: #0dcaf0;
-  font-weight: 600;
-  font-size: 0.8rem;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.project-card .btn-outline-info:hover:not(:disabled),
-.project-card .btn-outline-info:focus:not(:disabled) {
-  background-color: #0dcaf0;
-  color: #121212;
-  text-decoration: none;
-  box-shadow: 0 0 8px #0dcaf0;
-}
-
-/* Button links inside buttons */
-.project-card a.text-decoration-none {
-  color: inherit;
-}
-
-.project-card a.text-decoration-none:hover {
-  text-decoration: underline;
-}
-
-/* Disabled buttons */
-.project-card button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
+/* ═══════════════════════════════════════════
+   Alert
+   ═══════════════════════════════════════════ */
 .dark-alert-warning {
-  background: rgba(255, 0, 0, 0.05) !important; /* dark translucent background */
-  color: #ffc107; /* bootstrap warning yellow */
+  background: rgba(255, 0, 0, 0.05) !important;
+  color: #ffc107;
   border: 1.5px solid rgba(250, 2, 35, 0.6);
   border-radius: 0.5rem;
-  box-shadow:
-    0 0 10px rgba(255, 193, 7, 0.6), /* subtle glow */
-    inset 0 1px 4px rgba(255, 255, 255, 0.1); /* inner subtle shine */
+  box-shadow: 0 0 10px rgba(255, 193, 7, 0.6), inset 0 1px 4px rgba(255, 255, 255, 0.1);
   padding: 1rem 1.5rem;
   font-weight: 600;
   font-size: 1rem;
@@ -227,9 +176,124 @@
   transition: box-shadow 0.3s ease;
 }
 
-
 .dark-alert-warning .fa-circle-exclamation {
   color: #ffc107;
   font-size: 1.3rem;
   text-shadow: 0 0 6px rgba(255, 193, 7, 0.8);
+}
+
+/* ═══════════════════════════════════════════
+   Misc / Logo
+   ═══════════════════════════════════════════ */
+.all_project_logo {
+  width: 75%;
+}
+
+@media only screen and (max-width: 992px) {
+  .all_project_logo {
+    width: 50%;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════ */
+@media (max-width: 767.98px) {
+  .ap-card-body {
+    padding: 1rem;
+  }
+
+  .ap-card-title {
+    font-size: 1rem;
+  }
+
+  .ap-btn {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   Light Theme
+   ═══════════════════════════════════════════ */
+html[data-theme="light"] .nav-tabs .nav-link {
+  color: #444;
+}
+
+html[data-theme="light"] .nav-tabs .nav-link:hover {
+  background: rgba(0, 0, 0, 0.04);
+  color: #111;
+}
+
+html[data-theme="light"] .nav-tabs .nav-link.active {
+  color: #121212;
+}
+
+html[data-theme="light"] .ap-card {
+  background: rgba(248, 251, 255, 0.95);
+  border-color: rgba(100, 120, 200, 0.25);
+}
+
+html[data-theme="light"] .ap-card:hover {
+  box-shadow: 0 12px 40px rgba(13, 110, 253, 0.1);
+  border-color: rgba(13, 110, 253, 0.35);
+}
+
+html[data-theme="light"] .ap-card-title {
+  color: #1a1a2e;
+}
+
+html[data-theme="light"] .ap-card:hover .ap-card-title {
+  color: #b45309;
+}
+
+html[data-theme="light"] .ap-card-desc {
+  color: #555;
+}
+
+html[data-theme="light"] .ap-btn-code {
+  color: #b45309;
+  border-color: rgba(180, 83, 9, 0.35);
+}
+
+html[data-theme="light"] .ap-btn-code:hover {
+  background: rgba(180, 83, 9, 0.08);
+  border-color: #b45309;
+}
+
+html[data-theme="light"] .ap-btn-live {
+  color: #0284c7;
+  border-color: rgba(2, 132, 199, 0.35);
+}
+
+html[data-theme="light"] .ap-btn-live:hover {
+  background: rgba(2, 132, 199, 0.08);
+  border-color: #0284c7;
+}
+
+html[data-theme="light"] .ap-btn-more {
+  color: #555;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+html[data-theme="light"] .ap-btn-more:hover {
+  color: #1a1a2e;
+  border-color: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.03);
+}
+
+html[data-theme="light"] .ap-card-actions {
+  border-top-color: rgba(0, 0, 0, 0.06);
+}
+
+html[data-theme="light"] .dark-alert-warning {
+  background: rgba(255, 243, 205, 0.9) !important;
+  color: #856404;
+  border-color: rgba(255, 193, 7, 0.5);
+  text-shadow: none;
+}
+
+html[data-theme="light"] .dark-alert-warning .fa-circle-exclamation {
+  color: #856404;
+  text-shadow: none;
 }

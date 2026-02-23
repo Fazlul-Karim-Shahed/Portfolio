@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Alert, Card, CardBody, CardSubtitle, CardText, CardTitle } from 'reactstrap'
+import { Alert } from 'reactstrap'
 import './BodyStyles/AllProject.css'
 import Contact from './Contact'
 import Footer from '../Footer/Footer'
@@ -27,32 +27,37 @@ export default function AllProject() {
     }, [pathname])
 
 
-    let projectCard = (category, image, name, description, sourceCode, liveLink, readmore) => <Reveal effect="zoom" className='col-sm-12 col-md-4 py-2 mb-5'>
-        <Card className='allProject_Card h-100 project-card w-100'>
-            <img
-                alt="Project Screenshot"
-                src={image}
-                className='img-fluid border-bottom p-1 rounded rounded-3'
-                style={{ minHeight: '234px' }}
+    let projectCard = (category, image, name, description, sourceCode, liveLink, readmore) => <Reveal effect="zoom" className='col-sm-12 col-md-6 col-lg-4 py-2 mb-4'>
+        <div className='ap-card h-100'>
+            <div className="ap-card-img-wrap">
+                <img
+                    alt="Project Screenshot"
+                    src={image}
+                />
+            </div>
 
-            />
-
-            <CardBody>
-                <CardTitle tag="h4">
-                    {name}
-                </CardTitle>
-
-                <CardText className='mt-3 small'>
-                    {description}
-                </CardText>
-                <div className='mt-4'>
-                    <button disabled={sourceCode === ""} className='btn btn-outline-warning me-3 my-1'><a className='text-decoration-none text-white' target='_blank' href={sourceCode}><FontAwesomeIcon icon={faCode} className='me-1' /> Code</a></button>
-
-                    <button disabled={liveLink === ""} className='btn btn-outline-info me-3 my-1'><a className='text-decoration-none text-white' target='_blank' href={'http://' + `${liveLink}`}><FontAwesomeIcon icon={faVideo} className='me-1' /> See Live</a></button>
-                    {category != 'web' && category != 'ai' ? <button disabled={readmore === "" || readmore === undefined} className='btn btn-outline-info my-1'><a className='text-decoration-none text-white' target='_blank' href={readmore}>Read more</a></button> : ''}
+            <div className="ap-card-body">
+                <h5 className="ap-card-title">{name}</h5>
+                <p className="ap-card-desc">{description}</p>
+                <div className='ap-card-actions'>
+                    {sourceCode && sourceCode !== "" && (
+                        <a className='ap-btn ap-btn-code' target='_blank' rel="noreferrer" href={sourceCode}>
+                            <FontAwesomeIcon icon={faCode} className='me-1' /> Code
+                        </a>
+                    )}
+                    {liveLink && liveLink !== "" && (
+                        <a className='ap-btn ap-btn-live' target='_blank' rel="noreferrer" href={'http://' + liveLink}>
+                            <FontAwesomeIcon icon={faVideo} className='me-1' /> See Live
+                        </a>
+                    )}
+                    {category !== 'web' && category !== 'ai' && readmore && readmore !== "" && (
+                        <a className='ap-btn ap-btn-more' target='_blank' rel="noreferrer" href={readmore}>
+                            Read more
+                        </a>
+                    )}
                 </div>
-            </CardBody>
-        </Card>
+            </div>
+        </div>
     </Reveal>
 
 

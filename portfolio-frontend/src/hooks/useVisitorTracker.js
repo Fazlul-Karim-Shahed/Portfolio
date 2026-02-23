@@ -55,6 +55,7 @@ export default function useVisitorTracker() {
     sessionStorage.setItem('visitor_tracked', 'true')
 
     const trackVisitor = async () => {
+      const version = "2.1"; // Internal version for debugging cache
       const visitData = {
         browser: getBrowser(),
         os: getOS(),
@@ -94,22 +95,81 @@ export default function useVisitorTracker() {
       }
       visitData.geo_source = geoSource
 
-      // Save to Firebase
-      let saved = false
+      // --- IP EXCLUSION LOGIC START ---
+      let isExcluded = false;
+      const visitorIpStr = String(visitData.ip || '').trim().toLowerCase();
+
+      // Fail-Close: If we can't get an IP, we don't track (could be the admin behind a VPN/AdBlock)
+      if (!visitorIpStr || visitorIpStr === 'unknown') {
+        console.log(`[Tracker v${version}] No valid IP detected. Aborting to be safe.`);
+        return;
+      }
+
       try {
-        await axios.post(FIREBASE_API + 'Visitors.json', visitData)
-        saved = true
+        // Absolute Cache Bypass: Use timestamp and cache: 'no-store'
+        const timestamp = new Date().getTime();
+        const apiURL = FIREBASE_API.endsWith('/') 
+          ? `${FIREBASE_API}ExcludedIPs.json?t=${timestamp}` 
+          : `${FIREBASE_API}/ExcludedIPs.json?t=${timestamp}`;
+
+        const exclRes = await fetch(apiURL, { cache: 'no-store' });
+        if (!exclRes.ok) throw new Error("Firebase fetch failed");
+
+        const excludedData = await exclRes.json();
+        if (excludedData) {
+          const excludedItems = Object.values(excludedData);
+          
+          isExcluded = excludedItems.some(item => {
+            if (!item || !item.ip) return false;
+            const targetIp = String(item.ip).trim().toLowerCase();
+            // Bi-directional match to handle IPv4-mapped IPv6 (::ffff:x.x.x.x)
+            return visitorIpStr === targetIp || 
+                   visitorIpStr.includes(targetIp) || 
+                   targetIp.includes(visitorIpStr);
+          });
+        }
+
+        if (isExcluded) {
+          console.log(`[Tracker v${version}] Visitor IP ${visitorIpStr} is EXCLUDED. Aborting.`);
+          return;
+        }
+      } catch (e) {
+        // Fail-Close: If we can't verify exclusions, we stop.
+        console.log(`[Tracker v${version}] Could not verify exclusion list. Aborting safely.`);
+        return;
+      }
+      // --- IP EXCLUSION LOGIC END ---
+
+      // Session Lock for Database Write
+      if (sessionStorage.getItem('visitor_confirmed_saved') === 'true') {
+        console.log(`[Tracker v${version}] Already saved this session.`);
+        return;
+      }
+      sessionStorage.setItem('visitor_confirmed_saved', 'true');
+
+      // Save to Firebase
+      try {
+        const visitorsURL = FIREBASE_API.endsWith('/') ? `${FIREBASE_API}Visitors.json` : `${FIREBASE_API}/Visitors.json`
+        await axios.post(visitorsURL, visitData)
+        console.log(`[Tracker v${version}] Visit logged.`);
       } catch (e) {
         // Firebase save failed
       }
 
-      // Check if visitor email is enabled
+      // REDUNDANT GUARD: Check if visitor email is enabled
       try {
-        const settingsRes = await axios.get(FIREBASE_API + 'Settings/visitorEmail.json')
-        if (settingsRes.data === false || settingsRes.data === 'false') return
+        const settingsURL = FIREBASE_API.endsWith('/') ? `${FIREBASE_API}Settings/visitorEmail.json` : `${FIREBASE_API}/Settings/visitorEmail.json`
+        const settingsRes = await axios.get(settingsURL)
+        if (settingsRes.data === false || settingsRes.data === 'false') {
+          console.log(`[Tracker v${version}] Email alerts are disabled in settings.`);
+          return;
+        }
       } catch (e) {
-        // Settings fetch failed — send email by default
+        // Settings fetch failed — proceed with default (send email)
       }
+
+      // Re-verify exclusion one last time just in case of any weirdness
+      if (isExcluded) return;
 
       // Send email notification
       try {
@@ -130,9 +190,11 @@ export default function useVisitorTracker() {
           method: 'POST',
           body: formData,
         })
+        console.log(`[Tracker v${version}] Email alert sent.`);
       } catch (e) {
         // Email notification failed
       }
+
     }
 
     trackVisitor()

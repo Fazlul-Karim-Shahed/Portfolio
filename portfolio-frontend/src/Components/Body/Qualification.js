@@ -6,6 +6,7 @@ import Reveal from '../Reveal'
 
 export default function Qualification() {
     const [content, setContent] = useState('experience')
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         // On mount, set the first tab active
@@ -18,6 +19,16 @@ export default function Qualification() {
     }, [])
 
     const tab = (str, pos) => {
+        if (content === str) return; // Prevent re-animating the active tab
+        
+        // Experience relies on network data
+        if (str === 'experience') {
+            setLoading(true);
+        } else {
+            // Education is hardcoded local data
+            setLoading(false);
+        }
+
         setContent(str)
         const el = document.querySelectorAll('.qualification_tab_link')
         el.forEach((item, index) => {
@@ -29,15 +40,21 @@ export default function Qualification() {
         })
     }
 
+    const renderSkeleton = () => (
+        <div className="w-100 px-3">
+            <div className="skeleton-glossy mb-3" style={{ height: '90px', borderRadius: '12px' }}></div>
+            <div className="skeleton-glossy mb-3" style={{ height: '90px', borderRadius: '12px' }}></div>
+            <div className="skeleton-glossy mb-3" style={{ height: '90px', borderRadius: '12px' }}></div>
+        </div>
+    )
+
     return (
         <div className='glossy-bg py-5' id='qualification'>
             <Reveal effect="fade-up">
                 <div className="container py-4">
                     <div className='text-center'>
                         <h1 className='fw-bold mb-2 text-white'>Qualification</h1>
-                        <p className='mb-4 text-white-50'>
-                            <p className='section-subtitle'>What I Have</p>
-                        </p>
+                        <p className='section-subtitle'>What I Have</p>
                     </div>
 
                     <div className='glass-card py-4 px-md-4 rounded-4 shadow-lg'>
@@ -62,9 +79,11 @@ export default function Qualification() {
                             </div>
                         </div>
 
-                        <div className='row pt-2 pb-2'>
-                            {content === 'experience' && <Reveal effect="zoom"><Experience /></Reveal>}
-                            {content === 'education' && <Reveal effect="zoom"><Education /></Reveal>}
+                        <div className={`row pt-2 pb-2 ${loading ? '' : 'glossy-fade-in'}`}>
+                            <div className="col-12">
+                                {content === 'experience' && <Experience loading={loading} setLoading={setLoading} renderSkeleton={renderSkeleton} />}
+                                {content === 'education' && <Education />}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -91,6 +110,39 @@ export default function Qualification() {
                     color: #0d6efd;
                     font-weight: bold;
                     border-bottom: 3px solid #0d6efd;
+                }
+
+                @keyframes glossyFadeIn {
+                    0% {
+                        opacity: 0;
+                        transform: translateY(10px);
+                    }
+                    100% {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                .glossy-fade-in {
+                    animation: glossyFadeIn 0.4s ease-out forwards;
+                }
+
+                .skeleton-glossy {
+                    background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.03) 75%);
+                    background-size: 200% 100%;
+                    animation: skeletonLoading 1.5s infinite;
+                    backdrop-filter: blur(8px);
+                    border: 1px solid rgba(255,255,255,0.05);
+                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                }
+
+                @keyframes skeletonLoading {
+                    0% {
+                        background-position: 200% 0;
+                    }
+                    100% {
+                        background-position: -200% 0;
+                    }
                 }
                     
             `}</style>

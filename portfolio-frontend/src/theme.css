@@ -571,6 +571,10 @@ html[data-theme="light"] .text-white-50 {
   color: #5a6b7d !important;
 }
 
+html[data-theme="light"] .text-light {
+  color: #5a6b7d !important;
+}
+
 html[data-theme="light"] h1,
 html[data-theme="light"] h2,
 html[data-theme="light"] h3,

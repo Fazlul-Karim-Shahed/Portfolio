@@ -15,14 +15,14 @@ export default function Education() {
             level: 'HSC',
             duration: '2017 - 2019',
             institute: 'Bangladesh Navy School & College, Chattagram, Bangladesh',
-            detail: '',
+            detail: 'Science Group',
             icon: faBuildingColumns,
         },
         {
             level: 'SSC',
             duration: '2016 - 2017',
             institute: 'Bangladesh Navy School & College, Chattagram, Bangladesh',
-            detail: '',
+            detail: 'Science Group',
             icon: faSchool,
         },
     ];
@@ -30,7 +30,7 @@ export default function Education() {
     return (
         <div className="row">
             {educationList.map((edu, index) => (
-                <div className="col-md-6 mb-4 px-4" key={index}>
+                <div className="col-md-6 mb-4 px-4 px-md-3" key={index}>
                     <div className="card education-glass-card h-100 w-100">
                         <div className="card-body d-flex align-items-start">
                             <div className="me-3 mt-1">
@@ -40,7 +40,7 @@ export default function Education() {
                                 <h5 className="fw-bold text-white mb-1">{edu.level}</h5>
                                 <p className="mb-1 text-white-50 small">{edu.duration}</p>
                                 {edu.detail && <p className="mb-1 text-light small">{edu.detail}</p>}
-                                <p className="mb-0 text-white">{edu.institute}</p>
+                                <p className="mb-0 text-white small fw-semibold mt-3">{edu.institute}</p>
                             </div>
                         </div>
                     </div>

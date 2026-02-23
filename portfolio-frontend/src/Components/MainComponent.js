@@ -13,17 +13,15 @@ import AdminCertification from './Admin/AdminComponents/AdminCertification'
 import AdminExperience from './Admin/AdminComponents/AdminExperience'
 import AdminResume from './Admin/AdminComponents/AdminResume'
 import AdminVisitors from './Admin/AdminComponents/AdminVisitors'
-import Navbar from './Header/Navbar'
+import AdminManagement from './Admin/AdminComponents/AdminManagement'
 import NotFound from './Body/NotFound'
 import Feedback from './Body/Feedback'
+import AdminGate from './Admin/AdminGate'
 
 export default function MainComponent() {
 
-
     let general =
-
         <>
-
             <Route path='/' element={
                 <div>
                     <Header />
@@ -37,12 +35,10 @@ export default function MainComponent() {
             <Route path='/all-projects' element={<AllProject />} />
             <Route path='/feedback' element={<Feedback />} />
             <Route path='*' element={<NotFound />} />
-
-
         </>
 
-    let admin =
-        <Route path={'/admin/' + process.env.REACT_APP_ADMIN_PASS} element={<Admin />}>
+    let admin = (
+        <Route path='/admin-panel' element={<AdminGate />}>
             <Route path='about' element={<AdminAbout />} />
             <Route path='links' element={<AdminLinks />} />
             <Route path='experience' element={<AdminExperience />} />
@@ -51,8 +47,10 @@ export default function MainComponent() {
             <Route path='certification' element={<AdminCertification />} />
             <Route path='resume' element={<AdminResume />} />
             <Route path='visitors' element={<AdminVisitors />} />
+            <Route path='admins' element={<AdminManagement />} />
             <Route path='*' element={<NotFound />} />
         </Route>
+    );
 
     return (
         <div className=''>
