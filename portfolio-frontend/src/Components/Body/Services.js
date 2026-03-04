@@ -6,7 +6,7 @@ import Reveal from '../Reveal'
 
 export default function Services() {
   return (
-    <div className="glossy-bg py-5" id="services">
+    <div className="py-5" id="services">
       <div className="container">
         <Reveal effect="fade-up">
           <div className="text-center py-3">

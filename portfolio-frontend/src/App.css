@@ -1,64 +1,61 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Tomorrow&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif;
-
-  /* font-family: 'Tomorrow', sans-serif; */
+  font-family: 'Inter', 'Open Sans', sans-serif;
 }
 
-/* App.css or index.css */
+/* ===========================================================================
+   SEMICONDUCTOR SECTION BACKGROUNDS
+   =========================================================================== */
 
-.glossy-bg {
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+.glossy-bg,
+.section-bg {
+  background: transparent;
   position: relative;
   overflow: hidden;
   z-index: 0;
   transition: background 0.4s ease;
 }
 
-html[data-theme="light"] .glossy-bg {
-  background: linear-gradient(135deg, #ffffff, #f2f4f9, #e8eef7) !important;
+/* Alternating sections get a slightly different shade */
+.glossy-bg:nth-child(even) {
+  background: var(--bg-secondary-glass);
 }
 
-.glossy-bg::before {
+/* Subtle radial glow */
+.glossy-bg::before,
+.section-bg::before {
   content: "";
   position: absolute;
   top: -50%;
   left: -50%;
   width: 150%;
   height: 150%;
-  background: radial-gradient(ellipse at 30% 40%, rgba(100, 150, 255, 0.08), transparent 50%);
+  /* background: radial-gradient(ellipse at 30% 40%, var(--accent-glow), transparent 50%); */
   animation: glow1 15s ease-in-out infinite alternate;
   z-index: 1;
   pointer-events: none;
   transform: translateZ(0);
 }
 
-.glossy-bg::after {
+.glossy-bg::after,
+.section-bg::after {
   content: "";
   position: absolute;
   top: -50%;
   right: -50%;
   width: 150%;
   height: 150%;
-  background: radial-gradient(ellipse at 70% 60%, rgba(50, 180, 255, 0.06), transparent 50%);
+  /* background: radial-gradient(ellipse at 70% 60%, rgba(14, 165, 233, 0.04), transparent 50%); */
   animation: glow2 18s ease-in-out infinite alternate;
   z-index: 1;
   pointer-events: none;
   transform: translateZ(0);
-}
-
-html[data-theme="light"] .glossy-bg::before {
-  background: radial-gradient(ellipse at 30% 40%, rgba(70, 130, 220, 0.12), transparent 45%) !important;
-}
-
-html[data-theme="light"] .glossy-bg::after {
-  background: radial-gradient(ellipse at 70% 60%, rgba(100, 150, 255, 0.1), transparent 50%) !important;
 }
 
 @keyframes glow1 {
@@ -89,75 +86,44 @@ html[data-theme="light"] .glossy-bg::after {
   }
 }
 
+/* ===========================================================================
+   GLASS CARD
+   =========================================================================== */
+
 .glass-card {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--bg-card);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid var(--border-color);
   border-radius: 1rem;
   z-index: 2;
   position: relative;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   transform: translateZ(0);
-  /* Hardware acceleration */
   will-change: transform;
 }
 
 html[data-theme="light"] .glass-card {
   background: rgba(248, 251, 255, 0.95) !important;
-  border: 1px solid rgba(100, 120, 200, 0.5) !important;
-  box-shadow: 0 8px 32px 0 rgba(100, 120, 200, 0.12) !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: 0 8px 32px 0 rgba(14, 165, 233, 0.08) !important;
 }
 
+/* ===========================================================================
+   SECTION SUBTITLE WITH ACCENT LINES
+   =========================================================================== */
 
-
-/* Qualification tab links */
-.qualification_tab_link {
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: #ddd;
-  border-bottom: 2px solid transparent;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-}
-
-html[data-theme="light"] .qualification_tab_link {
-  color: #4a4a6a;
-}
-
-.qualification_tab_link:hover {
-  color: #ffc107;
-}
-
-html[data-theme="light"] .qualification_tab_link:hover {
-  color: #0052cc;
-}
-
-.active-tab {
-  font-weight: 600 !important;
-  color: #ffc107 !important;
-  border-bottom: 2px solid #ffc107 !important;
-}
-
-html[data-theme="light"] .active-tab {
-  color: #0052cc !important;
-  border-bottom: 2px solid #0052cc !important;
-}
-
-/* ==============================
-   Section Subtitle with Lines
-   ============================== */
 .section-subtitle {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 16px;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   font-weight: 500;
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  color: #fdc937;
+  color: var(--accent);
   margin-top: 6px;
 }
 
@@ -167,21 +133,118 @@ html[data-theme="light"] .active-tab {
   flex: 0 0 60px;
   height: 2px;
   border-radius: 2px;
-  background: linear-gradient(90deg, transparent, #fdc937);
+  background: linear-gradient(90deg, transparent, var(--accent));
 }
 
 .section-subtitle::after {
-  background: linear-gradient(90deg, #fdc937, transparent);
+  background: linear-gradient(90deg, var(--accent), transparent);
 }
 
-html[data-theme="light"] .section-subtitle {
-  color: #0052cc;
+/* ===========================================================================
+   VLSI TECH PATTERN & GLOBAL ANIMATIONS
+   Global circuit board pattern applied to all sections
+   =========================================================================== */
+
+.App {
+  position: relative;
+  overflow: hidden;
 }
 
-html[data-theme="light"] .section-subtitle::before {
-  background: linear-gradient(90deg, transparent, #0052cc);
+.App::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cg stroke='%2300e5ff' stroke-width='1' fill='none'%3E%3Cline x1='0' y1='40' x2='60' y2='40'/%3E%3Cline x1='80' y1='40' x2='140' y2='40'/%3E%3Cline x1='160' y1='40' x2='200' y2='40'/%3E%3Cline x1='0' y1='100' x2='40' y2='100'/%3E%3Cline x1='60' y1='100' x2='120' y2='100'/%3E%3Cline x1='140' y1='100' x2='200' y2='100'/%3E%3Cline x1='0' y1='160' x2='80' y2='160'/%3E%3Cline x1='120' y1='160' x2='200' y2='160'/%3E%3Cline x1='40' y1='0' x2='40' y2='40'/%3E%3Cline x1='40' y1='100' x2='40' y2='160'/%3E%3Cline x1='100' y1='0' x2='100' y2='40'/%3E%3Cline x1='100' y1='100' x2='100' y2='200'/%3E%3Cline x1='160' y1='40' x2='160' y2='100'/%3E%3Cline x1='160' y1='160' x2='160' y2='200'/%3E%3Cline x1='60' y1='40' x2='60' y2='100'/%3E%3Cline x1='140' y1='100' x2='140' y2='160'/%3E%3Crect x='55' y='35' width='10' height='10' rx='1'/%3E%3Crect x='135' y='95' width='10' height='10' rx='1'/%3E%3Crect x='95' y='155' width='10' height='10' rx='1'/%3E%3C/g%3E%3Cg fill='%2300e5ff'%3E%3Ccircle cx='40' cy='40' r='3'/%3E%3Ccircle cx='100' cy='40' r='3'/%3E%3Ccircle cx='160' cy='40' r='3'/%3E%3Ccircle cx='40' cy='100' r='3'/%3E%3Ccircle cx='100' cy='100' r='3'/%3E%3Ccircle cx='160' cy='100' r='3'/%3E%3Ccircle cx='80' cy='160' r='3'/%3E%3Ccircle cx='120' cy='160' r='3'/%3E%3Ccircle cx='60' cy='60' r='2'/%3E%3Ccircle cx='140' cy='140' r='2'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  background-repeat: repeat;
+  background-position: center;
+  /* Pattern is static to match Hero section */
+  opacity: 0.06;
 }
 
-html[data-theme="light"] .section-subtitle::after {
-  background: linear-gradient(90deg, #0052cc, transparent);
+@keyframes bgPan {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 120px 120px;
+  }
+}
+
+html[data-theme="light"] .App::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cg stroke='%230284c7' stroke-width='1' fill='none'%3E%3Cline x1='0' y1='40' x2='60' y2='40'/%3E%3Cline x1='80' y1='40' x2='140' y2='40'/%3E%3Cline x1='160' y1='40' x2='200' y2='40'/%3E%3Cline x1='0' y1='100' x2='40' y2='100'/%3E%3Cline x1='60' y1='100' x2='120' y2='100'/%3E%3Cline x1='140' y1='100' x2='200' y2='100'/%3E%3Cline x1='0' y1='160' x2='80' y2='160'/%3E%3Cline x1='120' y1='160' x2='200' y2='160'/%3E%3Cline x1='40' y1='0' x2='40' y2='40'/%3E%3Cline x1='40' y1='100' x2='40' y2='160'/%3E%3Cline x1='100' y1='0' x2='100' y2='40'/%3E%3Cline x1='100' y1='100' x2='100' y2='200'/%3E%3Cline x1='160' y1='40' x2='160' y2='100'/%3E%3Cline x1='160' y1='160' x2='160' y2='200'/%3E%3Cline x1='60' y1='40' x2='60' y2='100'/%3E%3Cline x1='140' y1='100' x2='140' y2='160'/%3E%3Crect x='55' y='35' width='10' height='10' rx='1'/%3E%3Crect x='135' y='95' width='10' height='10' rx='1'/%3E%3Crect x='95' y='155' width='10' height='10' rx='1'/%3E%3C/g%3E%3Cg fill='%230284c7'%3E%3Ccircle cx='40' cy='40' r='3'/%3E%3Ccircle cx='100' cy='40' r='3'/%3E%3Ccircle cx='160' cy='40' r='3'/%3E%3Ccircle cx='40' cy='100' r='3'/%3E%3Ccircle cx='100' cy='100' r='3'/%3E%3Ccircle cx='160' cy='100' r='3'/%3E%3Ccircle cx='80' cy='160' r='3'/%3E%3Ccircle cx='120' cy='160' r='3'/%3E%3Ccircle cx='60' cy='60' r='2'/%3E%3Ccircle cx='140' cy='140' r='2'/%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.06;
+}
+
+/* Data Routing Logic Animation */
+.App::after {
+  content: '';
+  position: fixed;
+  width: 5px;
+  height: 5px;
+  background: var(--accent);
+  border-radius: 50%;
+  top: -10px;
+  left: 20%;
+  z-index: 0;
+  pointer-events: none;
+  box-shadow: 0 0 12px var(--accent), 0 0 24px var(--accent-glow);
+  animation: techRoute 15s ease-in-out infinite;
+  opacity: 0;
+}
+
+@keyframes techRoute {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 0.8;
+  }
+
+  15% {
+    transform: translate(0, 30vh);
+  }
+
+  20% {
+    transform: translate(30vw, 30vh);
+  }
+
+  30% {
+    transform: translate(30vw, 60vh);
+  }
+
+  40% {
+    transform: translate(60vw, 60vh);
+  }
+
+  50% {
+    transform: translate(60vw, 100vh);
+    opacity: 0.8;
+  }
+
+  55% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(60vw, 100vh);
+    opacity: 0;
+  }
+}
+
+/* Ensure background panels sit above the SVGs but stay glassy */
+.App .glossy-bg>*,
+.App .section-bg>* {
+  position: relative;
+  z-index: 2;
+}
+
+/* Precedence and clean up light mode opacity overrides */
+html[data-theme="light"] .App::after {
+  opacity: 0.3;
 }

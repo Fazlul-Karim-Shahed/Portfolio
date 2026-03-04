@@ -68,6 +68,17 @@ export default function Experience({ loading, setLoading, renderSkeleton }) {
             });
     };
 
+    const [showAll, setShowAll] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 768);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const displayedExperiences = (isMobile && !showAll) ? experiences.slice(0, 2) : experiences;
+
     return (
         <div className="row m-0">
             {error && (
@@ -80,29 +91,42 @@ export default function Experience({ loading, setLoading, renderSkeleton }) {
                     <p className="text-white-50">No experiences found.</p>
                 </div>
             ) : (
-                experiences.map((item, index) => (
-                    <div className="col-md-6 mb-4 px-4 px-md-3" key={index}>
-                        <div className="card experience-glass-card h-100 w-100">
-                            <div className="row g-0 align-items-center">
-                                <div className="col-3 text-center p-3">
-                                    <img
-                                        src={item.image}
-                                        alt={item.org}
-                                        className="img-fluid rounded"
-                                        style={{ maxHeight: '64px', objectFit: 'cover' }}
-                                    />
-                                </div>
-                                <div className="col-9">
-                                    <div className="card-body py-3">
-                                        <h5 className="card-title fw-bold text-white mb-1">{item.title}</h5>
-                                        <p className="card-text text-warning mb-0 small">{item.period}</p>
-                                        <p className="card-text text-white-50 fst-italic small">{item.org}</p>
+                <>
+                    {displayedExperiences.map((item, index) => (
+                        <div className="col-md-6 mb-4 px-4 px-md-3" key={index}>
+                            <div className="card experience-glass-card h-100 w-100">
+                                <div className="row g-0 align-items-center">
+                                    <div className="col-3 text-center p-3">
+                                        <img
+                                            src={item.image}
+                                            alt={item.org}
+                                            className="img-fluid rounded"
+                                            style={{ maxHeight: '64px', objectFit: 'cover' }}
+                                        />
+                                    </div>
+                                    <div className="col-9">
+                                        <div className="card-body py-3">
+                                            <h5 className="card-title fw-bold text-white mb-1">{item.title}</h5>
+                                            <p className="card-text text-warning mb-0 small">{item.period}</p>
+                                            <p className="card-text text-white-50 fst-italic small">{item.org}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                ))
+                    ))}
+                    {isMobile && experiences.length > 2 && (
+                        <div className="col-12 text-center mt-2 mb-4">
+                            <button
+                                className="btn btn-outline-warning btn-sm px-4"
+                                style={{ borderRadius: '20px', fontSize: '0.85rem' }}
+                                onClick={() => setShowAll(!showAll)}
+                            >
+                                {showAll ? 'Show Less ↑' : 'See More ↓'}
+                            </button>
+                        </div>
+                    )}
+                </>
             )}
 
             <style>{`

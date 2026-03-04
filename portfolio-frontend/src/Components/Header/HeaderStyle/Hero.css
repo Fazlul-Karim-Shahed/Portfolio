@@ -1,7 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Norican&display=swap');
 
-  @import url('https://fonts.googleapis.com/css2?family=Norican&display=swap');
-
-*{
+* {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
@@ -10,7 +9,7 @@
 .hero {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    height: 90%;
+    flex: 1;
     align-items: center;
     gap: -40px;
 }
@@ -34,7 +33,7 @@
 }
 
 .hero_left h1 .hero_name {
-    background: linear-gradient(135deg, #00d4ff, #fdc937);
+    background: linear-gradient(135deg, #00e5ff, #0ea5e9);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -51,11 +50,16 @@ html[data-theme="light"] .hero_left h1 {
 }
 
 html[data-theme="light"] .hero_left h1 .hero_name {
-    background: linear-gradient(135deg, #0052cc, #00a0ff);
+    background: linear-gradient(135deg, #0284c7, #0ea5e9);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
+
+/* ============================================
+   HERO RIGHT — VLSI / SEMICONDUCTOR ANIMATION
+   Profile picture with animated chip schematic ring
+   ============================================ */
 
 .hero_right {
     display: flex;
@@ -64,46 +68,82 @@ html[data-theme="light"] .hero_left h1 .hero_name {
     position: relative;
 }
 
+/* Animated chip schematic — Tech grid logic board */
 .hero_right::before {
     content: "";
     position: absolute;
-    width: 80%;
-    height: 80%;
-    background: radial-gradient(circle at 30% 30%, rgba(0, 212, 255, 0.15), transparent 60%);
+    width: 85%;
+    padding-bottom: 85%;
+    border: 2px dashed rgba(0, 229, 255, 0.3);
     border-radius: 50%;
-    animation: pulse-glow 4s ease-in-out infinite;
+    /* Pure round */
     z-index: 0;
+    box-shadow:
+        inset 0 0 30px rgba(0, 229, 255, 0.05),
+        0 8px 32px rgba(0, 0, 0, 0.4);
+    animation: chipRotate 30s linear infinite;
+    background: transparent;
+}
+
+/* Inner frame */
+.hero_right::after {
+    content: "";
+    position: absolute;
+    width: 75%;
+    padding-bottom: 75%;
+    border-radius: 50%;
+    /* Pure round */
+    border: 3px dotted rgba(0, 229, 255, 0.4);
+    z-index: 1;
+    animation: chipRotateReverse 25s linear infinite;
+    background: radial-gradient(circle, transparent 40%, rgba(0, 229, 255, 0.03) 100%);
 }
 
 html[data-theme="light"] .hero_right::before {
-    background: radial-gradient(circle at 30% 30%, rgba(0, 82, 204, 0.1), transparent 60%);
+    border-color: rgba(2, 132, 199, 0.3);
+    box-shadow:
+        inset 0 0 30px rgba(2, 132, 199, 0.05),
+        0 8px 32px rgba(14, 165, 233, 0.1);
 }
 
+html[data-theme="light"] .hero_right::after {
+    border-color: rgba(2, 132, 199, 0.4);
+    background: radial-gradient(circle, transparent 40%, rgba(2, 132, 199, 0.03) 100%);
+}
+
+/* Profile image — chip-style border */
 .hero_me {
     width: 65%;
     border-radius: 50%;
-    padding: 8px;
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.3), rgba(100, 150, 255, 0.2));
-    box-shadow: 0 0 60px rgba(0, 212, 255, 0.3), inset 0 0 60px rgba(0, 212, 255, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    z-index: 1;
+    /* Pure round */
+    padding: 6px;
+    background: var(--bg-card);
+    z-index: 2;
+    transform: translateZ(0);
+    /* hardware accel */
+    filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.2));
+    transition: transform 0.4s ease, filter 0.4s ease;
+    border: 4px solid rgba(0, 229, 255, 0.15);
+    /* Tech tracking border */
 }
 
 .hero_me:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 80px rgba(0, 212, 255, 0.5), inset 0 0 60px rgba(0, 212, 255, 0.15);
+    filter: drop-shadow(0 0 40px rgba(0, 229, 255, 0.4));
+    border-color: rgba(0, 229, 255, 0.3);
 }
 
 html[data-theme="light"] .hero_me {
-    background: linear-gradient(135deg, rgba(0, 82, 204, 0.15), rgba(100, 150, 255, 0.1));
-    box-shadow: 0 0 40px rgba(0, 82, 204, 0.2), inset 0 0 40px rgba(0, 82, 204, 0.1);
+    filter: drop-shadow(0 0 20px rgba(2, 132, 199, 0.25));
+    border-color: rgba(2, 132, 199, 0.2);
 }
 
 html[data-theme="light"] .hero_me:hover {
-    box-shadow: 0 0 60px rgba(0, 82, 204, 0.35), inset 0 0 40px rgba(0, 82, 204, 0.15);
+    filter: drop-shadow(0 0 40px rgba(2, 132, 199, 0.4));
+    border-color: rgba(2, 132, 199, 0.4);
 }
 
+/* Resume button */
 .hero_cv {
     margin-top: 30px !important;
     padding: 12px 30px !important;
@@ -117,38 +157,50 @@ html[data-theme="light"] .hero_me:hover {
 
 .hero_cv:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(253, 201, 55, 0.3);
+    box-shadow: 0 10px 25px rgba(0, 229, 255, 0.2);
 }
 
 html[data-theme="light"] .hero_cv {
-    color: #0052cc !important;
-    border-color: #0052cc !important;
+    color: var(--accent) !important;
+    border-color: var(--accent) !important;
 }
 
 html[data-theme="light"] .hero_cv:hover {
-    box-shadow: 0 10px 25px rgba(0, 82, 204, 0.2);
+    box-shadow: 0 10px 25px rgba(2, 132, 199, 0.15);
 }
 
-@keyframes pulse-glow {
-    0%, 100% {
-        transform: scale(1);
-        opacity: 0.6;
+/* ── Chip Rotation Keyframes ── */
+@keyframes chipRotate {
+    0% {
+        transform: rotate(0deg);
     }
-    50% {
-        transform: scale(1.1);
-        opacity: 0.3;
+
+    100% {
+        transform: rotate(360deg);
     }
 }
+
+@keyframes chipRotateReverse {
+    0% {
+        transform: rotate(360deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/* ── Responsive ── */
 
 @media only screen and (max-width: 1200px) {
     .hero {
         gap: 30px;
     }
-    
+
     .hero_left h1 {
         font-size: 3rem;
     }
-    
+
     .hero_left {
         padding: 40px 30px;
     }
@@ -157,29 +209,28 @@ html[data-theme="light"] .hero_cv:hover {
 @media only screen and (max-width: 992px) {
     .hero {
         grid-template-columns: 1fr;
-        height: auto;
-        gap: 40px;
-        padding: 40px 0;
+        gap: 0;
+        padding: 10px 0;
     }
 
-    .hero > :first-child {
+    .hero> :first-child {
         order: 2;
     }
 
-    .hero > :last-child {
+    .hero> :last-child {
         order: 1;
     }
 
     .hero_right {
-        padding: 20px;
+        /* padding: 10px 10px 0 10px; */
     }
-    
+
     .hero_left {
-        padding: 30px 40px;
+        padding: 10px 20px;
         align-items: center;
         text-align: center;
     }
-    
+
     .hero_me {
         width: 50%;
     }
@@ -189,15 +240,28 @@ html[data-theme="light"] .hero_cv:hover {
     .hero_left h1 {
         font-size: 2.2rem;
     }
+
+    .hero_me {
+        width: 60%;
+    }
 }
 
 @media only screen and (max-width: 576px) {
     .hero_left h1 {
         font-size: 1.8rem;
+        margin-bottom: 10px;
     }
 
     .hero_left {
-        padding: 20px;
+        padding: 5px 15px;
+    }
+
+    .hero_me {
+        width: 65%;
+    }
+
+    .hero_cv {
+        margin-top: 15px !important;
     }
 }
 

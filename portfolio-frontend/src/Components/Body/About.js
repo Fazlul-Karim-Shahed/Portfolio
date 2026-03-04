@@ -1,12 +1,17 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import './BodyStyles/About.css'
-import { Collapse } from 'reactstrap'
+import { useSpring, animated } from 'react-spring'
 import Reveal from '../Reveal'
 
 export default function About() {
   const [about, setAbout] = useState('')
   const [open, setOpen] = useState(false)
+  const contentRef = useRef(null)
+
+  // Calculate content heights for animation
+  const [contentHeight, setContentHeight] = useState('auto')
+  const [collapsedHeight, setCollapsedHeight] = useState(250) // Default fallback height
 
   useEffect(() => {
     axios.get(process.env.REACT_APP_BACKEND_API + 'About.json')
@@ -14,48 +19,57 @@ export default function About() {
       .catch(() => { })
   }, [])
 
+  // Update heights for animation when content changes or window resizes
+  useEffect(() => {
+    if (contentRef.current) {
+      // Get full height
+      setContentHeight(contentRef.current.scrollHeight)
+
+      // Calculate a reasonable collapsed height based on screen size
+      // roughly 4-5 lines of text
+      const isMobile = window.innerWidth < 768
+      setCollapsedHeight(isMobile ? 200 : 150)
+    }
+
+    // Setup resize listener to recalculate heights
+    const handleResize = () => {
+      if (contentRef.current) {
+        setContentHeight(contentRef.current.scrollHeight)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [about])
+
   const toggle = () => setOpen(!open)
 
-  // Strip HTML tags to get plain text length for truncation
+  // Strip HTML tags to get plain text length for truncation check
   const plainText = about.replace(/<[^>]*>/g, '')
   const shouldTruncate = plainText.length > 300
 
-  // For truncation, find a good cutoff point in the HTML
-  const getTruncatedHtml = (html, maxChars) => {
-    let charCount = 0
-    let inTag = false
-    let cutIndex = html.length
+  // Spring animation for smooth expansion/collapse
+  const expandAnimation = useSpring({
+    height: open ? contentHeight : (shouldTruncate ? collapsedHeight : contentHeight),
+    opacity: 1,
+    overflow: 'hidden',
+    config: { tension: 250, friction: 25, clamp: true }
+  })
 
-    for (let i = 0; i < html.length; i++) {
-      if (html[i] === '<') { inTag = true; continue }
-      if (html[i] === '>') { inTag = false; continue }
-      if (!inTag) {
-        charCount++
-        if (charCount >= maxChars) {
-          // Find the end of the current tag or word
-          const nextClose = html.indexOf('>', i)
-          cutIndex = nextClose !== -1 ? nextClose + 1 : i
-          break
-        }
-      }
-    }
-    return html.substring(0, cutIndex)
-  }
 
-  const truncatedHtml = shouldTruncate ? getTruncatedHtml(about, 300) : about
 
   return (
-    <div className='glossy-bg py-5' id='about'>
+    <div className='pb-5' id='about'>
       <Reveal effect="fade-up">
         <div className="container">
-          <div className='text-center py-3'>
+          <div className='text-center pt-2 pb-3'>
             <h1 className='fw-bold text-white'>About Me</h1>
             <div className='fw-bold text-white-50'>
               <p className='section-subtitle'>Who am I</p>
             </div>
           </div>
 
-          <div className="row m-0 pt-4 glass-card rounded-4 shadow-lg p-4">
+          <div className="row m-0 glass-card rounded-4 shadow-lg p-4">
             <div className="col-md-5 text-center mb-4 mb-md-0">
               <img className='img-fluid w-75 rounded-4 shadow' src="./Assets/me3.png" alt="me" />
             </div>
@@ -68,23 +82,34 @@ export default function About() {
               {about === '' ? (
                 <p className='mt-5 text-danger'>Check internet connection!</p>
               ) : (
-                <div className='mt-2 about-html-content'>
-                  <div
-                    style={{ textAlign: 'justify' }}
-                    dangerouslySetInnerHTML={{ __html: open || !shouldTruncate ? about : truncatedHtml + '...' }}
-                  />
-                  {shouldTruncate && (
-                    <Collapse isOpen={open}>
-                      {/* Content is already shown via dangerouslySetInnerHTML above */}
-                    </Collapse>
-                  )}
-                  {shouldTruncate && (
+                <div className='mt-2 about-html-content d-flex flex-column position-relative'>
+                  <animated.div style={expandAnimation} className="position-relative">
                     <div
-                      onClick={toggle}
-                      className="pt-2 mt-2 fw-bold"
-                      style={{ cursor: 'pointer', color: '#ffc107' }}
-                    >
-                      Show {open ? 'less' : 'more...'}
+                      ref={contentRef}
+                      style={{ textAlign: 'justify' }}
+                      dangerouslySetInnerHTML={{ __html: about }}
+                    />
+
+                  </animated.div>
+
+                  {shouldTruncate && (
+                    <div className="mt-2 text-center text-md-start">
+                      <button
+                        onClick={toggle}
+                        className="btn btn-outline-warning btn-sm px-4 py-2 mt-2 rounded-pill fw-bold"
+                        style={{
+                          transition: 'all 0.3s ease',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '8px'
+                        }}
+                      >
+                        {open ? (
+                          <><span>Show less</span> <i className="fa-solid fa-chevron-up"></i></>
+                        ) : (
+                          <><span>Read more</span> <i className="fa-solid fa-chevron-down"></i></>
+                        )}
+                      </button>
                     </div>
                   )}
                 </div>
@@ -92,7 +117,6 @@ export default function About() {
             </div>
           </div>
         </div>
-
       </Reveal>
     </div>
   )

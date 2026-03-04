@@ -29,6 +29,7 @@
     "react-router-dom": "^6.4.2",
     "react-router-hash-link": "^2.4.3",
     "react-scripts": "5.0.1",
+    "react-spring": "^10.0.3",
     "reactstrap": "^9.1.4",
     "swiper": "^8.4.4",
     "typewriter-effect": "^2.20.1",

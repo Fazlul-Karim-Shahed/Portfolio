@@ -14,7 +14,7 @@ export default function Contact() {
   const toggle = () => setMessageOpen(!messageOpen)
 
   return (
-    <div className="glossy-bg py-5" id="contact">
+    <div className="pb-5" id="contact">
       <div className="container">
         <Reveal effect="fade-up">
           <div className="text-center py-4">
@@ -124,7 +124,7 @@ export default function Contact() {
 
       <style>{`
         .glossy-bg {
-            background: #0f2027;
+            background: transparent;
         }
 
         .glossy-card {

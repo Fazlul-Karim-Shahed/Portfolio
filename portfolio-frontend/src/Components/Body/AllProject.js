@@ -97,13 +97,10 @@ export default function AllProject() {
 
 
     return (
-        <div className='glossy-bg'>
-
-            <div className=''>
-                <Navbar />
-            </div>
-
-            {/* Project Part */}
+        <>
+            <Navbar />
+            <div className='glossy-bg'>
+                {/* Project Part */}
 
             <div className="container">
                 <Reveal effect="fade-up">
@@ -172,5 +169,6 @@ export default function AllProject() {
             <Contact />
             <Footer />
         </div>
+        </>
     )
 }

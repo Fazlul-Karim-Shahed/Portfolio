@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination, Navigation } from 'swiper'
 import { Card, CardBody } from 'reactstrap'
+import { Link } from 'react-router-dom'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
@@ -52,7 +53,7 @@ export default function Testimonial() {
   ))
 
   return (
-    <div className="glossy-bg py-5">
+    <div className="pb-5">
       <div className="container" id="testimonial">
         <Reveal effect="fade-up">
           <div className="text-center">
@@ -92,9 +93,20 @@ export default function Testimonial() {
           </Reveal>
         )}
 
+        {/* CTA Button */}
+        <Reveal effect="fade-up">
+          <div className="text-center mt-4 pb-3">
+            <Link
+              to="/feedback"
+              className="btn testimonial-cta-btn"
+            >
+              💬 Share Your Thoughts
+            </Link>
+          </div>
+        </Reveal>
+
         <style>{`
           .glossy-bg {
-            background: #0f2027;
             color: #fff;
           }
 
@@ -122,6 +134,25 @@ export default function Testimonial() {
 
           .testimonial-glossy-card:hover p {
             color: #ffffff;
+          }
+
+          .testimonial-cta-btn {
+            color: var(--accent) !important;
+            border: 1px solid var(--accent) !important;
+            background: transparent !important;
+            padding: 0.7rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+          }
+
+          .testimonial-cta-btn:hover {
+            background: var(--accent) !important;
+            color: #fff !important;
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.35);
+            transform: translateY(-2px);
           }
         `}</style>
       </div>

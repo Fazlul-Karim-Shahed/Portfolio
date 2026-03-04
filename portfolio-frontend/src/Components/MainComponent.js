@@ -17,6 +17,7 @@ import AdminManagement from './Admin/AdminComponents/AdminManagement'
 import NotFound from './Body/NotFound'
 import Feedback from './Body/Feedback'
 import AdminGate from './Admin/AdminGate'
+import ExperienceDetail from './Body/ExperienceDetail'
 
 export default function MainComponent() {
 
@@ -34,6 +35,7 @@ export default function MainComponent() {
 
             <Route path='/all-projects' element={<AllProject />} />
             <Route path='/feedback' element={<Feedback />} />
+            <Route path='/experience/:slug' element={<ExperienceDetail />} />
             <Route path='*' element={<NotFound />} />
         </>
 

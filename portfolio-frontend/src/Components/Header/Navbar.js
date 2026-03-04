@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
-import Feedback from '../Body/Feedback';
 import './HeaderStyle/Navbar.css'
 import { Offcanvas, OffcanvasBody, OffcanvasHeader } from 'reactstrap';
 
@@ -24,7 +23,7 @@ export default function Navbar() {
                     if (navbar) {
                         if (document.documentElement.scrollTop > 75) {
                             navbar.classList.add('position-fixed', 'top-0', 'w-100');
-                            navbar.style.zIndex = '100';
+                            navbar.style.zIndex = '9999';
                             navbar.style.opacity = '0.96';
                             navbar.style.backdropFilter = 'blur(10px)';
                             // Smooth transition added to CSS class logic instead of inline if needed, but here inline is fine as it avoids full component re-render
@@ -69,7 +68,7 @@ export default function Navbar() {
         const observer = new IntersectionObserver(observerCallback, observerOptions);
 
         // Track all main sections
-        const sections = ['about', 'qualification', 'skill', 'accomplishment', 'services', 'testimonial', 'contact'];
+        const sections = ['about', 'experience', 'education', 'skill', 'accomplishment', 'services', 'testimonial', 'contact'];
         sections.forEach(id => {
             const el = document.getElementById(id);
             if (el) observer.observe(el);
@@ -95,7 +94,7 @@ export default function Navbar() {
         <div id='navbar'>
             <div className='container'>
                 <div className='py-3 d-flex justify-content-between'>
-                    <a href='' className="logo d-flex align-items-center">
+                    <a href='/' className="logo d-flex align-items-center">
                         <img className='img-fluid logo' src={isDark ? "/Assets/logo.png" : "/Assets/logo3.png"} alt="" />
                     </a>
 
@@ -110,7 +109,8 @@ export default function Navbar() {
                             <>
                                 <Link className={`text-decoration-none mx-2 a nav_a ${window.location.pathname === '/all-projects' ? 'active-nav-link' : ''}`} to="/all-projects">Projects</Link>
                                 <HashLink smooth className={`text-decoration-none mx-2 nav_a ${activeSection === 'about' ? 'active-nav-link' : ''}`} to="/#about">About</HashLink>
-                                <HashLink smooth className={`text-decoration-none mx-2 nav_a ${activeSection === 'qualification' ? 'active-nav-link' : ''}`} to="/#qualification">Qualification</HashLink>
+                                <HashLink smooth className={`text-decoration-none mx-2 nav_a ${activeSection === 'experience' ? 'active-nav-link' : ''}`} to="/#experience">Experience</HashLink>
+                                <HashLink smooth className={`text-decoration-none mx-2 nav_a ${activeSection === 'education' ? 'active-nav-link' : ''}`} to="/#education">Education</HashLink>
                                 <HashLink smooth className={`text-decoration-none mx-2 nav_a ${activeSection === 'skill' ? 'active-nav-link' : ''}`} to="/#skill">Skill</HashLink>
                                 <HashLink smooth className={`text-decoration-none mx-2 nav_a ${activeSection === 'accomplishment' ? 'active-nav-link' : ''}`} to="/#accomplishment">Accomplishment</HashLink>
                                 <HashLink smooth className={`text-decoration-none mx-2 nav_a ${activeSection === 'services' ? 'active-nav-link' : ''}`} to="/#services">Service</HashLink>
@@ -119,7 +119,6 @@ export default function Navbar() {
 
 
                         <HashLink smooth className={`text-decoration-none mx-2 nav_a ${activeSection === 'contact' ? 'active-nav-link' : ''}`} to="/#contact">Contact</HashLink>
-                        <Link className={`text-decoration-none mx-2 a nav_a ${window.location.pathname === '/feedback' ? 'active-nav-link' : ''}`} to="/feedback">Feedback</Link>
                     </div>
 
                     <button
@@ -180,7 +179,8 @@ export default function Navbar() {
 
                                         <Link className={`off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white ${window.location.pathname === '/all-projects' ? 'active-nav-link' : ''}`} to="/all-projects">Projects</Link>
                                         <HashLink smooth onClick={toggle} className={`off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white ${activeSection === 'about' ? 'active-nav-link' : ''}`} to="/#about">About</HashLink>
-                                        <HashLink smooth onClick={toggle} className={`off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white ${activeSection === 'qualification' ? 'active-nav-link' : ''}`} to="/#qualification">Qualification</HashLink>
+                                        <HashLink smooth onClick={toggle} className={`off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white ${activeSection === 'experience' ? 'active-nav-link' : ''}`} to="/#experience">Experience</HashLink>
+                                        <HashLink smooth onClick={toggle} className={`off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white ${activeSection === 'education' ? 'active-nav-link' : ''}`} to="/#education">Education</HashLink>
                                         <HashLink smooth onClick={toggle} className={`off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white ${activeSection === 'skill' ? 'active-nav-link' : ''}`} to="/#skill">Skill</HashLink>
                                         <HashLink smooth onClick={toggle} className={`off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white ${activeSection === 'accomplishment' ? 'active-nav-link' : ''}`} to="/#accomplishment">Accomplishment</HashLink>
                                         <HashLink smooth onClick={toggle} className={`off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white ${activeSection === 'services' ? 'active-nav-link' : ''}`} to="/#services">Service</HashLink>
@@ -191,7 +191,6 @@ export default function Navbar() {
                                 }
 
                                 <HashLink smooth onClick={toggle} className={`off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white ${activeSection === 'contact' ? 'active-nav-link' : ''}`} to="/#contact">Contact</HashLink>
-                                <Link onClick={toggle} className={`off_canvas_a text-decoration-none d-block py-3 text-center h5 text text-white ${window.location.pathname === '/feedback' ? 'active-nav-link' : ''}`} to="/feedback">Feedback</Link>
 
                                 <button
                                     onClick={toggleTheme}

@@ -55,6 +55,15 @@ export default function Skill() {
     { name: 'multisim.jpg', url: 'https://en.wikipedia.org/wiki/NI_Multisim' },
   ]
 
+  const vlsiSkills = [
+    'SystemVerilog', 'Verilog', 'UVM', 'VHDL',
+    'AXI Protocol', 'APB Protocol', 'AHB Protocol', 'SPI Interface',
+    'ASIC Design', 'FPGA Design', 'RTL Design', 'Design Verification',
+    'Xilinx Vivado', 'ModelSim', 'QuestaSim', 'Synopsys VCS',
+    'Digital Logic Design', 'Timing Analysis', 'Gate-Level Simulation',
+    'Testbench Development', 'Functional Coverage', 'Code Coverage',
+  ]
+
   useEffect(() => {
     // Only fetch if we haven't already
     if (project === null) {
@@ -188,7 +197,7 @@ export default function Skill() {
   }
 
   return (
-    <div className="glossy-bg py-5">
+    <div className="pb-5">
       <Reveal effect="fade-up">
         <div className="container">
           <div id="skill" className="text-center mb-5">
@@ -200,7 +209,7 @@ export default function Skill() {
           <div className="glossy-box-container rounded-4">
             {/* Tabs */}
             <div className="d-flex justify-content-center skill_tab flex-nowrap overflow-auto px-2">
-              {['links', 'frontend', 'backend', 'others'].map((tabName, idx) => (
+              {['links', 'vlsi', 'frontend', 'backend', 'others'].map((tabName, idx) => (
                 <div
                   key={tabName}
                   className={`mx-1 mx-md-3 pb-2 skill_tab_link text-center ${idx === 0 ? 'active-tab' : ''}`}
@@ -209,13 +218,22 @@ export default function Skill() {
                   tabIndex={0}
                   style={{ whiteSpace: 'nowrap' }}
                 >
-                  {tabName.charAt(0).toUpperCase() + tabName.slice(1)}
+                  {tabName === 'vlsi' ? 'VLSI / RTL' : tabName.charAt(0).toUpperCase() + tabName.slice(1)}
                 </div>
               ))}
             </div>
 
             {/* Skill/Project Cards */}
             <div key={content} className="row pt-3 justify-content-center glossy-fade-in">
+              {content === 'vlsi' && (
+                <div className="col-12 px-3 py-2">
+                  <div className="vlsi-skills-grid">
+                    {vlsiSkills.map((skill, i) => (
+                      <span key={i} className="vlsi-skill-tag">{skill}</span>
+                    ))}
+                  </div>
+                </div>
+              )}
               {content === 'frontend' && renderSkills(frontEnd, 'Frontend')}
               {content === 'backend' && renderSkills(backEnd, 'Backend')}
               {content === 'others' && renderSkills(others, 'Others')}
@@ -281,8 +299,8 @@ export default function Skill() {
       {/* INLINE CSS */}
       <style>{`
       .glossy-bg {
-        background: #0f2027;
-        color: #fff;
+        background: transparent;
+        color: var(--text-primary);
       }
       
       @keyframes glossyFadeIn {
@@ -320,16 +338,16 @@ export default function Skill() {
       
       // Remove this line for Adding box around the skill section
       .glossy-box-container {
-        background: rgba(255, 255, 255, 0.05);
-        border: 2px solid rgba(255, 255, 255, 0.15);
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
         backdrop-filter: blur(14px);
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+        box-shadow: var(--shadow);
       }
 
       .skill_tab_link {
         font-size: 1rem;
         font-weight: 500;
-        color: #f8f9fa;
+        color: var(--text-secondary);
         cursor: pointer;
         padding: 8px 12px;
         border-radius: 8px;
@@ -364,31 +382,60 @@ export default function Skill() {
       }
 
       .skill_tab_link:hover {
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: var(--accent-glow);
       }
 
       .active-tab {
-        color: #0d6efd;
+        color: var(--accent) !important;
         font-weight: bold;
-        border-bottom: 3px solid #0d6efd;
+        border-bottom: 3px solid var(--accent);
+      }
+
+      /* VLSI skill tags */
+      .vlsi-skills-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        justify-content: center;
+        padding: 1rem 0;
+      }
+
+      .vlsi-skill-tag {
+        display: inline-block;
+        padding: 0.5rem 1.2rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--accent);
+        background: rgba(0, 229, 255, 0.06);
+        border: 1px solid rgba(0, 229, 255, 0.15);
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        cursor: default;
+      }
+
+      .vlsi-skill-tag:hover {
+        background: rgba(0, 229, 255, 0.12);
+        border-color: var(--accent);
+        transform: translateY(-3px);
+        box-shadow: 0 4px 15px rgba(0, 229, 255, 0.15);
       }
 
       .project-card,
       .skill-card {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.25);
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
         backdrop-filter: blur(18px);
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+        box-shadow: var(--shadow);
         border-radius: 1rem;
         padding: 1.2rem;
-        color: #000;
+        color: var(--text-primary);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
 
       .project-card:hover,
       .skill-card:hover {
         transform: scale(1.03);
-        box-shadow: 0 0 30px rgba(13, 110, 253, 0.3);
+        box-shadow: 0 0 30px var(--accent-glow);
       }
 
       .skill-logo img {
@@ -399,7 +446,7 @@ export default function Skill() {
 
       .skill-logo:hover img {
         transform: scale(1.15);
-        filter: drop-shadow(0 0 8px #0d6efd);
+        filter: drop-shadow(0 0 8px var(--accent));
       }
 
       /* ─── Links Card ─── */

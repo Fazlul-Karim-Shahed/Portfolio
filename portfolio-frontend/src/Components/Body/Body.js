@@ -1,7 +1,8 @@
 import React from 'react'
 import About from './About'
 import Contact from './Contact'
-import Qualification from './Qualification'
+import ExperienceSection from './ExperienceSection'
+import EducationSection from './EducationSection'
 import Services from './Services'
 import Skill from './Skill'
 import Testimonial from './Testimonial'
@@ -12,7 +13,8 @@ export default function Body() {
     return (
         <div className=''>
             <About />
-            <Qualification  />
+            <ExperienceSection />
+            <EducationSection />
             <Skill />
             <Accomplishment />
             <Services />

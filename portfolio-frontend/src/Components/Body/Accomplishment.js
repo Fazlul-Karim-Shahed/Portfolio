@@ -32,7 +32,7 @@ export default function Accomplishment() {
   }
 
   return (
-    <div className='glossy-bg py-5' id='accomplishment'>
+    <div className='py-5' id='accomplishment'>
       <div className="container">
         <Reveal effect="fade-up">
           <div className="text-center mb-5">

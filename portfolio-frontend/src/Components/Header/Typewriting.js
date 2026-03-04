@@ -8,7 +8,7 @@ export default function Typewriting() {
         <div class="mt-2">
             <h5 ><Typewriter
                 options={{
-                    strings: ['I am an Engineer', 'I am a Passionate Developer', 'I am an Enthusiast',],
+                    strings: ['I am an RTL Design Verification Engineer', 'I am a VLSI Enthusiast', 'I am an EEE Engineer'],
                     autoStart: true,
                     loop: true,
                 }}
